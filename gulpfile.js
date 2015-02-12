@@ -211,12 +211,6 @@ gulp.task('afterBuild', function () {
 gulp.task('build', function (cb) {
     runSequence('clean', ['scripts', 'less', 'static'], 'html', 'rev', 'afterBuild', cb);
 });
-
-gulp.task('build-prod', function (cb) {
-    isProduction = true;
-    isDev = false;
-    runSequence('clean', ['scripts', 'less', 'static'], 'html', 'rev', 'afterBuild', cb);
-});
 /**********************/
 
 
