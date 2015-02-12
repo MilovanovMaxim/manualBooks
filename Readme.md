@@ -8,7 +8,8 @@
 
 ##Build
 Run `gulp build` - for production
-Run `gulp build --dev` - without minifying
+
+Run `gulp build --dev` - without minify
 
 ##For developer
 Run `gulp serve`

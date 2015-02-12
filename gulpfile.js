@@ -64,12 +64,15 @@ gulp.task('livereload', function (cb) {
 });
 
 gulp.task('open',function(cb){
-    require('opn')('http://localhost:' + port + '/');
+    var url = 'http://localhost:' + port + '/';
+    console.log('Open ' +url.bold.green);
+    require('opn')(url);
     cb();
 });
 
 gulp.task('watch', function (cb) {
-    gulp.watch([expressSrc + '/**'], notifyLiveReload);
+    gulp.watch([expressSrc + '/**/*.*'], notifyLiveReload);
+    gulp.watch([appDir + '/js/**'], ['js']);
     cb();
 });
 
@@ -109,7 +112,7 @@ gulp.task('browserify', function(cb){
             runSequence('bundle', 'html');
         });
     }
-    //bundler.transform(es6ify);
+    bundler.transform(es6ify);
     cb();
 });
 
@@ -127,7 +130,7 @@ gulp.task('bundle', function(){
 
 gulp.task('scripts', function (cb) {
     return runSequence('js', cb);
-    return runSequence('browserify', 'bundle', cb);
+    //return runSequence('browserify', 'bundle', cb);
 });
 
 gulp.task('less',function(){
@@ -147,7 +150,8 @@ gulp.task('html', function () {
         .pipe(assets)
 
         .pipe(jsFilter)
-        .pipe($.if(isProduction, $.uglify()))
+        .pipe($.if(isProduction, $.ngmin()))
+        //.pipe($.if(isProduction, $.uglify()))
         .pipe(jsFilter.restore())
 
         .pipe(cssFilter)
@@ -161,7 +165,7 @@ gulp.task('html', function () {
         .on('error', log);
 });
 
-gulp.task('static', ['css', 'fonts', 'img', 'l10n']);
+gulp.task('static', ['css', 'fonts', 'img', 'l10n', 'tpl', 'vendor']);
 
 gulp.task('css', function(){
     return gulp.src([appDir + '/css/*.css'])
@@ -181,6 +185,17 @@ gulp.task('img', function(){
 gulp.task('l10n', function(){
     return gulp.src(['./l10n/**/*.ja'])
         .pipe(gulp.dest(destDir+'/l10n/'));
+});
+
+gulp.task('tpl', function(){
+    return gulp.src('./tpl/**/*.*')
+        .pipe(gulp.dest(destDir+'/tpl/'));
+});
+
+gulp.task('vendor', function(){
+    return gulp.src('./vendor/**/*.*')
+        .pipe(gulp.dest(destDir+'/vendor/'))
+        .pipe($.size());
 });
 
 gulp.task('rev', function () {

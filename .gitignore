@@ -1,5 +1,5 @@
 node_modules/
-app/vendor/
+app/bower_components/
 .idea/
 .tmp/
 dist/
