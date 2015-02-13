@@ -10,11 +10,9 @@
         service.login = function (data) {
             var defer = $q.defer();
             apiService.login(data).then(function (data) {
-                if (!data.success)
-                    defer.resolve(userMapper.toClientModel(data));
-                return defer.reject(data);
+                defer.resolve(userMapper.toClientModel(data));
             }, function(x) {
-                $log.error('Server Error: '+x);
+                return defer.reject(x);
             });
             return defer.promise;
         };

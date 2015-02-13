@@ -52,7 +52,11 @@ gulp.task('express', function (cb) {
     var app = express();
     console.log(('start express in ' + expressSrc).green);
     app.use(require('connect-livereload')({port: lrPort}));
-    app.use(express.static(expressSrc));
+    app.use(express.static(expressSrc, {
+        setHeaders: function (res, path, stat) {
+            res.set('cache-control', "no-cache")
+        }
+    }));
     app.listen(port);
     cb();
 });
@@ -72,7 +76,8 @@ gulp.task('open',function(cb){
 
 gulp.task('watch', function (cb) {
     gulp.watch([expressSrc + '/**/*.*'], notifyLiveReload);
-    gulp.watch([appDir + '/js/**'], ['js']);
+    gulp.watch([appDir + '/js/**'], ['js', 'html']);
+    gulp.watch([appDir + '/tpl/**'], ['tpl']);
     cb();
 });
 
@@ -200,7 +205,7 @@ gulp.task('vendor', function(){
 
 gulp.task('rev', function () {
     return gulp.src(destDir + '/**/*.{js,css,png,jpg,jpeg,gif,ico,html,woff,ttf,eot,svg}')
-        .pipe($.revall({
+        .pipe($.if(isProduction, $.revall({
             transformFilename: function (file, hash) {
                 var ext = path.extname(file.path);
                 if (ext === '.html') {
@@ -209,7 +214,7 @@ gulp.task('rev', function () {
                 return hash.substr(0, 8) + '.' + path.basename(file.path, ext) + ext;
             },
             prefix: ''
-        }))
+        })))
         .pipe(gulp.dest(destDir));
 });
 

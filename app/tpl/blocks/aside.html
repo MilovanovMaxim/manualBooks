@@ -1,4 +1,5 @@
 <div class="aside-wrap">
+  {{  menu.books.length }}
   <div class="app-aside-footer dk">    
     <div class="dropdown dropup" dropdown>
       <a href class="pull-right wrapper m-r-xs" ng-click="app.settings.asideFolded = !app.settings.asideFolded">
@@ -31,12 +32,14 @@
         <li class="hidden-folded padder m-t m-b-sm text-muted text-u-c text-xs">
           <span>Discovery</span>
         </li>
+
         <li ui-sref-active="active">
           <a ui-sref="show.recommendation">
             <i class="icon-star icon"></i>
             <span>Recommendation</span>
           </a>
         </li>
+
         <li ui-sref-active="active">
            <a ui-sref="show.glossary({fold: item.FAQ})">
             <i class="icon-list icon"></i>
@@ -49,41 +52,13 @@
         <li class="hidden-folded padder m-t m-b-sm text-muted text-u-c text-xs">
           <span>Books</span>
         </li>
-
-        <li ui-sref-active="active">
+        {{  menu.books.length }}
+        <li ng-repeat="book in menu.books" ui-sref-active="active">
           <a ui-sref="show.guideversions({fold:'1'})">
             <i class="icon-book-open icon"></i>
-            <span>Microsoft Windows</span>
+            <span>{{book}}</span>
           </a>
         </li>
-
-        <li ui-sref-active="active">
-          <a ui-sref="show.guideversions({fold:'2'})">
-            <i class="icon-book-open icon"></i>
-            <span>Apple OSX</span>
-          </a>
-        </li>	
-
-        <li ui-sref-active="active">
-          <a ui-sref="show.guideversions({fold:'3'})">
-            <i class="icon-book-open icon"></i>
-            <span>Google Android</span>
-          </a>
-        </li>
-
-        <li ui-sref-active="active">
-          <a ui-sref="show.guideversions({fold:'4'})">
-            <i class="icon-book-open icon"></i>
-            <span>Ubuntu</span>
-          </a>
-        </li> 
-        
-        <li ui-sref-active="active">
-          <a ui-sref="show.guideversions({fold:'4'})">
-            <i class="icon-book-open icon"></i>
-            <span>Linux</span>
-          </a>
-        </li> 
 
       </ul>
       <!-- / list -->
