@@ -53,7 +53,7 @@
           <span>Books</span>
         </li>
 
-        <li ng-repeat="book in menu.books" ui-sref-active="active">
+        <li ng-repeat="book in menu.books track by $index" ui-sref-active="active">
           <a ui-sref="show.guideversions({fold:book})">
             <i class="icon-book-open icon"></i>
             <span>{{book}}</span>
