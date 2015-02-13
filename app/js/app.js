@@ -1,5 +1,3 @@
-'use strict';
-
 
 angular.module('app', [
     'ngRoute',
@@ -16,4 +14,4 @@ angular.module('app', [
     'ui.validate',
     'oc.lazyLoad',
     'pascalprecht.translate'
-]);
+])
