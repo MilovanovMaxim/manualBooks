@@ -61,6 +61,14 @@
                         user_id:currentUserId,
                         website_id: websiteId
                     });
+                },
+
+                getVersions: function (book) {
+                    return _http.get('displayVersions',{
+                        user_id:currentUserId,
+                        website_id: websiteId,
+                        manual:book
+                    });
                 }
             }
         };

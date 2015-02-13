@@ -52,9 +52,9 @@
         <li class="hidden-folded padder m-t m-b-sm text-muted text-u-c text-xs">
           <span>Books</span>
         </li>
-        {{  menu.books.length }}
+
         <li ng-repeat="book in menu.books" ui-sref-active="active">
-          <a ui-sref="show.guideversions({fold:'1'})">
+          <a ui-sref="show.guideversions({fold:book})">
             <i class="icon-book-open icon"></i>
             <span>{{book}}</span>
           </a>

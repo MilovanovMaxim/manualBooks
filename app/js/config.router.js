@@ -121,6 +121,12 @@ angular.module('app')
 			  
 			  .state('show.guideversions', {
                   url: '/guideversions/{fold}',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/controllers/guideversions.js'] );
+                          }]
+                  },
 				  views: {
                       '': {
                           templateUrl: 'tpl/show.guideversions.html'
