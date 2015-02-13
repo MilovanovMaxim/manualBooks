@@ -188,7 +188,7 @@ gulp.task('l10n', function(){
 });
 
 gulp.task('tpl', function(){
-    return gulp.src('./tpl/**/*.*')
+    return gulp.src(appDir + '/tpl/**/*.*')
         .pipe(gulp.dest(destDir+'/tpl/'));
 });
 
