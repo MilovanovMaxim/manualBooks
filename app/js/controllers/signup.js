@@ -10,10 +10,10 @@ app.controller('SignupFormController', ['$scope', '$state', 'authService', funct
         var data={
             type: 'standart',
             firstname: $scope.user.name,
-            lastname: '',
+            lastname: $scope.user.name,
             email: $scope.user.email,
             password: $scope.user.password,
-            telephone: '',
+            telephone: '9824848353',
             notes:'this is standard user',
             website_id: '1001'
         };

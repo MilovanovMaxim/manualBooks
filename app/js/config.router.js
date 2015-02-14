@@ -57,7 +57,13 @@ angular.module('app')
               })
               .state('access.forgotpwd', {
                   url: '/forgotpwd',
-                  templateUrl: 'tpl/page_forgotpwd.html'
+                  templateUrl: 'tpl/page_forgotpwd.html',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/controllers/forgotPwd.js'] );
+                          }]
+                  }
               })
               .state('access.404', {
                   url: '/404',
@@ -176,6 +182,12 @@ angular.module('app')
 			  
 			  .state('show.user', {
                   url: '/user/{fold}',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/controllers/profile.js'] );
+                          }]
+                  },
 				  views: {
                       '': {
                           templateUrl: 'tpl/show.user.html'
@@ -196,7 +208,7 @@ angular.module('app')
                           templateUrl: 'tpl/show.footer.html'
                       }
                   }
-              })
+              });
 			  ////////////////
 
 

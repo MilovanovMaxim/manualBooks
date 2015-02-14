@@ -1,12 +1,12 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm">
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="ProfileFormController"  ng-init="app.settings.container = false;">
   <!-- main -->
   <div class="col">
     <div class="wrapper-md">
-      <h3 class="m-t-none text-black">Welcome back <strong>John Smith</strong></h3>
+      <h3 class="m-t-none text-black">Welcome back <strong>{{profile.fullName}}</strong></h3>
       <p class="text-muted m-b-md">Please select a section to edit or add a new page to the guide</p>
       <div class="hbox hbox-auto-xs">
         <div class="col w-sm">
-          <img src="../img/bigcompany.jpg" class="img-full m-b">
+          <img ng-src="{{profile.companyAvatar}}" class="img-full m-b">
         </div>
         <div class="col">
           <div class="m-l-md">
@@ -15,17 +15,17 @@
                 <img src="../img/a0.jpg" class="img-circle">
               </a>
               <div class="clear">
-                <a class="text-info">john.smith@bigcompany.com</a>
-                <small class="block text-muted">Joined: 10/12/2014</small>
+                <a class="text-info">{{profile.email}}</a>
+                <small class="block text-muted">{{profile.joinedDate}}</small>
               </div>
             </div>
             <div class="m-b-md">
               <a class="btn btn-icon btn-rounded btn-info" tooltip="Change Picture"><i class="fa fa-file-photo-o m-r-n-xxs"></i></a> 
 			  <a class="btn btn-icon btn-rounded btn-info" tooltip="Change Password"><i class="fa fa-key m-r-n-xxs"></i></a> 
-              <a class="btn btn-icon btn-rounded btn-info" tooltip="Log out"><i class="fa fa-power-off m-r-n-xxs"></i></a>   
+              <a class="btn btn-icon btn-rounded btn-info" tooltip="Log out" ng-click="logout()"><i class="fa fa-power-off m-r-n-xxs"></i></a>
             </div>
-         <strong>Big Company Ltd</strong><br>
-		 California, USA
+         <strong>{{profile.companyName}}</strong><br>
+		 {{profile.companyPlace}}
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
             <i class="icon-control-pause text-active"></i>
           </a>
           <div class="clear text-ellipsis">
-            <span>Full Name: John Smith</span>
+            <span>Full Name: {{profile.fullName}}</span>
           </div>
         </li>
 		
@@ -57,7 +57,7 @@
             <i class="icon-control-pause text-active"></i>
           </a>
           <div class="clear text-ellipsis">
-            <span>Email: john.smith@bigcompany.com</span>
+            <span>Email: {{profile.email}}</span>
           </div>
         </li>
 		
@@ -70,7 +70,7 @@
             <i class="icon-control-pause text-active"></i>
           </a>
           <div class="clear text-ellipsis">
-            <span>Phone: 436376377</span>
+            <span>Phone: {{profile.phone}}</span>
           </div>
         </li>
 		
@@ -84,7 +84,7 @@
             <i class="icon-control-pause text-active"></i>
           </a>
           <div class="clear text-ellipsis">
-            <span>Company: Big Company Ltd</span>
+            <span>Company: {{profile.companyName}}</span>
           </div>
         </li>
 		
@@ -97,7 +97,7 @@
             <i class="icon-control-pause text-active"></i>
           </a>
           <div class="clear text-ellipsis">
-            <span>Department: Media</span>
+            <span>Department: {{profile.department}}</span>
           </div>
         </li>
 		
@@ -110,7 +110,7 @@
             <i class="icon-control-pause text-active"></i>
           </a>
           <div class="clear text-ellipsis">
-            <span>Address: California, USA</span>
+            <span>Address: {{profile.companyPlace}}</span>
           </div>
         </li>
 		
@@ -166,7 +166,7 @@
       <div class="m-b-sm text-md">Recent Activity</div>
       <ul class="list-group no-bg no-borders pull-in">
         <li class="list-group-item">
-          <a herf class="pull-left thumb-sm m-r">
+          <a class="pull-left thumb-sm m-r">
             <img src="../img/b1.jpg" alt="..." class="r">
           </a>
           <div class="clear">
@@ -175,7 +175,7 @@
           </div>
         </li>
         <li class="list-group-item">
-          <a herf class="pull-left thumb-sm m-r">
+          <a class="pull-left thumb-sm m-r">
             <img src="../img/b2.jpg" alt="..." class="r">
           </a>
           <div class="clear">
@@ -184,7 +184,7 @@
           </div>
         </li>
         <li class="list-group-item">
-          <a herf class="pull-left thumb-sm m-r">
+          <a class="pull-left thumb-sm m-r">
             <img src="../img/b3.jpg" alt="..." class="r">
           </a>
           <div class="clear">
@@ -193,7 +193,7 @@
           </div>
         </li>
         <li class="list-group-item">
-          <a herf class="pull-left thumb-sm m-r">
+          <a class="pull-left thumb-sm m-r">
             <img src="../img/b4.jpg" alt="..." class="r">
           </a>
           <div class="clear">
@@ -202,7 +202,7 @@
           </div>
         </li>
         <li class="list-group-item">
-          <a herf class="pull-left thumb-sm m-r">
+          <a class="pull-left thumb-sm m-r">
             <img src="../img/b5.jpg" alt="..." class="r">
           </a>
           <div class="clear">

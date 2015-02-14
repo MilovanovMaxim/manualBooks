@@ -2,7 +2,7 @@
 
 /* Controllers */
 // signin controller
-app.controller('SigninFormController', ['$scope', 'authService', '$state', function ($scope, authService, $state) {
+app.controller('SigninFormController', ['$scope', 'authService', '$state','profileService', function ($scope, authService, $state,profileService) {
     $scope.user = {};
     $scope.authError = null;
     $scope.login = function () {
@@ -16,5 +16,16 @@ app.controller('SigninFormController', ['$scope', 'authService', '$state', funct
                 $scope.authError = 'Email or Password not right';
             });
     };
+
+    var checkLogedIn=function()
+    {
+        if($state.current && $state.current.name=='access.signin') {
+            var account = profileService.getProfile();
+            if (account)
+                $state.go('show.recommendation');
+        }
+    };
+
+    checkLogedIn();
 }])
 ;

@@ -3,25 +3,26 @@
  */
 (function (module) {
 
-    module.factory('apiService', ['$http','$q', function ($http, $q) {
+    module.factory('apiService', ['$http', '$q', '$log', function ($http, $q, $log) {
 
         var _baseUrl = 'http://marksmith.biz/mbooksapi/';
         var websiteId = 1001;
         var currentUserId = 0;
 
-        var getResourceUrl = function(method){
+        var getResourceUrl = function (method) {
             return _baseUrl + method;
         };
 
-        var wrapResponse = function(response){
+        var wrapResponse = function (response) {
             var defer = $q.defer();
 
-            response.then(function(respone){
+            response.then(function (respone) {
                 data = respone.data;
                 if (data.success === 'true')
                     defer.resolve(data);
                 return defer.reject(data);
-            },function(reason){
+            }, function (reason) {
+                $log.error(reason);
                 return defer.reject(reason);
             });
 
@@ -31,43 +32,53 @@
         var _http = {
 
             get: function (method, data) {
-                return  wrapResponse($http.get(getResourceUrl(method), { params: data}))
-                    .then(function(data){
+                return wrapResponse($http.get(getResourceUrl(method), {params: data}))
+                    .then(function (data) {
                         currentUserId = data.id;
                         return data;
                     });
             }
             ,
-            post: function (method, data) {
-                return wrapResponse($http.post(getResourceUrl(method), data, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}))
+            post: function (method, object) {
+                var method = method + '?' + _http.preparePostData(object);
+                return wrapResponse($http.post(getResourceUrl(method)))
+            },
+            preparePostData: function (data) {
+                var query = [];
+                for (prop in data) {
+                    query.push(prop + '=' + data[prop]);
+                }
+                return query.join('&');
             }
         };
 
         return {
-            registration: function (data) {
-                //return $http.post(_baseUrl + 'registration',{type:'standard',firstname:'demo',lastname:'demo',telephone:'9824848353', notes: 'this is standard user',website_id: '1001', email: 'mma29121983@gmail.com', password: 'qwerty123#'}, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
-                return _http.post('registration', data);
-            },
-            login: function(data){
-                return _http.get('login', data);
-            },
-            isAuth: function(){
-                return !!currentUserId;
+
+            account: {
+                registration: function (data) {
+                    return _http.post('registration', data);
+                },
+                login: function (data) {
+                    return _http.get('login', data);
+                },
+                forgotPwd: function (data) {
+                    return _http.post('forgotPassword', data);
+                }
             },
 
             books: {
-                get: function(){
+                get: function () {
                     return _http.get('displayBooks', {
-                        user_id:currentUserId,
+                        user_id: currentUserId,
                         website_id: websiteId
                     });
                 },
 
                 getVersions: function (book) {
-                    return _http.get('displayVersions',{
-                        user_id:currentUserId,
+                    return _http.get('displayVersions', {
+                        user_id: currentUserId,
                         website_id: websiteId,
-                        manual:book
+                        manual: book
                     });
                 }
             }
