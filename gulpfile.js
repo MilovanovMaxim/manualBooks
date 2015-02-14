@@ -6,11 +6,11 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
 
     $ = require('gulp-load-plugins')({
+        pattern: ['gulp-*', 'main-bower-files'],
         rename: {
-            'gulp-rev-all': 'revall'
+            'gulp-rev-all': 'revall',
         }
     });
-
 
 require('colors');
 
@@ -171,16 +171,25 @@ gulp.task('html', function () {
         .on('error', log);
 });
 
-gulp.task('static', ['css', 'fonts', 'img', 'l10n', 'tpl', 'vendor']);
+gulp.task('static', ['css', 'fonts', 'userFonts', 'img', 'l10n', 'tpl', 'vendor']);
 
 gulp.task('css', function(){
     return gulp.src([appDir + '/css/*.css'])
         .pipe(gulp.dest(destDir+'/css/'))
 });
 
-gulp.task('fonts', function(){
+gulp.task('userFonts', function(){
     return gulp.src([appDir + '/fonts/**/*.*', bowerDir + '/components-font-awesome/fonts/**/*.*'])
         .pipe(gulp.dest(destDir+'/fonts/'))
+});
+
+gulp.task('fonts', function() {
+    console.dir(appDir);
+    return gulp.src($.mainBowerFiles(),{base:bowerDir})
+        .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
+        .pipe($.flatten())
+        .pipe(gulp.dest(destDir+'/fonts'))
+        .pipe($.size());
 });
 
 gulp.task('img', function(){
