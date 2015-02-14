@@ -68,7 +68,7 @@
 
             books: {
                 get: function () {
-                    return _http.get('displayBooks', {
+                    return _http.get('listbooks', {
                         user_id: currentUserId,
                         website_id: websiteId
                     });
