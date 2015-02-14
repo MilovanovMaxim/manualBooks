@@ -30,7 +30,7 @@
                 </li>
 
                 <li ng-repeat="book in menu.books track by $index" ui-sref-active="active">
-                    <a ui-sref="show.guideversions({fold:book})">
+                    <a ui-sref="show.guideversions({fold:book.id})">
                         <i class="icon-book-open icon"></i>
                         <span>{{book.title}}</span>
                     </a>
