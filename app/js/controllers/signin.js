@@ -19,10 +19,12 @@ app.controller('SigninFormController', ['$scope', 'authService', '$state','profi
 
     var checkLogedIn=function()
     {
+
         if($state.current && $state.current.name=='access.signin') {
-            var account = profileService.getProfile();
-            if (account)
-                $state.go('show.recommendation');
+            profileService.clearProfile();
+            //var account = profileService.getProfile();
+            //if (account)
+            //    $state.go('show.recommendation');
         }
     };
 
