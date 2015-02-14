@@ -216,13 +216,6 @@ gulp.task('vendor', function(){
 gulp.task('rev', function () {
     return gulp.src(destDir + '/**/*.{js,css,png,jpg,jpeg,gif,ico,html,woff,ttf,eot,svg}')
         .pipe($.if(isProduction, $.revall({
-            transformFilename: function (file, hash) {
-                var ext = path.extname(file.path);
-                if (ext === '.html') {
-                    return path.basename(file.path, ext) + ext;
-                }
-                return hash.substr(0, 8) + '.' + path.basename(file.path, ext) + ext;
-            },
             prefix: ''
         })))
         .pipe(gulp.dest(destDir));
