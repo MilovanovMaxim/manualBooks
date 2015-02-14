@@ -106,7 +106,7 @@ angular.module('app')
                   resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
-                          return uiLoad.load( ['js/app/glossary/glossary.js'] );
+                          return uiLoad.load( ['js/controllers/glossary.js'] );
                       }]
                   }
               })
