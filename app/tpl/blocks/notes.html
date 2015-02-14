@@ -1,0 +1,32 @@
+<div class="padder-md m-b-lg">
+    <h4 class="m-t-lg m-b">Notes</h4>
+    <div>
+        <div>
+            <a class="pull-left thumb-sm">
+                <img src="../img/a0.jpg" class="img-circle">
+            </a>
+            <div class="m-l-xxl m-b">
+                <div>
+                    <a href><strong>{{profileName()}}</strong></a>
+                    <label class="label bg-info m-l-xs">Delete</label>
+              <span class="text-muted text-xs block m-t-xs">
+                24 minutes ago
+              </span>
+                </div>
+                <div class="m-t-sm">I'm wating for API.</div>
+            </div>
+        </div>
+
+
+    </div>
+    <h4 ng-if="isAdmin()" class="m-t-lg m-b">Leave a note</h4>
+    <form ng-if="isAdmin()">
+        <div class="form-group">
+            <label>Note</label>
+            <textarea class="form-control" rows="5" placeholder="Type your notes"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-info">Submit Note</button>
+        </div>
+    </form>
+</div>
