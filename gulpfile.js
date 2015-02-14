@@ -19,6 +19,7 @@ var path = require('path'),
     tmpDir = './.tmp',
     destDir = './dist',
     appDir = './app',
+    bowerDir = appDir + '/bower_components';
     expressSrc = path.join(__dirname, destDir),
     port = 9000,
     lrPort = 4002,
@@ -178,7 +179,7 @@ gulp.task('css', function(){
 });
 
 gulp.task('fonts', function(){
-    return gulp.src([appDir + '/fonts/**/*.*'])
+    return gulp.src([appDir + '/fonts/**/*.*', bowerDir + '/components-font-awesome/fonts/**/*.*'])
         .pipe(gulp.dest(destDir+'/fonts/'))
 });
 
@@ -188,7 +189,7 @@ gulp.task('img', function(){
 });
 
 gulp.task('l10n', function(){
-    return gulp.src(['./l10n/**/*.ja'])
+    return gulp.src([appDir + '/l10n/**/*.js'])
         .pipe(gulp.dest(destDir+'/l10n/'));
 });
 

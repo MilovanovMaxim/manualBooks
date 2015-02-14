@@ -19,7 +19,7 @@
       <!-- navbar collapse -->
       <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
         <!-- search form -->
-        <form class="navbar-form navbar-form-sm navbar-left no-padder" role="search" ng-controller="TypeaheadDemoCtrl">
+        <form class="navbar-form navbar-form-sm navbar-left no-padder" role="search">
           <div class="form-group">
             <div class="input-group w-lg w-auto-xs">
               <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border padder" placeholder="Search books, pages and faqs...">
