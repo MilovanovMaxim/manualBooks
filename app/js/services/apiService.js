@@ -63,6 +63,26 @@
                 },
                 forgotPwd: function (data) {
                     return _http.post('forgotPassword', data);
+                },
+
+                getRecentActivity: function(){
+                    var defer = $q.defer();
+                    defer.resolve({
+                        items:[
+                            {
+                                id:'windows',
+                                title: 'This is mocks',
+                                img: ''
+                            },
+                            {
+                                title: 'Microsft Windows'
+                            },
+                            {
+                                title: 'Apple OSX'
+                            }
+                        ]
+                    })
+                    return defer.promise;
                 }
             },
 

@@ -1,0 +1,15 @@
+<div>
+    <div class="m-b-sm text-md">Recent Activity</div>
+    <ul class="list-group no-bg no-borders pull-in">
+        <li class="list-group-item" ng-repeat="activity in recentActivity">
+            <a ui-sref='show.guideversions({fold:activity.id})' class="pull-left thumb-sm m-r">
+                <img src="{{activity.img}}"class="r">
+            </a>
+
+            <div class="clear">
+                <div><a ui-sref='show.guideversions({fold:activity.id})'>{{activity.title}}</a></div>
+                <small class="text-muted">Manage</small>
+            </div>
+        </li>
+    </ul>
+</div>
