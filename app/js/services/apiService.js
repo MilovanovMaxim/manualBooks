@@ -95,7 +95,7 @@
                 },
 
                 getVersions: function (book) {
-                    return _http.get('displayVersions', {
+                    return _http.get('listVersions', {
                         user_id: currentUserId,
                         website_id: websiteId,
                         manual: book
