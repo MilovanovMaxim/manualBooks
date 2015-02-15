@@ -12,6 +12,8 @@ app.controller('ProfileFormController', ['$scope', 'profileService','authService
     var init= function(){
         var account= profileService.getProfile();
         $scope.profile.fullName= account.firstname+' '+account.lastname;
+        $scope.profile.firstName = account.firstname;
+        $scope.profile.lastName = account.lastname;
         $scope.profile.email= account.email;
         $scope.profile.joinedDate='01/01/001';
         $scope.profile.companyName='Temp Company Name';
