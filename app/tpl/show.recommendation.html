@@ -1,4 +1,10 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm">
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+  app.settings.asideFolded = false;
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false
+  " ng-controller="RecommendationController">
   <!-- main -->
   <div class="col wrapper-lg">
     <h3 class="font-thin m-t-n-xs m-b">Recommendation</h3>
@@ -8,7 +14,7 @@
 <!-- MANUAL BOOKS RECOMMENDATION ROW -->
 <!-- ======================================== -->
 
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
+      <div ng-repeat="book in recommendatedBooks" class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
         <div class="item">
           <div class="pos-rlt">
             <div class="top">
@@ -20,340 +26,74 @@
               </span>
             </div>     
             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
+              <span class="badge bg-warning m-l-sm m-b-sm">{{book.modified  | date:'dd/MM/yyyy'}}</span>
             </div>
             <div class="item-overlay bg-black-opacity r r-2x r r-2x">
               <div class="center text-center m-t-n w-full">
                 <a><i class="fa fa-2x fa-book text-white"></i></a>
               </div>
             </div>
-            <a ui-sref="learn.detail"><img src="../img/b1.jpg" alt="" class="img-full r r-2x"></a>
+            <a ui-sref="show.guideversions({fold:book.id})"><img src="{{book.image}}" alt="" class="img-full r r-2x"></a>
           </div>
           <div class="padder-v">
-            <a ui-sref="show.guideversions({fold:'1'})" class="text-ellipsis">Microsoft Windows</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-             <div class="top">
-              <span class="badge bg-info m-l-sm m-t-sm">10</span>
-            </div>
-             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-book text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b2.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-            <a ui-sref="show.guideversions({fold:'1'})" class="text-ellipsis">Apple OSX</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
+            <a ui-sref="show.guideversions({fold:book.id})" class="text-ellipsis">{{book.title}}</a>
+            <a ui-sref="show.guideversions({fold:version.id})" class="text-ellipsis text-xs text-muted">View</a>
           </div>
         </div>
       </div>
       <div class="clearfix visible-xs"></div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="top">
-              <span class="badge bg-info m-l-sm m-t-sm">3</span>
-            </div>
-             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-book text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b3.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-           <a ui-sref="show.guideversions({fold:'1'})" class="text-ellipsis">Google Android</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
-          </div>
-        </div>
-      </div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="top">
-              <span class="badge bg-info m-l-sm m-t-sm">6</span>
-            </div>
-             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-book text-white"></i></a>
-              </div>
-            </div>
-            <div class="top w-full">
-              <span class="pull-right m-t-n-xs m-r-sm text-white">
-                <i class="fa fa-bookmark i-lg"></i>
-              </span>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b4.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-           <a ui-sref="show.guideversions({fold:'1'})" class="text-ellipsis">Ubuntu</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix visible-xs"></div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="top">
-              <span class="badge bg-info m-l-sm m-t-sm">3</span>
-            </div>
-             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-book text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b5.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-          <a ui-sref="show.guideversions({fold:'1'})" class="text-ellipsis">Linux</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
-          </div>
-        </div>
-      </div>
 
 <!-- ======================================== -->
 <!-- MANUAL BOOKS VERSIONS RECOMMENDATION ROW -->
 <!-- ======================================== -->
 
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
+      <div ng-repeat="version in recommendatedVersions" class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
         <div class="item">
           <div class="pos-rlt">
             <div class="top w-full">
               <span class="pull-right m-t-sm m-r-sm badge bg-info">17</span>
             </div>
              <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
+              <span class="badge bg-warning m-l-sm m-b-sm">{{version.modified  | date:'dd/MM/yyyy'}}</span>
             </div>
             <div class="item-overlay bg-black-opacity r r-2x">
               <div class="center text-center m-t-n w-full">
                 <a><i class="fa fa-2x fa-book text-white"></i></a>
               </div>
             </div>                         
-            <a ui-sref="learn.detail"><img src="../img/b6.jpg" alt="" class="img-full r r-2x"></a>
+            <a ui-sref="show.guidepages({fold:version.id})"><img src="{{version.image}}" alt="" class="img-full r r-2x"></a>
           </div>
           <div class="padder-v">
-            <a ui-sref="show.guidepages({fold:'8'})" class="text-ellipsis">Win Version 8</a>
-            <a ui-sref="show.guidemanage({fold:'8'})" class="text-ellipsis text-xs text-muted">Manage</a>
+            <a ui-sref="show.guidepages({fold:version.id})" class="text-ellipsis">{{version.title}} {{version.manual_version}}</a>
+            <a ui-sref="show.guidepages({fold:version.id})" class="text-ellipsis text-xs text-muted">View</a>
           </div>
         </div>
       </div>
-      <div class="clearfix visible-xs"></div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-             <div class="top w-full">
-              <span class="pull-right m-t-sm m-r-sm badge bg-info">14</span>
-            </div>
-             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-book text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b7.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-            <a ui-sref="show.guidepages({fold:'8'})" class="text-ellipsis">Win Version 7</a>
-            <a ui-sref="show.guidemanage({fold:'8'})" class="text-ellipsis text-xs text-muted">Manage</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="top w-full">
-              <span class="pull-right m-t-sm m-r-sm badge bg-info">26</span>
-            </div>
-             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-book text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b8.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-            <a ui-sref="show.guidepages({fold:'8'})" class="text-ellipsis">OSX Snow Leopard</a>
-            <a ui-sref="show.guidemanage({fold:'8'})" class="text-ellipsis text-xs text-muted">Manage</a>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix visible-xs"></div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="top w-full">
-              <span class="pull-right m-t-sm m-r-sm badge bg-info">12</span>
-            </div>
-             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-book text-white"></i></a>
-              </div>
-            </div>
-        
-            <a ui-sref="learn.detail"><img src="../img/b9.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-            <a ui-sref="show.guidepages({fold:'8'})" class="text-ellipsis">OSX Mavericks</a>
-            <a ui-sref="show.guidemanage({fold:'8'})" class="text-ellipsis text-xs text-muted">Manage</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="top w-full">
-              <span class="pull-right m-t-sm m-r-sm badge bg-info">8</span>
-            </div>
-             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-book text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b10.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-           <a ui-sref="show.guidepages({fold:'8'})" class="text-ellipsis">Android KitKat</a>
-            <a ui-sref="show.guidemanage({fold:'8'})" class="text-ellipsis text-xs text-muted">Manage</a>
-          </div>
-        </div>
-      </div>
-      
       <div class="clearfix visible-xs"></div>
 
 <!-- ======================================== -->
 <!-- PAGES ROW -->
 <!-- ======================================== -->
 
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
+      <div ng-repeat="page in recommendatedPages" class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
         <div class="item">
           <div class="pos-rlt">
             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
+              <span class="badge bg-warning m-l-sm m-b-sm">{{page.modified | date:'dd/MM/yyyy'}}</span>
             </div>
             <div class="item-overlay bg-black-opacity r r-2x">
               <div class="center text-center m-t-n w-full">
                 <a><i class="fa fa-2x fa-file text-white"></i></a>
               </div>
             </div>
-            <a ui-sref="learn.detail"><img src="../img/b11.jpg" alt="" class="img-full r r-2x"></a>
+            <a ui-sref=""><img src="{{page.media_image}}" alt="" class="img-full r r-2x"></a>
           </div>
           <div class="padder-v">
-            <a class="text-ellipsis" onclick="javascript:alert('Needs Template');">Touch Screen Codes</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-file text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b12.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-         <a class="text-ellipsis" onclick="javascript:alert('Needs Template');">How to send email?</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
+            <a class="text-ellipsis" >View</a>
           </div>
         </div>
       </div>
       <div class="clearfix visible-xs"></div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-file text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b13.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-            <a class="text-ellipsis" onclick="javascript:alert('Needs Template');">Where to set disk</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-file text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b14.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-            <a class="text-ellipsis" onclick="javascript:alert('Needs Template');">Where to find help</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix visible-xs"></div>
-      <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
-        <div class="item">
-          <div class="pos-rlt">
-            <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">01/03/2014</span>
-            </div>
-            <div class="item-overlay bg-black-opacity r r-2x">
-              <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-file text-white"></i></a>
-              </div>
-            </div>
-            <a ui-sref="learn.detail"><img src="../img/b15.jpg" alt="" class="img-full r r-2x"></a>
-          </div>
-          <div class="padder-v">
-            <a class="text-ellipsis" onclick="javascript:alert('Needs Template');">How to operate</a>
-            <a ui-sref="learn.manage({fold:'id=8'})" class="text-ellipsis text-xs text-muted" onclick="javascript:alert('Needs Template');">Manage</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 

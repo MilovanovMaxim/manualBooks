@@ -24,9 +24,9 @@ angular.module('app')
                   url: '/app',
                   templateUrl: 'tpl/app.html'
               })
-			  
+
 			  ///////////// Access
-			  
+
 			  .state('lockme', {
                   url: '/lockme',
                   templateUrl: 'tpl/page_lockme.html'
@@ -70,18 +70,24 @@ angular.module('app')
                   url: '/404',
                   templateUrl: 'tpl/page_404.html'
               })
-			  
-			  
+
+
 			  ///////////// sections
-			  
+
               .state('show', {
                   abstract: true,
                   url: '/show',
                   templateUrl: 'tpl/show.html'
               })
-              
+
               .state('show.recommendation', {
                   url: '/recommendation',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/controllers/recommendation.js'] );
+                          }]
+                  },
 				  views: {
                       '': {
                           templateUrl: 'tpl/show.recommendation.html'
@@ -142,6 +148,12 @@ angular.module('app')
 
 			  .state('show.guidepages', {
                   url: '/guidepages/{fold}',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/controllers/guidepages.js'] );
+                          }]
+                  },
 				  views: {
                       '': {
                           templateUrl: 'tpl/show.guidepages.html'

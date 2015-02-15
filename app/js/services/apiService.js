@@ -100,6 +100,27 @@
                         website_id: websiteId,
                         manual: book
                     });
+                },
+
+                getRecommendatedBooks: function(){
+                    return _http.get('displayRecommendedBooks',{
+                        user_id: currentUserId,
+                        website_id: websiteId
+                    });
+                },
+
+                getRecommendatedVersions: function(){
+                    return _http.get('displayRecommendedVersions',{
+                        user_id: currentUserId,
+                        website_id: websiteId
+                    });
+                },
+
+                getRecommendatedPages: function(){
+                    return _http.get('displayRecommendedPages',{
+                        user_id: currentUserId,
+                        website_id: websiteId
+                    });
                 }
             },
 
