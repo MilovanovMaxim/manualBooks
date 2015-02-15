@@ -1,4 +1,4 @@
-angular.module('add').controller('GuideversionsControlle', ['$scope', "apiService",'$stateParams', function($scope, apiService, $stateParams){
+angular.module('app').controller('GuideversionsControlle', ['$scope', "apiService",'$stateParams', function($scope, apiService, $stateParams){
 
      apiService.books
         .getVersions($stateParams.fold)

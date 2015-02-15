@@ -65,6 +65,7 @@ angular.module('app')
                           }]
                   }
               })
+
               .state('access.404', {
                   url: '/404',
                   templateUrl: 'tpl/page_404.html'
@@ -73,15 +74,13 @@ angular.module('app')
 			  
 			  ///////////// sections
 			  
-			  
-			   .state('show', {
+              .state('show', {
                   abstract: true,
                   url: '/show',
                   templateUrl: 'tpl/show.html'
               })
               
-			  
-			  .state('show.recommendation', {
+              .state('show.recommendation', {
                   url: '/recommendation',
 				  views: {
                       '': {
@@ -111,8 +110,7 @@ angular.module('app')
                   }
               })
 
-
-			    .state('show.screencast', {
+              .state('show.screencast', {
                   url: '/screencast',
 				  views: {
                       '': {
@@ -123,7 +121,6 @@ angular.module('app')
                       }
                   }
               })
-
 
 			  .state('show.guideversions', {
                   url: '/guideversions/{fold}',
@@ -154,7 +151,6 @@ angular.module('app')
                       }
                   }
               })
-
 
 			  .state('show.guidemanage', {
                   url: '/guidemanage/{fold}',
@@ -203,6 +199,24 @@ angular.module('app')
 				  views: {
                       '': {
                           templateUrl: 'tpl/show.settings.html'
+                      },
+                      'footer': {
+                          templateUrl: 'tpl/show.footer.html'
+                      }
+                  }
+              })
+
+			  .state('show.search', {
+                  'url': '/search/{searchString}',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/controllers/search.js'] );
+                          }]
+                  },
+                  views: {
+                      '': {
+                          templateUrl: 'tpl/show.search.html'
                       },
                       'footer': {
                           templateUrl: 'tpl/show.footer.html'
