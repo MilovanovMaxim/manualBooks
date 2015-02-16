@@ -33,7 +33,7 @@
                 <a ui-sref="show.guideversions({fold:book.id})"><i class="fa fa-2x fa-book text-white"></i></a>
               </div>
             </div>
-            <a ui-sref="show.guideversions({fold:book.id})"><img src="{{book.image}}" alt="" class="img-full r r-2x"></a>
+            <a ui-sref="show.guideversions({fold:book.id})"><img ng-src="{{book.image}}" alt="" class="img-full r r-2x" src="/img/blank.jpg"></a>
           </div>
           <div class="padder-v">
             <a ui-sref="show.guideversions({fold:book.id})" class="text-ellipsis">{{book.title}}</a>
