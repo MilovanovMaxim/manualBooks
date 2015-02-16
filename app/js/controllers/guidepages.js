@@ -48,7 +48,8 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
                 $scope.book.pages.push({
                     name: page.full_title,
                     id: page.id,
-                    pdf: page.pdf
+                    pdf: page.pdf,
+                    bookmarked: page.bookmarked
                 });
             });
             if ($scope.book.pages.length > 0) {

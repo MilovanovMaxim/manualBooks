@@ -4,10 +4,14 @@
         var service = {};
         var profile = {};
         service.isAdmin = function () {
-            return profile.type == 'admin';
+            if (profile)
+                return profile.type == 'admin';
+            return false;
         };
         service.isSuperAdmin = function () {
-            return profile.type == 'superadmin';
+            if (profile)
+                return profile.type == 'superadmin';
+            return false;
         };
         service.saveProfile = function (data) {
             profile = data;
