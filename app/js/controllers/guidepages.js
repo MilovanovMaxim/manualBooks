@@ -2,7 +2,7 @@
 
 /* Controllers */
 // guidepages controller
-app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiService', '$stateParams', function ($scope, profileService, apiService, $stateParams) {
+app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiService', '$stateParams', '$state', function ($scope, profileService, apiService, $stateParams, $state) {
 
     $scope.book = {};
     $scope.book.pages = [];
@@ -16,6 +16,12 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
 
     $scope.displayPage = function (id) {
         setActive(id);
+
+        $state.go('show.guidepages',
+            {fold: $stateParams.fold, title:$stateParams.title, version:$stateParams.version, page:id},
+            {inherit:true, notify:false}
+        );
+
         apiService.books.displayPage(id).then(function (data) {
             if (data.items.length > 0) {
                 var page = data.items[0];
@@ -52,7 +58,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
                 });
             });
             if ($scope.book.pages.length > 0) {
-                $scope.displayPage($scope.book.pages[0].id);
+                $scope.displayPage($stateParams.page || $scope.book.pages[0].id);
             }
 
 

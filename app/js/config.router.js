@@ -147,7 +147,7 @@ angular.module('app')
               })
 
 			  .state('show.guidepages', {
-                  url: '/guidepages/{fold}?title&version',
+                  url: '/guidepages/{fold}?title&version&page',
                   resolve: {
                       deps: ['uiLoad',
                           function( uiLoad ){
