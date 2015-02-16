@@ -15,10 +15,10 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     };
 
     $scope.displayPage = function (id) {
+        setActive(id);
         apiService.books.displayPage(id).then(function (data) {
             if (data.items.length > 0) {
                 var page = data.items[0];
-                setActive(page.id);
                 $scope.currentPage = {
                     id: page.id,
                     full_title: page.full_title,
@@ -28,7 +28,6 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
                     media_image: page.media_image
                 }
             }
-
         });
     };
 

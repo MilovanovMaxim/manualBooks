@@ -18,12 +18,17 @@
             localStorageService.setItem(key, JSON.stringify(data));
         };
         service.getProfile = function () {
-            profile = JSON.parse(localStorageService.getItem(key))
+            profile = JSON.parse(localStorageService.getItem(key));
             return profile;
         };
         service.clearProfile = function () {
             profile = {};
             localStorageService.removeItem(key);
+        };
+        service.getUserId = function () {
+            if (profile)
+                return profile.id;
+            return 0;
         };
         return service;
     }]);

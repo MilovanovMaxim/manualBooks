@@ -1,95 +1,28 @@
-      <!-- navbar header -->
-      <div class="navbar-header {{app.settings.navbarHeaderColor}}">
-        <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
-          <i class="glyphicon glyphicon-cog"></i>
-        </button>
-        <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
-          <i class="glyphicon glyphicon-align-justify"></i>
-        </button>
-        <!-- brand -->
-        <a href="#/" class="navbar-brand text-lt">
-          <i class="fa fa-graduation-cap"></i>
-          <img src="../../img/logo.png" alt="." class="hide">
-          <span class="hidden-folded m-l-xs">Manual Books</span>
-        </a>
-        <!-- / brand -->
-      </div>
-      <!-- / navbar header -->
+<!-- navbar header -->
+<div class="navbar-header {{app.settings.navbarHeaderColor}}">
+    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+        <i class="glyphicon glyphicon-cog"></i>
+    </button>
+    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+        <i class="glyphicon glyphicon-align-justify"></i>
+    </button>
+    <!-- brand -->
+    <a href="#/" class="navbar-brand text-lt">
+        <i class="fa fa-graduation-cap"></i>
+        <img src="../../img/logo.png" alt="." class="hide">
+        <span class="hidden-folded m-l-xs">Manual Books</span>
+    </a>
+    <!-- / brand -->
+</div>
+<!-- / navbar header -->
 
-      <!-- navbar collapse -->
-      <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
-        <!-- search form -->
-        <div  mb-search-input>
-        <!-- / search form -->
-        <!-- nabar right -->
-        <ul class="nav navbar-nav navbar-right">
-          <li class="hidden-xs">
-            <a ui-fullscreen></a>
-          </li>
-          
-          <li class="bg-light dropdown" dropdown>
-            <a href class="bg-info text-white dropdown-toggle" dropdown-toggle>
-			<i class="fa fa-plus fa-fw"></i>
-			</a>
-			
-			<!-- dropdown -->
-            <div class="dropdown-menu w-xl animated fadeInUp">
-              <div class="panel bg-white">
-                <div class="panel-heading b-light bg-light">
-                  <strong>Administrators Tools</strong>
-                </div>
-                <div class="list-group">
-                 
-				 <a href class="media list-group-item">
-                    <span class="pull-left thumb-sm">
-                      <img src="../../img/a1.jpg" alt="..." class="img-circle">
-                    </span>
-                    <span class="media-body block m-b-none">
-                      Add a new Manual Book<br>
-                      <small class="text-muted">Allows you to add a completely new guide</small>
-                    </span>
-                  </a>
-
-				 <a href class="media list-group-item">
-                    <span class="pull-left thumb-sm">
-                      <img src="../../img/a3.jpg" alt="..." class="img-circle">
-                    </span>
-                    <span class="media-body block m-b-none">
-                      Add a new FAQ<br>
-                      <small class="text-muted">Add a new FAQ term</small>
-                    </span>
-                  </a>
-
-				<a ui-sref="show.usersmanage({fold:'all'})" class="media list-group-item">
-                    <span class="pull-left thumb-sm">
-                      <img src="../../img/a4.jpg" alt="..." class="img-circle">
-                    </span>
-                    <span class="media-body block m-b-none">
-                      Manage Users<br>
-                      <small class="text-muted">Add, edit and delete users</small>
-                    </span>
-                  </a>
-
-				 <a ui-sref="show.settings({fold:'all'})" class="media list-group-item">
-                    <span class="pull-left thumb-sm">
-                      <img src="../../img/a4.jpg" alt="..." class="img-circle">
-                    </span>
-                    <span class="media-body block m-b-none">
-                      Manage Settings<br>
-                      <small class="text-muted">Edit your settings</small>
-                    </span>
-                  </a>
-				 
-				 
-                </div>
-                
-              </div>
-            </div>
-            <!-- / dropdown -->
-			
-          </li>
-        </ul>
-        <!-- / navbar right -->
-
-      </div>
-      <!-- / navbar collapse -->
+<!-- navbar collapse -->
+<div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+    <!-- search form -->
+    <div mb-search-input></div>
+    <!-- / search form -->
+    <!-- nabar right -->
+    <bookmark-items></bookmark-items>
+    <!-- / navbar right -->
+</div>
+<!-- / navbar collapse -->

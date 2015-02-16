@@ -1,0 +1,53 @@
+<ul class="nav navbar-nav navbar-right">
+    <li class="hidden-xs">
+        <a ui-fullscreen></a>
+    </li>
+
+    <li class="bg-light dropdown" dropdown>
+        <a href class="bg-info text-white dropdown-toggle" dropdown-toggle>
+            <i class="fa fa-plus fa-fw" ng-click="displayBookmarks()"></i>
+        </a>
+
+        <!-- dropdown -->
+        <div class="dropdown-menu w-xl animated fadeInUp">
+            <div class="panel bg-white">
+                <div class="panel-heading b-light bg-light">
+                    <strong>Bookmarked Items</strong>
+                </div>
+                <div class="list-group">
+
+                    <a href class="media list-group-item" ng-repeat="bookmark in bookmarks">
+                   <span class="pull-left thumb-sm">
+                     <img ng-src="{{bookmark.media_image}}" alt="{{bookmark.short_title}}" class="img-circle">
+                   </span>
+                   <span class="media-body block m-b-none">
+                     {{bookmark.full_title}}<br>
+                     <small class="text-muted">{{bookmark.subtitle}}</small>
+                   </span>
+                    </a>
+
+                    <!--<a ui-sref="show.usersmanage({fold:'all'})" class="media list-group-item">-->
+                    <!--<span class="pull-left thumb-sm">-->
+                    <!--<img src="img/b14.jpg" alt="..." class="img-circle">-->
+                    <!--</span>-->
+                    <!--<span class="media-body block m-b-none">-->
+                    <!--Where to find help<br>-->
+                    <!--<small class="text-muted">Subtitle</small>-->
+                    <!--</span>-->
+                    <!--</a>-->
+
+                    <!--<a ui-sref="show.settings({fold:'all'})" class="media list-group-item">-->
+                    <!--<span class="pull-left thumb-sm">-->
+                    <!--<img src="img/b12.jpg" alt="..." class="img-circle">-->
+                    <!--</span>-->
+                    <!--<span class="media-body block m-b-none">-->
+                    <!--How to send email<br>-->
+                    <!--<small class="text-muted">Subtitle</small>-->
+                    <!--</span>-->
+                    <!--</a>-->
+                </div>
+            </div>
+        </div>
+        <!-- / dropdown -->
+    </li>
+</ul>

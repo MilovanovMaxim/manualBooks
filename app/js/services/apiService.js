@@ -3,11 +3,10 @@
  */
 (function (module) {
 
-    module.factory('apiService', ['$http', '$q', '$log', function ($http, $q, $log) {
+    module.factory('apiService', ['$http', '$q', '$log','profileService', function ($http, $q, $log, profileService) {
 
         var _baseUrl = 'http://marksmith.biz/mbooksapi/';
         var websiteId = 1001;
-        var currentUserId = 0;
 
         var getResourceUrl = function (method) {
             return _baseUrl + method;
@@ -34,7 +33,6 @@
             get: function (method, data) {
                 return wrapResponse($http.get(getResourceUrl(method), {params: data}))
                     .then(function (data) {
-                        currentUserId = data.id;
                         return data;
                     });
             }
@@ -65,12 +63,12 @@
                     return _http.post('forgotPassword', data);
                 },
 
-                getRecentActivity: function(){
+                getRecentActivity: function () {
                     var defer = $q.defer();
                     defer.resolve({
-                        items:[
+                        items: [
                             {
-                                id:'windows',
+                                id: 'windows',
                                 title: 'This is mocks',
                                 img: ''
                             },
@@ -81,7 +79,7 @@
                                 title: 'Apple OSX'
                             }
                         ]
-                    })
+                    });
                     return defer.promise;
                 }
             },
@@ -89,53 +87,56 @@
             books: {
                 get: function () {
                     return _http.get('listbooks', {
-                        user_id: currentUserId,
+                        user_id: profileService.getUserId(),
                         website_id: websiteId
                     });
                 },
 
                 getVersions: function (book) {
                     return _http.get('listVersions', {
-                        user_id: currentUserId,
+                        user_id: profileService.getUserId(),
                         website_id: websiteId,
                         manual: book
                     });
                 },
 
-                getRecommendatedBooks: function(){
-                    return _http.get('displayRecommendedBooks',{
-                        user_id: currentUserId,
+                getRecommendatedBooks: function () {
+                    return _http.get('displayRecommendedBooks', {
+                        user_id: profileService.getUserId(),
                         website_id: websiteId
                     });
                 },
 
-                getRecommendatedVersions: function(){
-                    return _http.get('displayRecommendedVersions',{
-                        user_id: currentUserId,
+                getRecommendatedVersions: function () {
+                    return _http.get('displayRecommendedVersions', {
+                        user_id: profileService.getUserId(),
                         website_id: websiteId
                     });
                 },
 
-                getRecommendatedPages: function(){
-                    return _http.get('displayRecommendedPages',{
-                        user_id: currentUserId,
+                getRecommendatedPages: function () {
+                    return _http.get('displayRecommendedPages', {
+                        user_id: profileService.getUserId(),
                         website_id: websiteId
                     });
                 },
-                displayPages: function(versionId){
-                    return  _http.get('displayPages',{
-                        user_id: currentUserId,
+                displayPages: function (versionId) {
+                    return _http.get('displayPages', {
+                        user_id: profileService.getUserId(),
                         website_id: websiteId,
                         version_id: versionId
                     });
                 },
-                displayPage:function(id){
-                    return  _http.get('displayPage',{
+                displayPage: function (id) {
+                    return _http.get('displayPage', {
                         id: id
                     });
                 },
-                addBookmark: function(pageId){
-                    return _http.post('addBookmark',{page_id :pageId, user_id: currentUserId});
+                addBookmark: function (pageId) {
+                    return _http.post('addBookmark', {page_id: pageId, user_id: profileService.getUserId()});
+                },
+                displayBookmarks: function () {
+                    return _http.get('displayBookmarks', {user_id: profileService.getUserId()})
                 }
             },
 
@@ -160,14 +161,14 @@
                 }
             },
 
-            search: function(searchString){
+            search: function (searchString) {
                 var defer = $q.defer();
                 defer.resolve({
                     items: [{
-                        title:'This is mocks',
+                        title: 'This is mocks',
                         shortDescription: 'This is mocks This is mocks This is mocks This is mocks',
-                        id:1,
-                        tags: ['tag1','tag2','tag3','tag4']
+                        id: 1,
+                        tags: ['tag1', 'tag2', 'tag3', 'tag4']
                     }]
                 });
 
