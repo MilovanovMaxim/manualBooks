@@ -121,6 +121,18 @@
                         user_id: currentUserId,
                         website_id: websiteId
                     });
+                },
+                displayPages: function(versionId){
+                    return  _http.get('displayPages',{
+                        user_id: currentUserId,
+                        website_id: websiteId,
+                        version_id: versionId
+                    });
+                },
+                displayPage:function(id){
+                    return  _http.get('displayPage',{
+                        id: id
+                    });
                 }
             },
 

@@ -2,43 +2,53 @@
 
 /* Controllers */
 // guidepages controller
-app.controller('GuidePagesFormController', ['$scope', 'profileService','apiService','$state', function ($scope, profileService,apiService,$state) {
+app.controller('GuidePagesFormController', ['$scope', 'profileService','apiService','$stateParams', function ($scope, profileService,apiService,$stateParams) {
 
     $scope.book={};
+    $scope.book.pages=[];
 
-    $scope.currentPage=null;
+    var setActive= function(id){
+        _.each($scope.book.pages, function(page){
+            page.active=page.id==id;
+        })
+    };
 
-    $scope.displayPage= function(){
+    $scope.displayPage= function(id){
+        apiService.books.displayPage(id).then(function(data){
+            if(data.items.length>0){
+                var page=data.items[0];
+                setActive(page.id);
+                $scope.currentPage= {
+                    id: page.id,
+                    full_title: page.full_title,
+                    content: page.content,
+                    document_update_version: page.document_update_version,
+                    views_count: page.count,
+                    media_image: page.media_image
+                }
+            }
 
-        $scope.currentPage= {
-            id: "1",
-            short_title: "Welcome",
-            full_title: "Welcome page",
-            subtitle: "wel img",
-            content: "<b>Hi</b><br><p>This is welcome page</p>",
-            document_update_version: "1.0",
-            status: "1",
-            created: "2015-02-05 05:17:00",
-            modified: "0000-00-00 00:00:00",
-            media_id: "2",
-            admin_id: "2",
-            admin_name: "ravi vagadiya",
-            notes: "This is welcome note!",
-            media_title: "welcome image",
-            media_subtitle: "wel img",
-            media_image: "http://marksmith.biz/media/2.png",
-            media_status: "1",
-            media_created: "2015-02-05 05:17:00",
-            media_modified: "0000-00-00 00:00:00",
-            media_admin_id: "2",
-            media_notes: "This is image note",
-            views_count: 777
-        }
+        });
+
+
     };
 
     var init=function(){
+        apiService.books.displayPages($stateParams.fold).then(function(data){
+            _.each(data.items,function(page){
+                $scope.book.pages.push({
+                    name: page.full_title,
+                    id:page.id,
+                    pdf: page.pdf
+                });
+            });
+            if($scope.book.pages.length>0)
+            {
+                $scope.displayPage($scope.book.pages[0].id);
+            }
 
-        //apiService.displayPages()
+
+        });
     };
 
     init();
