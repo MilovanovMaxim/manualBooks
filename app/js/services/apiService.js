@@ -133,6 +133,9 @@
                     return  _http.get('displayPage',{
                         id: id
                     });
+                },
+                addBookmark: function(pageId){
+                    return _http.post('addBookmark',{page_id :pageId, user_id: currentUserId});
                 }
             },
 

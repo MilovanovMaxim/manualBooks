@@ -19,8 +19,7 @@
 
 
                                 <h4 class="m-n wrapper"><a class="m-r-sm"><i class="icon-cloud-download"
-                                                                             onclick="javascript:alert('The will download all pages in PDF format');"></i></a><strong>Microsoft
-                                    Windows</strong> 7</h4>
+                                                                             onclick="javascript:alert('The will download all pages in PDF format');"></i></a><strong>{{book.title}}</strong> {{book.version}}</h4>
                                 <ul class="list-group no-radius no-border no-bg list-group-lg">
 
                                     <li class="list-group-item " ng-class="{active: page.active}" ng-repeat="page in book.pages">
@@ -28,7 +27,7 @@
                                             <a class="m-r-sm" ng-href="{{page.pdf}}"><i class="icon-cloud-download"
                                                                  ></i></a>
                                             <a><i class="icon-pin"
-                                                  onclick="javascript:alert('The will save as bookmark');"></i></a>
+                                                  ng-click="addBookmark(page.id)"></i></a>
                                         </div>
                                         <a class="m-r-sm pull-left">
                                             <i class="icon-doc text"></i>
@@ -74,18 +73,14 @@
 
 
                                             <div><br>
-                                                <a class="m-r-sm" tooltip="Delete Page"><i class="icon-trash"></i></a>
-                                                <a class="m-r-sm" tooltip="Hide Page"><i class="icon-eye"></i></a>
-                                                <a tooltip="Edit Page"><i class="icon-pencil"></i></a>
-
+                                                <a ng-if="isAdmin()" class="m-r-sm" tooltip="Delete Page"><i class="icon-trash"></i></a>
+                                                <a ng-if="isAdmin()" class="m-r-sm" tooltip="Hide Page"><i class="icon-eye"></i></a>
+                                                <a ng-if="isAdmin()" tooltip="Edit Page"><i class="icon-pencil"></i></a>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                                 <p class="text-muted m-b-md" ng-bind-html="currentPage.content"></p>
-
-
                             </div>
                         </div>
                     </div>

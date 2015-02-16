@@ -61,11 +61,11 @@
                 <a><i class="fa fa-2x fa-book text-white"></i></a>
               </div>
             </div>                         
-            <a ui-sref="show.guidepages({fold:version.id})"><img src="{{version.image}}" alt="" class="img-full r r-2x"></a>
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><img src="{{version.image}}" alt="" class="img-full r r-2x"></a>
           </div>
           <div class="padder-v">
-            <a ui-sref="show.guidepages({fold:version.id})" class="text-ellipsis">{{version.title}} {{version.manual_version}}</a>
-            <a ui-sref="show.guidepages({fold:version.id})" class="text-ellipsis text-xs text-muted">View</a>
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="text-ellipsis">{{version.title}} {{version.manual_version}}</a>
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="text-ellipsis text-xs text-muted">View</a>
           </div>
         </div>
       </div>

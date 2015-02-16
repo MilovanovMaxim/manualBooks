@@ -1,14 +1,24 @@
 (function (module) {
-    module.factory('profileService',['localStorageService', function (localStorageService) {
-        var key='account';
+    module.factory('profileService', ['localStorageService', function (localStorageService) {
+        var key = 'account';
         var service = {};
-        service.saveProfile=function(data){
+        var profile = {};
+        service.isAdmin = function () {
+            return profile.type == 'admin';
+        };
+        service.isSuperAdmin = function () {
+            return profile.type == 'superadmin';
+        };
+        service.saveProfile = function (data) {
+            profile = data;
             localStorageService.setItem(key, JSON.stringify(data));
         };
-        service.getProfile= function(){
-          return JSON.parse(localStorageService.getItem(key));
+        service.getProfile = function () {
+            profile = JSON.parse(localStorageService.getItem(key))
+            return profile;
         };
-        service.clearProfile= function(){
+        service.clearProfile = function () {
+            profile = {};
             localStorageService.removeItem(key);
         };
         return service;
