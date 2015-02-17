@@ -16,7 +16,8 @@
                 </div>
                 <div class="list-group">
 
-                    <a href class="media list-group-item" ng-repeat="bookmark in bookmarks">
+                    <a href class="media list-group-item" ng-repeat="bookmark in bookmarks"
+                       ng-click="goToPage(bookmark.manual_id, bookmark.manual_title, bookmark.manual_version,bookmark.page_id)">
                    <span class="pull-left thumb-sm">
                      <img ng-src="{{bookmark.media_image}}" alt="{{bookmark.short_title}}" class="img-circle">
                    </span>
