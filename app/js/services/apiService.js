@@ -7,7 +7,7 @@
 
         var _baseUrl = 'http://marksmith.biz/mbooksapi/';
         var websiteId = 1001;
-        var userId=0;
+        var userId = 0;
 
         var getResourceUrl = function (method) {
             return _baseUrl + method;
@@ -52,13 +52,12 @@
             addExtraData: function (data) {
                 if (!data)
                     data = {};
-                if(userId!=0)
-                {
-                    data.user_id=0;
+                if (userId != 0) {
+                    data.user_id = 0;
                 }
-                else{
+                else {
                     data.user_id = profileService.getUserId();
-                    userId==data.user_id;
+                    userId == data.user_id;
                 }
                 data.website_id = websiteId;
                 return data;
@@ -150,10 +149,11 @@
                         id: id
                     });
                 },
-                addBookmark: function (pageId, manualId) {
+                addBookmark: function (pageId, manualId, manualVersionId) {
                     return _http.post('addBookmark', {
                         page_id: pageId,
-                        manual_id: manualId
+                        manual_id: manualId,
+                        manual_version_id: manualVersionId
                     });
                 },
                 displayBookmarks: function () {

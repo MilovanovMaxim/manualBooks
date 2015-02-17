@@ -7,6 +7,8 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     $scope.book = {};
     $scope.book.pages = [];
     var manualId=$stateParams.fold;
+    $scope.book.title = $stateParams.title;
+    var manualVersionId= $scope.book.version = $stateParams.version;
 
 
     var setActive = function (id) {
@@ -39,7 +41,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     };
 
     $scope.addBookmark = function (pageId) {
-        return apiService.books.addBookmark(pageId, manualId);
+        return apiService.books.addBookmark(pageId, manualId, manualVersionId);
     };
 
     $scope.isAdmin = function () {
@@ -47,8 +49,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     };
 
     var init = function () {
-        $scope.book.title = $stateParams.title;
-        $scope.book.version = $stateParams.version;
+
         apiService.books.displayPages($stateParams.fold).then(function (data) {
             _.each(data.items, function (page) {
                 $scope.book.pages.push({
