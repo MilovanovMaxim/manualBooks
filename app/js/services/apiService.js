@@ -50,14 +50,19 @@
                 return query.join('&');
             },
             addExtraData: function (data) {
+                var tmpUserId=0;
                 if (!data)
                     data = {};
-                if (userId != 0) {
-                    data.user_id = 0;
+                if (userId > 0) {
+                    tmpUserId = userId;
                 }
                 else {
-                    data.user_id = profileService.getUserId();
-                    userId == data.user_id;
+                    tmpUserId = profileService.getUserId();
+                }
+                if(tmpUserId>0)
+                {
+                    userId=tmpUserId;
+                    data.user_id=tmpUserId;
                 }
                 data.website_id = websiteId;
                 return data;

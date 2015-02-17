@@ -21,14 +21,13 @@
                             _.each(data.items, function (item) {
                                 $scope.bookmarks.push(
                                     {
-                                        short_title: item.short_title,
-                                        full_title: item.full_title,
-                                        subtitle: item.subtitle,
+                                        bookmark_id: item.bookmark_id,
                                         media_image: item.media_image,
                                         page_id: item.page_id,
                                         manual_id: item.manual_id,
-                                        manual_version: item.manual_version,
-                                        manual_title: item.manual_title
+                                        manual_version_id: item.manual_version_id,
+                                        manual_title: item.manual_title,
+                                        manual_version_title: item.manual_version_title
                                     }
                                 );
                             });
