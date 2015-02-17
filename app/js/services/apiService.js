@@ -141,23 +141,11 @@
             },
 
             glossary: {
-                getGlossary: function () {
-                    return [{
-                        id: "1",
-                        FAQ: "How to make tea?"
-                    }, {
-                        id: "2",
-                        FAQ: "How to make eggs?"
-                    }];
+                displayFaqs: function () {
+                    return _http.get('displayFaqs',{user_id: profileService.getUserId(),website_id: websiteId });
                 },
-                getDetails: function () {
-                    return {
-                        gggxxx: [
-                            {
-                                "notes": "A means of connecting a computer to any other computer anywhere in the world via dedicated routers and servers. When two computers are connected over the Internet, they can send and receive all kinds of information such as text, graphics, voice, video, and computer programs.No one owns Internet, although several organizations the world over collaborate in its functioning and development. The high-speed, fiber-optic cables (called backbones) through which the bulk of the Internet data travels are owned by telephone companies in their respective countries.The Internet grew out of the Advanced Research Projects Agency's Wide Area Network (then called ARPANET) established by the US Department Of Defense in 1960s for collaboration in military research among business and government laboratories.Later universities and other US institutions connected to it. This resulted in ARPANET growing beyond everyone's expectations and acquiring the name 'Internet.'The development of hypertext based technology (called World Wide web, WWW, or just the Web) provided means of displaying text, graphics, and animations, and easy search and navigation tools that triggered Internet's explosive worldwide growth. Read more: http://www.businessdictionary.com/definition/internet.html#ixzz3OfFHLjKV"
-                            }
-                        ]
-                    }
+                displayFaq: function (id) {
+                    return _http.get('displayFaq',{user_id: profileService.getUserId(),id: id })
                 }
             },
 

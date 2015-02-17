@@ -31,23 +31,26 @@ app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter', function
         $scope.item = item;
         $scope.item.selected = true;
         $scope.selectedCustomer = item.FAQ;
-        $scope.loadOrders();
+        $scope.loadOrders(item.id);
     };
 
-    $scope.loadOrders = function () {
+    $scope.loadOrders = function (id) {
         //  Reset our list of orders  (when binded, this'll ensure the previous list of orders disappears from the screen while we're loading our JSON data)
-        $scope.listOfOrders = null;
+        $scope.listOfOrders = [];
         //alert($scope.selectedCustomer);
         //  The user has selected a Customer from our Drop Down List.  Let's load this Customer's records.
         //$http.get('js/app/glossary2/getBasketsForCustomer.json/' + $scope.selectedCustomer)
-        glossaryService.getDetails().then(function (data) {
-                $scope.listOfOrders = data.gggxxx;
+        glossaryService.getDetails(id).then(function (items) {
+                _.each(items, function (item) {
+                    $scope.listOfOrders.push({
+                        notes: item.notes
+                    });
+                });
             },
             function (data) {
                 $scope.errorMessage = "Couldn't load the list of FAQs, error # " + data;
             });
     }
-
 }]);
 
 ////////////
