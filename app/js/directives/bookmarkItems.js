@@ -29,7 +29,7 @@
                                         manual_title: item.manual_title,
                                         manual_version_title: item.manual_version_title,
                                         page_full_title: item.page_full_title,
-                                        page_short_title: item.page_short_title
+                                        page_short_title: item.page_short_title,
                                         page_subtitle: item.page_subtitle
                                     }
                                 );
