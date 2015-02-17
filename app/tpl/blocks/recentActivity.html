@@ -7,8 +7,8 @@
             </a>
 
             <div class="clear">
-                <div><a ui-sref='show.guideversions({fold:activity.id})'>{{activity.title}}</a></div>
-                <small class="text-muted">Manage</small>
+                <div><a ui-sref='show.guideversions({fold:activity.id})'>{{activity.full_title}}</a></div>
+                <small ui-sref='show.guideversions({fold:activity.id})'class="text-muted">view</small>
             </div>
         </li>
     </ul>

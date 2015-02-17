@@ -83,23 +83,7 @@
                 },
 
                 getRecentActivity: function () {
-                    var defer = $q.defer();
-                    defer.resolve({
-                        items: [
-                            {
-                                id: 'windows',
-                                title: 'This is mocks',
-                                img: ''
-                            },
-                            {
-                                title: 'Microsft Windows'
-                            },
-                            {
-                                title: 'Apple OSX'
-                            }
-                        ]
-                    });
-                    return defer.promise;
+                    return _http.get('displayRecent',{user_id: profileService.getUserId()});
                 },
                 editUser: function (data) {
                     return _http.post('editUser', data);
@@ -176,17 +160,7 @@
             },
 
             search: function (searchString) {
-                var defer = $q.defer();
-                defer.resolve({
-                    items: [{
-                        title: 'This is mocks',
-                        shortDescription: 'This is mocks This is mocks This is mocks This is mocks',
-                        id: 1,
-                        tags: ['tag1', 'tag2', 'tag3', 'tag4']
-                    }]
-                });
-
-                return defer.promise();
+                return _http.get('search', {user_id: profileService.getUserId(), search: searchString});
             }
         };
     }]);
