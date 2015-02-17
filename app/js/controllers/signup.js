@@ -18,8 +18,11 @@ app.controller('SignupFormController', ['$scope', '$state', 'authService', 'prof
         };
         authService.registration(data)
             .then(function (response) {
-                profileService.saveProfile(data);
-                $state.go('show.recommendation');
+                if(response.items && response.items.length>0)
+                {
+                    profileService.saveProfile(response.items[0]);
+                    $state.go('show.recommendation');
+                }
             }, function () {
                 $scope.authError = 'Server Error';
             });
