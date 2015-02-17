@@ -36,7 +36,7 @@
                 <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="text-ellipsis"><i class="fa fa-2x fa-book text-white"></i></a>
               </div>
             </div>
-            <a ui-sref="learn.detail"><img src="{{version.image}}" alt="" class="img-full"></a>
+            <a ui-sref="learn.detail"><div class="box"><img src="{{version.image}}" alt="" class="img-full" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
           </div>
           <div class="wrapper bg-white m-b">
             <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="text-ellipsis">{{version.title}} {{version.manual_version}}</a>
