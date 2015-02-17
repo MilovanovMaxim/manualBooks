@@ -3,7 +3,7 @@ app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter', function
         $scope.items = items;
         $scope.item = $filter('orderBy')($scope.items, 'FAQ')[0];
         $scope.item.selected = true;
-        $scope.loadOrders();
+        $scope.loadOrders($scope.item.id);
     });
 
     $scope.filter = '';
