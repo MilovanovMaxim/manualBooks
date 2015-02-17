@@ -21,53 +21,52 @@
     <tabset class="tab-container">
       <tab>
         <tab-heading>
-          Manual books <span class="badge badge-sm m-l-xs">16</span>
+          Manual books <span class="badge badge-sm m-l-xs">{{searchResult.manuals.length}}</span>
         </tab-heading>
         <ul class="list-group no-borders pull-in m-b-none">
-          <li class="list-group-item">
-            <a href="#" class="h4 text-primary m-b-sm m-t-sm block">Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac </a>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin egestas dui nec, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum</p>
-            <p><span class="label bg-primary pos-rlt m-r inline wrapper-xs"><i class="arrow right arrow-primary"></i> Tags:</span> <a href class="m-r-sm">admin</a> <a href>app</a>
-            </p>
+          <li ng-repeat="manual in searchResult.manuals" class="list-group-item">
+            <a ui-sref="show.guideversions({fold:manual.id})" class="h4 text-primary m-b-sm m-t-sm block">{{manual.title}}</a>
+            <p>{{manual.subtitle}}</p>
+            <!--<p><span class="label bg-primary pos-rlt m-r inline wrapper-xs"><i class="arrow right arrow-primary"></i> Tags:</span> <a href class="m-r-sm">admin</a> <a href>app</a>-->
+            <!--</p>-->
           </li>
 
         </ul>
       </tab>
       <tab>
         <tab-heading>
-          Versions <span class="badge bg-danger badge-sm m-l-xs">6</span>
+          Versions <span class="badge bg-danger badge-sm m-l-xs">{{searchResult.versions.length}}</span>
         </tab-heading>
         <ul class="list-group list-group-alt list-group-lg no-borders pull-in m-b-none">
-          <li class="list-group-item">
-            <a href="#" class="pull-left thumb-md m-r">
-              <img src="img/a0.jpg" alt="..." class="img-circle">
-            </a>
+          <li ng-repeat="version in searchResult.versions" class="list-group-item">
             <div class="clear">
-              <a href="#" class="h4 text-primary m-b-sm block">Jone Dosh <span class="label label-sm bg-info">Editor</span></a>
-              <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin egestas dui nec, fermentum diam. Vivamus vel tincidunt libero</div>
+              <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="h4 text-primary m-b-sm block">{{version.title}}</a>
+              <div>{{version.subtitle}}</div>
             </div>
           </li>
         </ul>
       </tab>
       <tab>
         <tab-heading>
-          Pages <span class="badge bg-primary badge-sm m-l-xs">9</span>
+          Pages <span class="badge bg-primary badge-sm m-l-xs">{{searchResult.pages.length}}</span>
         </tab-heading>
         <ul class="list-group list-group-lg no-borders pull-in m-b-none">
-          <li class="list-group-item">
-            <a href="#" class="h4 text-primary m-b-sm block">Mauris convallis mauris at pellentesque volutpat</a>
-            <p class="b wrapper-md pos-rlt bg-light r r-2x"><span class="arrow top pull-left arrow-light"></span>Lorem ipsum dolor sit amet, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum</p>
+          <li ng-repeat="page in searchResult.pages"  class="list-group-item">
+            <a href="#" class="h4 text-primary m-b-sm block">{{page.short_title}}</a>
+            <p>
+              {{page.full_title}}
+            </p>
           </li>
         </ul>
       </tab>
       <tab>
         <tab-heading>
-          FAQS <span class="badge bg-primary badge-sm m-l-xs">9</span>
+          FAQS <span class="badge bg-primary badge-sm m-l-xs">{{searchResult.faqs.length}}</span>
         </tab-heading>
         <ul class="list-group list-group-lg no-borders pull-in m-b-none">
-          <li class="list-group-item">
-            <a href="#" class="h4 text-primary m-b-sm block">Mauris convallis mauris at pellentesque volutpat</a>
-            <p class="b wrapper-md pos-rlt bg-light r r-2x"><span class="arrow top pull-left arrow-light"></span>Lorem ipsum dolor sit amet, fermentum diam. Vivamus vel tincidunt libero, vitae elementum ligula venenatis ipsum ac feugiat. Vestibulum ullamcorper sodales nisi nec condimentum</p>
+          <li ng-repeat="faq in searchResult.faqs"  class="list-group-item">
+            <a href="#" class="h4 text-primary m-b-sm block">{{faq.question}}</a>
+
           </li>
         </ul>
       </tab>

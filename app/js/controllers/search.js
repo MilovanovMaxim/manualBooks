@@ -2,6 +2,10 @@ angular.module('app').controller('SearchFormConroller', ['$scope', '$stateParams
     $scope.searchString = $stateParams.searchString;
 
     $scope.search = function(){
-        $scope.searchResult = apiService.search($scope.searchString);
+        apiService.search($scope.searchString).then(function(data){
+            $scope.searchResult = data.items[0];
+        });
     }
+
+    $scope.search();
 }]);
