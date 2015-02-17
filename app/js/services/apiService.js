@@ -150,7 +150,17 @@
             },
 
             search: function (searchString) {
-                return _http.get('search', {user_id: profileService.getUserId()});
+                var defer = $q.defer();
+                defer.resolve({
+                    items: [{
+                        title: 'This is mocks',
+                        shortDescription: 'This is mocks This is mocks This is mocks This is mocks',
+                        id: 1,
+                        tags: ['tag1', 'tag2', 'tag3', 'tag4']
+                    }]
+                });
+
+                return defer.promise();
             }
         };
     }]);
