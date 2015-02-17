@@ -66,7 +66,6 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
             }, function (ex) {
                 $log.error(ex);
             });
-
         }
     };
 
@@ -85,7 +84,5 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
             $scope.profile.companyAvatar = '../img/bigcompany.jpg';
         }
     };
-
     init();
-
 }]);
