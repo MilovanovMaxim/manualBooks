@@ -26,7 +26,7 @@
             localStorageService.removeItem(key);
         };
         service.getUserId = function () {
-            if (profile)
+            if (profile && profile.id)
                 return profile.id;
             return 0;
         };

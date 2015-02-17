@@ -3,10 +3,11 @@
  */
 (function (module) {
 
-    module.factory('apiService', ['$http', '$q', '$log','profileService', function ($http, $q, $log, profileService) {
+    module.factory('apiService', ['$http', '$q', '$log', 'profileService', function ($http, $q, $log, profileService) {
 
         var _baseUrl = 'http://marksmith.biz/mbooksapi/';
         var websiteId = 1001;
+        var userId=0;
 
         var getResourceUrl = function (method) {
             return _baseUrl + method;
@@ -31,14 +32,14 @@
         var _http = {
 
             get: function (method, data) {
-                return wrapResponse($http.get(getResourceUrl(method), {params: data}))
+                return wrapResponse($http.get(getResourceUrl(method), {params: _http.addExtraData(data)}))
                     .then(function (data) {
                         return data;
                     });
             }
             ,
             post: function (method, object) {
-                var method = method + '?' + _http.preparePostData(object);
+                var method = method + '?' + _http.preparePostData(_http.addExtraData(object));
                 return wrapResponse($http.post(getResourceUrl(method)))
             },
             preparePostData: function (data) {
@@ -47,6 +48,20 @@
                     query.push(prop + '=' + data[prop]);
                 }
                 return query.join('&');
+            },
+            addExtraData: function (data) {
+                if (!data)
+                    data = {};
+                if(userId!=0)
+                {
+                    data.user_id=0;
+                }
+                else{
+                    data.user_id = profileService.getUserId();
+                    userId==data.user_id;
+                }
+                data.website_id = websiteId;
+                return data;
             }
         };
 
@@ -81,6 +96,9 @@
                         ]
                     });
                     return defer.promise;
+                },
+                editUser: function (data) {
+                    return _http.post('editUser', data);
                 }
             },
 
@@ -132,8 +150,11 @@
                         id: id
                     });
                 },
-                addBookmark: function (pageId) {
-                    return _http.post('addBookmark', {page_id: pageId, user_id: profileService.getUserId()});
+                addBookmark: function (pageId, manualId) {
+                    return _http.post('addBookmark', {
+                        page_id: pageId,
+                        manual_id: manualId
+                    });
                 },
                 displayBookmarks: function () {
                     return _http.get('displayBookmarks', {user_id: profileService.getUserId()})
@@ -142,10 +163,10 @@
 
             glossary: {
                 displayFaqs: function () {
-                    return _http.get('displayFaqs',{user_id: profileService.getUserId(),website_id: websiteId });
+                    return _http.get('displayFaqs', {user_id: profileService.getUserId(), website_id: websiteId});
                 },
                 displayFaq: function (id) {
-                    return _http.get('displayFaq',{user_id: profileService.getUserId(),id: id })
+                    return _http.get('displayFaq', {user_id: profileService.getUserId(), id: id})
                 }
             },
 

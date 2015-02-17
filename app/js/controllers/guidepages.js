@@ -6,6 +6,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
 
     $scope.book = {};
     $scope.book.pages = [];
+    var manualId=$stateParams.fold;
 
 
     var setActive = function (id) {
@@ -38,7 +39,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     };
 
     $scope.addBookmark = function (pageId) {
-        return apiService.books.addBookmark(pageId);
+        return apiService.books.addBookmark(pageId, manualId);
     };
 
     $scope.isAdmin = function () {

@@ -44,7 +44,7 @@
 
                 <li class="list-group-item">
                     <div class="pull-right m-l">
-                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>
+                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil" ng-click="editFirstName()"></i></a>
                     </div>
                     <a class="jp-play-me m-r-sm pull-left">
                         <i class="icon-user text"></i>
@@ -52,13 +52,22 @@
                     </a>
 
                     <div class="clear text-ellipsis">
-                        <span>First Name: {{profile.firstName}}</span>
+                        <span ng-if="!canEditFirstName">First Name: {{profile.firstName}}</span>
+                        <input ng-if="canEditFirstName" ng-model="profile.firstName">
+                        <a>
+                            <i ng-if="canEditFirstName" ng-click="updateProfile()" class="icon-check"/>
+                        </a>
+                        <a>
+                            <i ng-if="canEditFirstName" ng-click="cancelUpdate()" class="icon-close"/>
+                        </a>
+                        </input>
                     </div>
                 </li>
 
                 <li class="list-group-item">
                     <div class="pull-right m-l">
-                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>
+                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"
+                                                                    ng-click="editLastName()"></i></a>
                     </div>
                     <a class="jp-play-me m-r-sm pull-left">
                         <i class="icon-user text"></i>
@@ -66,13 +75,21 @@
                     </a>
 
                     <div class="clear text-ellipsis">
-                        <span>Last Name: {{profile.lastName}}</span>
+                        <span ng-if="!canEditLastName">Last Name: {{profile.lastName}}</span>
+                        <input ng-if="canEditLastName" ng-model="profile.lastName">
+                        <a>
+                            <i ng-if="canEditLastName" ng-click="updateProfile()" class="icon-check"/>
+                        </a>
+                        <a>
+                            <i ng-if="canEditLastName" ng-click="cancelUpdate()" class="icon-close"/>
+                        </a>
+                        </input>
                     </div>
                 </li>
 
                 <li class="list-group-item">
                     <div class="pull-right m-l">
-                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>
+                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil" ng-click="editEmail()"></i></a>
                     </div>
                     <a class="jp-play-me m-r-sm pull-left">
                         <i class="icon-envelope text"></i>
@@ -80,13 +97,21 @@
                     </a>
 
                     <div class="clear text-ellipsis">
-                        <span>Email: {{profile.email}}</span>
+                        <span ng-if="!canEditEmail">Email: {{profile.email}}</span>
+                        <input ng-if="canEditEmail" ng-model="profile.email">
+                        <a>
+                            <i ng-if="canEditEmail" ng-click="updateProfile()" class="icon-check"/>
+                        </a>
+                        <a>
+                            <i ng-if="canEditEmail" ng-click="cancelUpdate()" class="icon-close"/>
+                        </a>
+                        </input>
                     </div>
                 </li>
 
                 <li class="list-group-item">
                     <div class="pull-right m-l">
-                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>
+                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil" ng-click="editPhone()"></i></a>
                     </div>
                     <a class="jp-play-me m-r-sm pull-left">
                         <i class="icon-call-end text"></i>
@@ -94,51 +119,59 @@
                     </a>
 
                     <div class="clear text-ellipsis">
-                        <span>Phone: {{profile.phone}}</span>
+                        <span ng-if="!canEditPhone">Phone: {{profile.phone}}</span>
+                        <input ng-if="canEditPhone" ng-model="profile.phone">
+                        <a>
+                            <i ng-if="canEditPhone" ng-click="updateProfile()" class="icon-check"/>
+                        </a>
+                        <a>
+                            <i ng-if="canEditPhone" ng-click="cancelUpdate()" class="icon-close"/>
+                        </a>
+                        </input>
                     </div>
                 </li>
 
 
                 <!--<li class="list-group-item">-->
-                    <!--<div class="pull-right m-l">-->
-                        <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
-                    <!--</div>-->
-                    <!--<a class="jp-play-me m-r-sm pull-left">-->
-                        <!--<i class="icon-flag text"></i>-->
-                        <!--<i class="icon-control-pause text-active"></i>-->
-                    <!--</a>-->
+                <!--<div class="pull-right m-l">-->
+                <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
+                <!--</div>-->
+                <!--<a class="jp-play-me m-r-sm pull-left">-->
+                <!--<i class="icon-flag text"></i>-->
+                <!--<i class="icon-control-pause text-active"></i>-->
+                <!--</a>-->
 
-                    <!--<div class="clear text-ellipsis">-->
-                        <!--<span>Company: {{profile.companyName}}</span>-->
-                    <!--</div>-->
+                <!--<div class="clear text-ellipsis">-->
+                <!--<span>Company: {{profile.companyName}}</span>-->
+                <!--</div>-->
                 <!--</li>-->
 
                 <!--<li class="list-group-item">-->
-                    <!--<div class="pull-right m-l">-->
-                        <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
-                    <!--</div>-->
-                    <!--<a class="jp-play-me m-r-sm pull-left">-->
-                        <!--<i class="icon-briefcase text"></i>-->
-                        <!--<i class="icon-control-pause text-active"></i>-->
-                    <!--</a>-->
+                <!--<div class="pull-right m-l">-->
+                <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
+                <!--</div>-->
+                <!--<a class="jp-play-me m-r-sm pull-left">-->
+                <!--<i class="icon-briefcase text"></i>-->
+                <!--<i class="icon-control-pause text-active"></i>-->
+                <!--</a>-->
 
-                    <!--<div class="clear text-ellipsis">-->
-                        <!--<span>Department: {{profile.department}}</span>-->
-                    <!--</div>-->
+                <!--<div class="clear text-ellipsis">-->
+                <!--<span>Department: {{profile.department}}</span>-->
+                <!--</div>-->
                 <!--</li>-->
 
                 <!--<li class="list-group-item">-->
-                    <!--<div class="pull-right m-l">-->
-                        <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
-                    <!--</div>-->
-                    <!--<a class="jp-play-me m-r-sm pull-left">-->
-                        <!--<i class="icon-map text"></i>-->
-                        <!--<i class="icon-control-pause text-active"></i>-->
-                    <!--</a>-->
+                <!--<div class="pull-right m-l">-->
+                <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
+                <!--</div>-->
+                <!--<a class="jp-play-me m-r-sm pull-left">-->
+                <!--<i class="icon-map text"></i>-->
+                <!--<i class="icon-control-pause text-active"></i>-->
+                <!--</a>-->
 
-                    <!--<div class="clear text-ellipsis">-->
-                        <!--<span>Address: {{profile.companyPlace}}</span>-->
-                    <!--</div>-->
+                <!--<div class="clear text-ellipsis">-->
+                <!--<span>Address: {{profile.companyPlace}}</span>-->
+                <!--</div>-->
                 <!--</li>-->
 
 
