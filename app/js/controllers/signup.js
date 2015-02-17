@@ -20,7 +20,8 @@ app.controller('SignupFormController', ['$scope', '$state', 'authService', 'prof
             .then(function (response) {
                 if(response.items && response.items.length>0)
                 {
-                    profileService.saveProfile(response.items[0]);
+                    data.id=response.items[0].id;
+                    profileService.saveProfile(data);
                     $state.go('show.recommendation');
                 }
             }, function () {
