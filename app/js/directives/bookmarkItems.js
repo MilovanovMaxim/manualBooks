@@ -15,14 +15,17 @@
                                     short_title: item.short_title,
                                     full_title: item.full_title,
                                     subtitle: item.subtitle,
-                                    media_image: item.media_image
+                                    media_image: item.media_image,
+                                    page_id: item.page_id
                                 }
                             );
                         });
                     });
                 };
 
+                $scope.openPage= function(pageId){
 
+                };
             }]
         }
     })
