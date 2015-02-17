@@ -14,8 +14,7 @@ app.controller('SignupFormController', ['$scope', '$state', 'authService', 'prof
             email: $scope.user.email,
             password: $scope.user.password,
             telephone: '9824848353',
-            notes: 'this is standard user',
-            website_id: '1001'
+            department: 'developer',
         };
         authService.registration(data)
             .then(function (response) {

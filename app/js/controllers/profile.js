@@ -56,7 +56,7 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
                 telephone: $scope.profile.phone,
                 locked: 0,
                 status: 1,
-                notes: 'this is edited user'
+                department: 'developer'
             }).then(function () {
                 account.firstname = $scope.profile.firstName;
                 account.lastname = $scope.profile.lastName;
@@ -64,7 +64,7 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
                 account.telephone = $scope.profile.phone;
                 profileService.saveProfile(account);
             }, function (ex) {
-                $log.e(ex);
+                $log.error(ex);
             });
 
         }
