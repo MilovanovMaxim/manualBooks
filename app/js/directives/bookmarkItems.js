@@ -12,8 +12,8 @@
                         if (data.items.length == 0) {
                             $scope.bookmarks.push(
                                 {
-                                    short_title: 'No pages have been pinned',
-                                    full_title: 'No pages have been pinned',
+                                    page_subtitle: 'No pages have been pinned',
+                                    page_full_title: 'No pages have been pinned',
                                     media_image: ''
                                 });
                         }
