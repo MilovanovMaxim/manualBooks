@@ -33,7 +33,7 @@
                 <a ui-sref="show.guideversions({fold:book.id})"><i class="fa fa-2x fa-book text-white"></i></a>
               </div>
             </div>
-            <a ui-sref="show.guideversions({fold:book.id})"><img ng-src="{{book.image}}" alt="" class="img-full r r-2x" src="/img/blank.jpg"></a>
+            <a ui-sref="show.guideversions({fold:book.id})"><div class="box"><img ng-src="{{book.image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
           </div>
           <div class="padder-v">
             <a ui-sref="show.guideversions({fold:book.id})" class="text-ellipsis">{{book.title}}</a>
@@ -61,7 +61,7 @@
                 <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><i class="fa fa-2x fa-book text-white"></i></a>
               </div>
             </div>                         
-            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><img src="{{version.image}}" alt="" class="img-full r r-2x"></a>
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><div class="box"><img src="{{version.image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
           </div>
           <div class="padder-v">
             <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="text-ellipsis">{{version.title}} {{version.manual_version}}</a>
@@ -86,7 +86,7 @@
                 <a><i class="fa fa-2x fa-file text-white"></i></a>
               </div>
             </div>
-            <a ><img src="{{page.media_image}}" alt="" class="img-full r r-2x"></a>
+            <a ><div class="box"><img src="{{page.media_image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
           </div>
           <div class="padder-v">
             <a class="text-ellipsis" >View</a>
