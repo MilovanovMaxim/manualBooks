@@ -2,16 +2,16 @@
     module.factory('localStorageService', ['$window', function ($window) {
         return {
             getItem: function (name) {
-                return $window.sessionStorage.getItem(name);
+                return $window.localStorage.getItem(name);
             },
             clear: function () {
-                return $window.sessionStorage.clear();
+                return $window.localStorage.clear();
             },
             setItem: function (name, value) {
-                return $window.sessionStorage.setItem(name, value);
+                return $window.localStorage.setItem(name, value);
             },
             removeItem: function (name) {
-                return $window.sessionStorage.removeItem(name);
+                return $window.localStorage.removeItem(name);
             }
         };
     }]);
