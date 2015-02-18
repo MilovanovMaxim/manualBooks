@@ -2,13 +2,13 @@
     <div class="m-b-sm text-md">Recent Activity</div>
     <ul class="list-group no-bg no-borders pull-in">
         <li class="list-group-item" ng-repeat="activity in recentActivity">
-            <a ui-sref='show.guideversions({fold:activity.id})' class="pull-left thumb-sm m-r">
+            <a ng-click="open(activity)" class="pull-left thumb-sm m-r">
                 <img src="{{activity.img}}"class="r">
             </a>
 
             <div class="clear">
-                <div><a ui-sref='show.guideversions({fold:activity.id})'>{{activity.full_title}}</a></div>
-                <small ui-sref='show.guideversions({fold:activity.id})'class="text-muted">view</small>
+                <div><a ng-click="open(activity)">{{activity.full_title}}</a></div>
+                <small ng-click="open(activity)" class="text-muted">view</small>
             </div>
         </li>
     </ul>

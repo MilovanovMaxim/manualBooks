@@ -83,13 +83,13 @@
             </div>
             <div class="item-overlay bg-black-opacity r r-2x">
               <div class="center text-center m-t-n w-full">
-                <a><i class="fa fa-2x fa-file text-white"></i></a>
+                <a ui-sref="show.page({fold:page.id})"><i class="fa fa-2x fa-file text-white"></i></a>
               </div>
             </div>
-            <a ><div class="box"><img src="{{page.media_image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
+            <a ui-sref="show.page({fold:page.id})"><div class="box"><img src="{{page.media_image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
           </div>
           <div class="padder-v">
-            <a class="text-ellipsis" >View</a>
+            <a ui-sref="show.page({fold:page.id})" class="text-ellipsis" >View</a>
           </div>
         </div>
       </div>
