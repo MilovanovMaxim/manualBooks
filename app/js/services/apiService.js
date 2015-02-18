@@ -7,6 +7,7 @@
 
         var _baseUrl = 'http://marksmith.biz/mbooksapi/';
         var websiteId = 1001;
+        profileService.getProfile();
         var userId = profileService.getUserId();
 
         var getResourceUrl = function (method) {

@@ -3,6 +3,14 @@
 /* Controllers */
 // signin controller
 app.controller('SigninFormController', ['$scope', 'authService', '$state','profileService', function ($scope, authService, $state,profileService) {
+
+    profileService.getProfile();
+    if (profileService.getUserId()){
+        $state.go('show.recommendation');
+        return;
+    }
+
+
     $scope.user = {};
     $scope.authError = null;
     $scope.login = function () {
