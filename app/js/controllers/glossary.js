@@ -1,7 +1,16 @@
-app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter', function ($scope, glossaryService, $filter) {
+app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter','$stateParams', function ($scope, glossaryService, $filter, $stateParams) {
     glossaryService.getGlossary().then(function (items) {
         $scope.items = items;
-        $scope.item = $filter('orderBy')($scope.items, 'FAQ')[0];
+        var glossaryId= $stateParams.id;
+        var fItem= _.find($scope.items, function(item){return item.id==glossaryId;});
+        if(fItem)
+        {
+            $scope.item= fItem;
+        }
+        else
+        {
+            $scope.item = $filter('orderBy')($scope.items, 'FAQ')[0];
+        }
         $scope.item.selected = true;
         $scope.loadOrders($scope.item.id);
     });
