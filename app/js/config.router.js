@@ -164,6 +164,24 @@ angular.module('app')
                   }
               })
 
+              .state('show.page', {
+                 url:'/guidepage/{fold}',
+                  resolve: {
+                      deps: ['uiLoad',
+                          function( uiLoad ){
+                              return uiLoad.load( ['js/controllers/pageController.js'] );
+                          }]
+                  },
+                  views:{
+                      '': {
+                          templateUrl: 'tpl/show.pages.html'
+                      },
+                      'footer': {
+                          templateUrl: 'tpl/show.footer.html'
+                      }
+                  }
+              })
+
 			  .state('show.guidemanage', {
                   url: '/guidemanage/{fold}',
 				  views: {

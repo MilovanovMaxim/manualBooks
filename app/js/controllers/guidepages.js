@@ -17,13 +17,15 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         })
     };
 
-    $scope.displayPage = function (id) {
+    $scope.displayPage = function (id, noChangeUrl) {
         setActive(id);
 
-        $state.go('show.guidepages',
-            {fold: $stateParams.fold, title:$stateParams.title, version:$stateParams.version, page:id},
-            {inherit:true, notify:false}
-        );
+        if (!noChangeUrl) {
+            $state.go('show.guidepages',
+                {fold: $stateParams.fold, title: $stateParams.title, version: $stateParams.version, page: id},
+                {inherit: true, notify: false}
+            );
+        }
 
         apiService.books.displayPage(id).then(function (data) {
             if (data.items.length > 0) {
@@ -60,7 +62,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
                 });
             });
             if ($scope.book.pages.length > 0) {
-                $scope.displayPage($stateParams.page || $scope.book.pages[0].id);
+                $scope.displayPage($stateParams.page || $scope.book.pages[0].id, true);
             }
 
 
