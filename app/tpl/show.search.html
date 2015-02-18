@@ -52,7 +52,7 @@
         </tab-heading>
         <ul class="list-group list-group-lg no-borders pull-in m-b-none">
           <li ng-repeat="page in searchResult.pages"  class="list-group-item">
-            <a href="#" class="h4 text-primary m-b-sm block">{{page.short_title}}</a>
+            <a ui-sref="show.page({fold:page.id})" class="h4 text-primary m-b-sm block">{{page.short_title}}</a>
             <p>
               {{page.full_title}}
             </p>
@@ -65,8 +65,7 @@
         </tab-heading>
         <ul class="list-group list-group-lg no-borders pull-in m-b-none">
           <li ng-repeat="faq in searchResult.faqs"  class="list-group-item">
-            <a href="#" class="h4 text-primary m-b-sm block">{{faq.question}}</a>
-
+            <a ui-sref="show.glossary({id:faq.id})" class="h4 text-primary m-b-sm block">{{faq.question}}</a>
           </li>
         </ul>
       </tab>

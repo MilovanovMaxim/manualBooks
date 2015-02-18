@@ -174,7 +174,7 @@ angular.module('app')
                   },
                   views:{
                       '': {
-                          templateUrl: 'tpl/show.pages.html'
+                          templateUrl: 'tpl/show.page.html'
                       },
                       'footer': {
                           templateUrl: 'tpl/show.footer.html'

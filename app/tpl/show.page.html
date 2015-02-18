@@ -5,105 +5,52 @@
   app.settings.asideDock = false;
   app.settings.container = false;
   app.hideAside = false
-  ">
+  " ng-controller="PageController">
 
-  
 
-  <!-- column -->
-  <div class="col">
-    <div class="vbox">
-      <div class="row-row">
-        <div class="cell scrollable">
-          <div class="cell-inner">
-            <div class="wrapper-sm">
-              <div class="col wrapper-lg bg-light lter b-r">
-			  
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	 
-      <div class="hbox">
-        <div class="col w-xs">
-          <img src="img/b1.jpg" class="img-full m-b">
-        </div>
-        <div class="col">
-          <div class="m-l-md">
-            <h3 class="m-t-none text-black">Introduction</h3>
-            <div class="text-muted">
-              Doc Revision Version: <span class="badge m-r-sm">04.35</span> Views: <span class="badge">4563</span>
+    <!-- column -->
+    <div class="col">
+        <div class="vbox">
+            <div class="row-row">
+                <div class="cell scrollable">
+                    <div class="cell-inner">
+                        <div class="wrapper-sm">
+                            <div class="col wrapper-lg bg-light lter b-r">
+
+                                <div class="hbox">
+                                    <div class="col w-xs">
+                                        <img src="{{page.media_image}}" class="img-full m-b">
+                                    </div>
+                                    <div class="col">
+                                        <div class="m-l-md">
+                                            <h3 class="m-t-none text-black">{{page.full_title}}</h3>
+
+                                            <div class="text-muted">
+                                                Doc Revision Version: <span class="badge m-r-sm">{{page.document_update_version}}</span>
+                                                <!--Views: <span class="badge">{{page.views_count}}</span>-->
+                                            </div>
+
+
+                                            <!--<div><br>-->
+                                                <!--<a class="m-r-sm" tooltip="Delete Page"><i class="icon-trash"></i></a>-->
+                                                <!--<a class="m-r-sm" tooltip="Hide Page"><i class="icon-eye"></i></a>-->
+                                                <!--<a tooltip="Edit Page"><i class="icon-pencil"></i></a>-->
+
+                                            <!--</div>-->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-muted m-b-md" ng-bind-html="page.content"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-           
-            <div><br>
-            <a class="m-r-sm" tooltip="Delete Page"><i class="icon-trash"></i></a>
-            <a class="m-r-sm" tooltip="Hide Page"><i class="icon-eye"></i></a>
-            <a tooltip="Edit Page"><i class="icon-pencil"></i></a>
-
-            </div>
-
-          </div>
         </div>
-      </div>
-      <p class="text-muted m-b-md">
-
-<strong>Windows 7 has both simplified and streamlined computing, making it as easy as possible to use your PC in productive ways instead of fiddling about behind the scenes trying to get from A to B.</strong></p>
-
-<p>But whether you've just upgraded to Windows 7 or have been using it for a few years, you might be surprised to learn what tips and tricks have eluded you in your quest for a better computing experience.</p>
-
-<p>Throughout this article, we're going to reveal everything you need to grasp the fundamentals of using Windows.
-
-We're not going to show you how to point the mouse and click, but we'll go over the key parts of using your computer and reveal a selection of useful techniques and tricks that can help you gain mastery over your computer instead of feeling like it's bending you to its will.</p>
-<p>
-You'll discover how to navigate your computer more quickly using the new tools built into Windows 7 and learn the essential skills to protect your computer from data loss and threats to your security.
-
-We'll reveal how to quickly fix problems using the Action Center and look at ways of keeping your PC in tip-top condition. You'll find out how Windows can help maintain your computer and optimise its performance so you spend less time twiddling your thumbs and more time getting on with what you want to do.
-</p>
-<p>
-<img src="http://marksmith.biz/media/wind7in.jpg">
-</p>
-<p>
-It's not just about Windows either – you'll also learn some useful tips and tricks for tapping into the new features found in Microsoft Office 2010 and master key internet skills like surfing the web and managing your emails.
-
-You don't have to be a newcomer to benefit from this guide either – while there's a certain joy in being able to get up and running quickly with a new version of Windows, you may find you've missed out on some fundamental techniques that could save you time in the future.</p>
-<p>
-Even if you think this guide won't teach you anything new, it's worth taking a little time to acquaint yourself with anything that might have escaped your attention.
-
-Spend just 24 hours (not necessarily in one go!) learning the key skills of using Windows and it'll pay itself back many times over as you find yourself quickly finding the file or program you need, avoiding viruses and browsing the web more quickly. Go on, sit down, get a cup of tea and find out how to become more productive with your computer.</p>
-
-     
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-  </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- /column -->
+    <!-- /column -->
 
-  
+
 </div>
 <!-- /hbox layout -->
