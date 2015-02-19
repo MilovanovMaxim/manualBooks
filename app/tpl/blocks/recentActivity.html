@@ -7,7 +7,7 @@
             </a>
 
             <div class="clear">
-                <div><a ng-click="open(activity)">{{activity.full_title}}</a></div>
+                <div><a ng-click="open(activity)">{{activity.full_title || activity.title}}</a></div>
                 <small ng-click="open(activity)" class="text-muted">view</small>
             </div>
         </li>

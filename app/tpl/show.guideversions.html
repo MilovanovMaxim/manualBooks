@@ -13,7 +13,7 @@
 <div class="bg-light lter   hidden-print ng-scope" style="background-color:#F0F3F4;">
 <!--<button class="btn btn-rounded btn-sm btn-icon btn-success pull-right"  tooltip="Add New Version"><i class="fa fa-plus"></i></button>-->
 <!--<button class="btn btn-rounded btn-sm btn-icon btn-info pull-right" style="margin-right:5px;"  tooltip="Edit Guide"><i class="fa fa-pencil"></i></button>-->
-<h3 class="font-thin m-t-n-xs m-b">Select <strong>{{manual.title}}</strong> Version</h3>
+<h3 class="font-thin m-t-n-xs m-b">Select <strong>{{manual.manual_title}}</strong> Version</h3>
  
 </div>
 	
@@ -22,13 +22,13 @@
         <div class="item">
           <div class="pos-rlt">
             <div class="top w-full">
-              <span class="pull-right m-t-sm m-r-sm badge bg-info">18</span>
-              <span class="pull-right m-t-n-xs m-r-sm text-white">
-                <i class="fa fa-bookmark i-lg"></i>
-              </span>
+              <span class="pull-right m-t-sm m-r-sm badge bg-info">{{version.no_of_pages}}</span>
+              <!--<span class="pull-right m-t-n-xs m-r-sm text-white">-->
+                <!--<i class="fa fa-bookmark i-lg"></i>-->
+              <!--</span>-->
             </div>
              <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">{{version.modified | date:'dd/MM/yyyy'}}</span>
+              <span class="badge bg-warning m-l-sm m-b-sm">{{version.modified.slice(0,10)}}</span>
             </div>
 
             <div class="item-overlay bg-black-opacity">

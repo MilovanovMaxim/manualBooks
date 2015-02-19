@@ -18,15 +18,15 @@
         <div class="item">
           <div class="pos-rlt">
             <div class="top">
-              <span class="badge bg-info m-l-sm m-t-sm">6</span>
+              <span class="badge bg-info m-l-sm m-t-sm">{{book.no_of_versions}}</span>
             </div>
             <div class="top w-full">
-              <span class="pull-right m-t-n-xs m-r-sm text-white">
-                <i class="fa fa-bookmark i-lg"></i>
-              </span>
+              <!--<span class="pull-right m-t-n-xs m-r-sm text-white">-->
+                <!--<i class="fa fa-bookmark i-lg"></i>-->
+              <!--</span>-->
             </div>     
             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">{{book.modified  | date:'dd/MM/yyyy'}}</span>
+              <span class="badge bg-warning m-l-sm m-b-sm">{{book.modified.slice(0,10)}}</span>
             </div>
             <div class="item-overlay bg-black-opacity r r-2x r r-2x">
               <div class="center text-center m-t-n w-full">
@@ -54,7 +54,7 @@
               <span class="pull-right m-t-sm m-r-sm badge bg-info">17</span>
             </div>
              <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">{{version.modified  | date:'dd/MM/yyyy'}}</span>
+              <span class="badge bg-warning m-l-sm m-b-sm">{{version.modified.slice(0, 10)}}</span>
             </div>
             <div class="item-overlay bg-black-opacity r r-2x">
               <div class="center text-center m-t-n w-full">
@@ -79,7 +79,7 @@
         <div class="item">
           <div class="pos-rlt">
             <div class="bottom">
-              <span class="badge bg-warning m-l-sm m-b-sm">{{page.modified | date:'dd/MM/yyyy'}}</span>
+              <span class="badge bg-warning m-l-sm m-b-sm">{{page.modified.slice(0,10)}}</span>
             </div>
             <div class="item-overlay bg-black-opacity r r-2x">
               <div class="center text-center m-t-n w-full">
@@ -89,7 +89,8 @@
             <a ui-sref="show.page({fold:page.id})"><div class="box"><img src="{{page.media_image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
           </div>
           <div class="padder-v">
-            <a ui-sref="show.page({fold:page.id})" class="text-ellipsis" >View</a>
+            <a ui-sref="show.page({fold:page.id})" class="text-ellipsis" >{{page.full_title}}</a>
+            <a ui-sref="show.page({fold:page.id})" class="text-ellipsis text-xs text-muted" >View</a>
           </div>
         </div>
       </div>
