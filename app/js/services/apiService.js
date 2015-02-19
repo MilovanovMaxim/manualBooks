@@ -148,6 +148,12 @@
                 },
                 displayBookmarks: function () {
                     return _http.get('displayBookmarks', {user_id: profileService.getUserId()})
+                },
+                downloadVersion: function(versionId){
+                    return _http.get('downloadVersion', {version_id: versionId})
+                },
+                downloadPage: function(pageId){
+                    return _http.get('downloadPage', {page_id: pageId})
                 }
             },
 

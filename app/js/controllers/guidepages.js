@@ -17,6 +17,27 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         })
     };
 
+    var download= function(data)
+    {
+        if(data.items && data.items.length>0)
+        {
+            window.open(data.items[0].link,'_blank');
+        }
+    };
+    $scope.downloadBook= function()
+    {
+        apiService.books.downloadVersion(manualId).then(function(data){
+            download(data);
+        });
+    };
+    $scope.downloadPage= function(pageId)
+    {
+        apiService.books.downloadPage(pageId).then(function(data){
+            download(data);
+        });
+    };
+
+
     $scope.displayPage = function (id, noChangeUrl) {
         setActive(id);
 
