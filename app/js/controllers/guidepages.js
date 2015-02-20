@@ -21,7 +21,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     {
         if(data.items && data.items.length>0)
         {
-            window.location.href = data.items[0].link;
+            window.open(data.items[0].link,'_blank');
         }
     };
     $scope.downloadBook= function()
