@@ -21,18 +21,18 @@
         };
 
         service.registration = function (data) {
-
             return apiService.account.registration(data);
         };
         service.login = function (data) {
             var defer = $q.defer();
+            profileService.clearProfile();
             apiService.account.login({
                 email: data.email,
                 password: data.password
             }).then(function (data) {
                 var clientData = toClientModel(data);
                 profileService.saveProfile(clientData);
-                defer.resolve(profileService);
+                defer.resolve(clientData);
             }, function (x) {
                 return defer.reject(x);
             });
