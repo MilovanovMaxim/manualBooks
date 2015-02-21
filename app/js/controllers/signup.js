@@ -20,12 +20,15 @@ app.controller('SignupFormController', ['$scope', '$state', 'authService', 'prof
             .then(function (response) {
                 if(response.items && response.items.length>0)
                 {
-                    data.id=response.items[0].id;
-                    profileService.saveProfile(data);
-                    $state.go('show.recommendation');
+                    //data.id=response.items[0].id;
+                    //profileService.saveProfile(data);
+                    $state.go('access.signin');
                 }
-            }, function () {
-                $scope.authError = 'Server Error';
+            }, function (error) {
+                if(error && error.message)
+                    $scope.authError = error.message;
+                else
+                    $scope.authError = 'Server Error';
             });
     };
 }])
