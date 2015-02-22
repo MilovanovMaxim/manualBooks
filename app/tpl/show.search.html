@@ -9,14 +9,7 @@
     <h1 class="m-n font-thin h3"><i class="icon-magnifier i-sm m-r-sm"></i> Search</h1>
   </div>
   <div class="wrapper-md">
-    <form class="m-b-md" ng-submit="search()">
-      <div class="input-group">
-        <input type="text" class="form-control input-lg" ng-model="searchString" placeholder="Type keyword">
-        <span class="input-group-btn">
-          <button class="btn btn-lg btn-default" type="submit">Search</button>
-        </span>
-      </div>
-    </form>
+
     <p class="m-b-md"><strong>{{searchResult.length}}</strong> Results found for: <strong>{{searchString}}</strong></p>
     <tabset class="tab-container">
       <tab>
