@@ -18,7 +18,9 @@
                 type: serverUser.type,
                 telephone: serverUser.telephone,
                 website_id: serverUser.website_id,
-                avatar: serverUser.avatar
+                avatar: serverUser.avatar,
+                website_name: serverUser.website_name,
+                website_logo: serverUser.website_logo
             };
         };
 

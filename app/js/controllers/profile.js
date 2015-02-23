@@ -81,8 +81,11 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
             $scope.profile.companyPlace = 'Temp Company Place';
             $scope.profile.phone = account.telephone;
             $scope.profile.department = 'Temp dept';
-            $scope.profile.companyAvatar = '../img/bigcompany.jpg';
             $scope.profile.avatar= account.avatar;
+            $scope.profile.website_name= account.website_name;
+            $scope.profile.companyAvatar= account.website_logo ? account.website_logo : '../img/bigcompany.jpg';
+            
+
         }
     };
     init();
