@@ -23,6 +23,14 @@
                     apiService.account.deleteUserNote(id);
                 };
 
+                var minutesDiff= function(dateStr){
+                    var startTime = new Date(); 
+                    startTime.setTime(Date.parse(dateStr));
+                    var endTime = new Date();
+                    var difference = endTime.getTime() - startTime.getTime(); 
+                    return Math.round(difference / 60000);
+                }
+
                 init= function(){
                     apiService.account.displayUserNotes().then(function(data){
                         if(data.items.length==0)
@@ -40,7 +48,7 @@
                                 id: item.note_id,
                                 note: item.note,
                                 note_by: item.note_by,
-                                createTime: '24 minutes ago'
+                                createTime: item.created //minutesDiff(item.created)+ ' minutes ago'
                             });
                         });
                     };
