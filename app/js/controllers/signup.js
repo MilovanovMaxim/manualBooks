@@ -10,11 +10,12 @@ app.controller('SignupFormController', ['$scope', '$state', 'authService', 'prof
         var data = {
             type: 'standart',
             firstname: $scope.user.name,
-            lastname: $scope.user.name,
+            lastname: $scope.user.lastname,
             email: $scope.user.email,
             password: $scope.user.password,
             telephone: '9824848353',
             department: 'developer',
+            website_id: $scope.user.website_id
         };
         authService.registration(data)
             .then(function (response) {

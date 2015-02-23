@@ -54,8 +54,9 @@
                     data = {};
                 var userId = profileService.getUserId();
                 if(userId > 0)
-                    data.user_id= userId;
-                data.website_id = websiteId;
+                    data.user_id = userId;
+                if(!data.website_id)
+                    data.website_id = websiteId;
                 return data;
             }
         };
@@ -78,6 +79,11 @@
                 },
                 editUser: function (data) {
                     return _http.post('editUser', data);
+                },
+                setWebsiteId: function(id)
+                {
+                    if(id)
+                        websiteId = id;
                 }
             },
 

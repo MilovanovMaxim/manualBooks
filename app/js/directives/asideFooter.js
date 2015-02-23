@@ -9,7 +9,7 @@
                     var account = profileService.getProfile();
                     if (!account)
                         return '';
-                    return account.firstname;// + ' ' + account.lastname;
+                    return account.firstname + ' ' + account.lastname;
                 };
 
                 $scope.asideFold = function(){

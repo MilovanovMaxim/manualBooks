@@ -8,6 +8,7 @@
             if (!server.items || server.items.length == 0)
                 return null;
             var serverUser = server.items[0];
+            apiService.account.setWebsiteId(serverUser.website_id);
             return {
                 email: serverUser.email,
                 firstname: serverUser.firstname,
