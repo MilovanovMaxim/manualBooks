@@ -13,7 +13,6 @@
                 $scope.zeroclipModel = '';
 
                 $scope.$watch(function(){return $window.location.href;},function(){
-                    debugger;
                     $scope.zeroclipModel = $window.location.href;
                 });
 

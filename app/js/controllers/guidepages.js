@@ -64,7 +64,13 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     };
 
     $scope.addBookmark = function (pageId) {
-        return apiService.books.addBookmark(pageId, manualId, manualVersionId);
+        return apiService.books.addBookmark(pageId, manualId, manualVersionId).then(function(){
+            var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
+            if(fPage)
+            {
+                fPage.bookmarked = true;
+            }
+        });
     };
 
     $scope.isAdmin = function () {
@@ -79,7 +85,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
                     name: page.full_title,
                     id: page.id,
                     pdf: page.pdf,
-                    bookmarked: page.bookmarked
+                    bookmarked: page.bookmarked == true
                 });
             });
             if ($scope.book.pages.length > 0) {
