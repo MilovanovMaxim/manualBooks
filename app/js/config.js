@@ -28,4 +28,12 @@ angular.module('app')
     $translateProvider.preferredLanguage('en');
     // Tell the module to store the language in the local storage
     $translateProvider.useLocalStorage();
-  }]);
+  }])
+  .config(['uiZeroclipConfigProvider', function(uiZeroclipConfigProvider) {
+
+        // config ZeroClipboard
+        uiZeroclipConfigProvider.setZcConf({
+            swfPath: '/vendor/ZeroClipboard.swf'
+        });
+
+    }]);

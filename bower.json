@@ -27,6 +27,7 @@
     "angular-translate-storage-local": "~2.6.0",
     "components-font-awesome": "~4.3.0",
     "underscore": "~1.7.0",
+    "angular-zeroclipboard": "~0.4.1",
     "zeroclipboard": "~2.2.0"
   },
   "resolutions": {
