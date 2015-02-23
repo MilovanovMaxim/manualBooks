@@ -1,4 +1,7 @@
-app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter','$stateParams', function ($scope, glossaryService, $filter, $stateParams) {
+app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter','$stateParams', 'usSpinnerService', function ($scope, glossaryService, $filter, $stateParams, usSpinnerService) {
+
+    usSpinnerService.spin('mainSpiner');
+
     glossaryService.getGlossary().then(function (items) {
         $scope.items = items;
         var glossaryId= $stateParams.id;
@@ -13,6 +16,9 @@ app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter','$statePa
         }
         $scope.item.selected = true;
         $scope.loadOrders($scope.item.id);
+
+        usSpinnerService.stop('mainSpiner');
+
     });
 
     $scope.filter = '';

@@ -2,7 +2,9 @@
 
 /* Controllers */
 // guidepages controller
-app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiService', '$stateParams', '$state', function ($scope, profileService, apiService, $stateParams, $state) {
+app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiService', '$stateParams', '$state', 'usSpinnerService', function ($scope, profileService, apiService, $stateParams, $state, usSpinnerService) {
+
+    usSpinnerService.spin('mainSpiner');
 
     $scope.book = {};
     $scope.book.pages = [];
@@ -95,8 +97,12 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
                 $scope.displayPage($stateParams.page || $scope.book.pages[0].id, true);
             }
 
+            usSpinnerService.stop('mainSpiner');
 
         });
+
+
+
     };
 
     init();
