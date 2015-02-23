@@ -87,6 +87,9 @@
                 },
                 displayUserNotes: function(){
                     return _http.get('displayUserNotes');
+                },
+                deleteUserNote: function(id){
+                    return _http.post('deleteUserNote', {id: id});
                 }
             },
 

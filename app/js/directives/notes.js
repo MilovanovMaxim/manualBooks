@@ -19,6 +19,9 @@
                         return profile.type == 'admin';
                     return '';
                 };
+                $scope.deleteUserNote= function(id){
+                    apiService.account.deleteUserNote(id);
+                };
 
                 init= function(){
                     apiService.account.displayUserNotes().then(function(data){

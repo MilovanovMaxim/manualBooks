@@ -8,7 +8,7 @@
             <div class="m-l-xxl m-b">
                 <div>
                     <a href><strong>{{note.note_by}}</strong></a>
-                    <label class="label bg-info m-l-xs" ng-if="isAdmin()">Delete</label>
+                    <label class="label bg-info m-l-xs" ng-if="isAdmin() && $last" ng-click="deleteUserNote(note.id)">Delete</label>
               <span class="text-muted text-xs block m-t-xs">
                 {{note.createTime}}
               </span>
