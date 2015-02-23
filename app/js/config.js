@@ -33,7 +33,11 @@ angular.module('app')
 
         // config ZeroClipboard
         uiZeroclipConfigProvider.setZcConf({
-            swfPath: '/vendor/ZeroClipboard.swf'
+            swfPath: '/vendor/ZeroClipboard.swf',
+            hoverClass: '',
+            activeClass: '',
+            debug: false,
+            forceHandCursor: true
         });
 
     }]);
