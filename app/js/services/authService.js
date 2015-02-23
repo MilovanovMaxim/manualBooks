@@ -17,7 +17,8 @@
                 status: serverUser.status,
                 type: serverUser.type,
                 telephone: serverUser.telephone,
-                website_id: serverUser.website_id
+                website_id: serverUser.website_id,
+                avatar: serverUser.avatar
             };
         };
 
