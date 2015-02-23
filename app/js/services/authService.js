@@ -2,7 +2,7 @@
  * Created by rsabiryanov on 13.02.2015.
  */
 (function (module) {
-    module.factory('authService', ['$q', 'apiService', '$log', '$state', 'profileService', function ($q, apiService, $log, $state, profileService) {
+    module.factory('authService', ['$q', 'apiService', '$log', '$state', 'profileService','$window', function ($q, apiService, $log, $state, profileService, $window) {
         var service = {};
         var toClientModel = function (server) {
             if (!server.items || server.items.length == 0)
@@ -51,6 +51,11 @@
         service.forgotPwd= function(email){
             return apiService.account.forgotPwd(email);
         };
+
+        //angular.element($window).bind("beforeunload", function(){
+        //    profileService.clearProfile();
+        //})
+
         return service;
     }]);
 })(angular.module('app'));

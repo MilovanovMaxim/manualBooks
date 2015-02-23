@@ -7,8 +7,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     $scope.book = {};
     $scope.book.pages = [];
     var manualId=$stateParams.fold;
-    $scope.book.title = $stateParams.title;
-    var manualVersionId= $scope.book.version = $stateParams.version;
+    var manualVersionId= $stateParams.version;
 
 
     var setActive = function (id) {
@@ -80,6 +79,10 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     var init = function () {
 
         apiService.books.displayPages($stateParams.fold).then(function (data) {
+            $scope.book.title= data.manual_name;
+            $scope.book.version= data.version_name;
+            manualVersionId= data.version_id;
+            manualId= data.manual_id;
             _.each(data.items, function (page) {
                 $scope.book.pages.push({
                     name: page.full_title,
