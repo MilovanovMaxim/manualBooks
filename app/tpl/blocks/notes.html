@@ -1,19 +1,19 @@
 <div class="padder-md m-b-lg">
     <h4 class="m-t-lg m-b">Notes</h4>
     <div>
-        <div>
+        <div ng-repeat="note in notes">
             <a class="pull-left thumb-sm">
                 <img src="../img/a0.jpg" class="img-circle">
             </a>
             <div class="m-l-xxl m-b">
                 <div>
-                    <a href><strong>{{profileName()}}</strong></a>
-                    <label class="label bg-info m-l-xs">Delete</label>
+                    <a href><strong>{{note.note_by}}</strong></a>
+                    <label class="label bg-info m-l-xs" ng-if="isAdmin()">Delete</label>
               <span class="text-muted text-xs block m-t-xs">
-                24 minutes ago
+                {{note.createTime}}
               </span>
                 </div>
-                <div class="m-t-sm">I'm wating for API.</div>
+                <div class="m-t-sm">{{note.note}}</div>
             </div>
         </div>
 

@@ -84,6 +84,9 @@
                 {
                     if(id)
                         websiteId = id;
+                },
+                displayUserNotes: function(){
+                    return _http.get('displayUserNotes');
                 }
             },
 
