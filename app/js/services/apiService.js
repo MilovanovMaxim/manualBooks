@@ -161,6 +161,12 @@
                 }
             },
 
+            tags: {
+                get: function(){
+                    return _http.get('getTags',{user_id: profileService.getUserId(), website_id: profileService.getWebsiteId()} );
+                }
+            },
+
             search: function (searchString) {
                 return _http.get('search', {user_id: profileService.getUserId(), search: searchString});
             }
