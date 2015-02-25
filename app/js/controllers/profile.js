@@ -2,7 +2,9 @@
 
 /* Controllers */
 // profile controller
-    app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log','$modal', function ($scope, profileService, authService, apiService, $log,$modal) {
+app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log', '$modal', 'usSpinnerService', function ($scope, profileService, authService, apiService, $log, $modal, usSpinnerService) {
+    usSpinnerService.spin('mainSpiner');
+
     var closeEdit = function () {
         $scope.canEditFirstName = $scope.canEditLastName = $scope.canEditEmail = $scope.canEditPhone = false;
     };
@@ -73,32 +75,33 @@
     };
     $scope.setStatus = function () {
         var account = profileService.getProfile();
-        apiService.account.statusUser({user_id: account.id, status: +!$scope.profile.status}).then(function(){
-            $scope.profile.status= +!$scope.profile.status;
+        apiService.account.statusUser({user_id: account.id, status: +!$scope.profile.status}).then(function () {
+            $scope.profile.status = +!$scope.profile.status;
         });
     };
 
-    $scope.changeAvatar= function(){
-      var modalInstance = $modal.open({
-        templateUrl: 'tpl/modal.changepicture.html',
-        controller: 'ProfileFormController',
-        //size: size,
-        resolve: {
-          items: function () {
-            //return $scope.items;
-          }
-        }
-      });
+    $scope.changeAvatar = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'tpl/modal.changepicture.html',
+            controller: 'ProfileFormController',
+            //size: size,
+            resolve: {
+                items: function () {
+                    //return $scope.items;
+                }
+            }
+        });
 
-      modalInstance.result.then(function (selectedItem) {
-        //$scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
+        modalInstance.result.then(function (selectedItem) {
+            //$scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
     }
 
     var init = function () {
         var account = profileService.getProfile();
+        usSpinnerService.stop('mainSpiner');
         if (account) {
             $scope.profile.fullName = account.firstname + ' ' + account.lastname;
             $scope.profile.firstName = account.firstname;
