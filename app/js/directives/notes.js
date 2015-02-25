@@ -13,7 +13,7 @@
                 $scope.profileName = function () {
                     var profile = profileService.getProfile();
                     if (profile)
-                        return profile.firstname + profile.lastname;
+                        return profile.firstname +' '+ profile.lastname;
                     return '';
                 };
                 $scope.isAdmin = function () {
