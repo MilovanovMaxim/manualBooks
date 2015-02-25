@@ -26,7 +26,7 @@ angular.module('app')
                       hasRole = false;
 
                   _.each(roles, function(role){
-                      hasRole = hasRole | profileService.hasRole(role);
+                      hasRole = profileService.hasRole(role) || hasRole;
                   });
 
                   if (!hasRole){
