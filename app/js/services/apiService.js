@@ -83,6 +83,9 @@
                 },
                 deleteUserNote: function(id){
                     return _http.post('deleteUserNote', {id: id});
+                },
+                addUserNote:function(note){
+                    return _http.post('addUserNote', note);
                 }
             },
 
