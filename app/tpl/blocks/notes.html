@@ -4,13 +4,13 @@
     <div>
         <div ng-repeat="note in notes">
             <a class="pull-left thumb-sm">
-                <img src="../img/a0.jpg" class="img-circle">
+                <img src="{{note.avatar}}" class="img-circle">
             </a>
 
             <div class="m-l-xxl m-b">
                 <div>
                     <a href><strong>{{note.note_by}}</strong></a>
-                    <label class="label bg-info m-l-xs" ng-if="isAdmin() || $last" ng-click="deleteUserNote(note.id)">Delete</label>
+                    <label class="label bg-info m-l-xs" ng-if="canDelete($last, note.note_by)" ng-click="deleteUserNote(note.id)">Delete</label>
               <span class="text-muted text-xs block m-t-xs">
                 {{note.createTime}}
               </span>

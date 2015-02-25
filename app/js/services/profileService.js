@@ -54,6 +54,12 @@
                 return profile.website_id;
             return 0;
         };
+        service.getAvatar= function(){
+            var profile = service.getProfile();
+            if (profile && profile.avatar)
+                return profile.avatar;
+            return '../img/a0.jpg';
+        }
         return service;
     }]);
 })(angular.module('app'));

@@ -13,7 +13,7 @@
                 $scope.profileName = function () {
                     var profile = profileService.getProfile();
                     if (profile)
-                        return profile.firstname;
+                        return profile.firstname + profile.lastname;
                     return '';
                 };
                 $scope.isAdmin = function () {
@@ -21,6 +21,15 @@
                     if (profile)
                         return profile.type == 'admin';
                     return '';
+                };
+                $scope.canDelete= function(isLast, author){
+                    if(!isLast)
+                        return false;
+                    if($scope.isAdmin())
+                        return true;
+                    if($scope.profileName()==author)
+                        return true;
+                    return false;
                 };
                 $scope.deleteUserNote = function (id) {
                     apiService.account.deleteUserNote(id).then(function(){
@@ -44,9 +53,10 @@
                                 $scope.notes.push({
                                     id: data.items[0].id,
                                     note: $scope.note.message,
-                                    note_by: 'me',
-                                    createTime: moment().format('2015-02-25 00:02:06')
-                                })
+                                    note_by: $scope.profileName(),
+                                    createTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+                                    avatar: profileService.getAvatar()
+                                });
                             }
 
                             $scope.note.message=null;
@@ -68,18 +78,22 @@
                                 id: 0,
                                 note: "Nobody hasn't written here",
                                 note_by: '',
-                                createTime: ''
+                                createTime: '',
+                                avatar: '../img/a0.jpg'
                             });
+
                         }
                         else {
                             _.each(data.items, function (item) {
                                 $scope.notes.push({
                                     id: item.note_id,
                                     note: item.note,
-                                    note_by: item.note_by,
-                                    createTime: item.created //minutesDiff(item.created)+ ' minutes ago'
+                                    note_by: item.note_by==='me' ? $scope.profileName() : item.note_by,
+                                    createTime: item.created,
+                                    avatar:  item.avatar ? item.avatar : '../img/a0.jpg'//minutesDiff(item.created)+ ' minutes ago'
                                 });
                             });
+                            $scope.notes= _.sortBy($scope.notes, 'id');
                         }
                         ;
                     });
