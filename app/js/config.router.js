@@ -102,7 +102,7 @@ angular.module('app')
                   url: '/show',
                   templateUrl: 'tpl/show.html',
                   resolve:{
-                      permissions:permissions('standard', 'admin', 'superadmin')
+                      permissions:permissions('standart', 'admin', 'superadmin')
                   }
               })
 
