@@ -2,7 +2,7 @@
     module.factory('profileService', ['localStorageService', function (localStorageService) {
         var key = 'account';
         var service = {};
-       
+
         service.isAdmin = function () {
             var profile = service.getProfile();
             if (profile)
@@ -15,6 +15,23 @@
                 return profile.type == 'superadmin';
             return false;
         };
+
+        service.isAuthorized = function(){
+            var profile = service.getProfile();
+            if (profile)
+                return !!profile.id;
+
+            return false;
+        };
+
+        service.hasRole = function(role){
+            var profile = service.getProfile();
+            if (!profile) return false;
+
+            return profile.type === role;
+
+        };
+
         service.saveProfile = function (data) {
             localStorageService.setItem(key, JSON.stringify(data));
         };

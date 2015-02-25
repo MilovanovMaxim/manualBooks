@@ -39,5 +39,4 @@ angular.module('app')
             debug: false,
             forceHandCursor: true
         });
-
     }]);

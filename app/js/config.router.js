@@ -15,7 +15,30 @@ angular.module('app')
   .config(
     [          '$stateProvider', '$urlRouterProvider',
       function ($stateProvider,   $urlRouterProvider) {
-          
+
+          function permissions (userRole1 /*userRole2, ...*/){
+              var roles = Array.prototype.slice.call(arguments, 0);
+              permissionChecker.$inject = ['profileService', '$q','$state', '$rootScope', '$timeout'];
+              return permissionChecker;
+
+              function permissionChecker(profileService, $q, $state, $rootScope, $timeout){
+                  var defer = $q.defer(),
+                      hasRole = false;
+
+                  _.each(roles, function(role){
+                      hasRole = hasRole || profileService.hasRole(role);
+                  });
+
+                  if (!hasRole){
+                      $timeout(function() {
+                          $state.go('access.signin');
+                      }, 100);
+                  }
+                  hasRole ? defer.resolve() : defer.reject();
+                  return defer.promise;
+              }
+          }
+
           $urlRouterProvider
               .otherwise('access/signin');
           $stateProvider
@@ -77,7 +100,10 @@ angular.module('app')
               .state('show', {
                   abstract: true,
                   url: '/show',
-                  templateUrl: 'tpl/show.html'
+                  templateUrl: 'tpl/show.html',
+                  resolve:{
+                      permissions:permissions('standard', 'admin', 'superadmin')
+                  }
               })
 
               .state('show.recommendation', {
