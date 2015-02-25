@@ -2,12 +2,14 @@
 
 /* Controllers */
 // profile controller
-app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService','$log', function ($scope, profileService, authService, apiService,$log) {
+app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log', function ($scope, profileService, authService, apiService, $log) {
     var closeEdit = function () {
         $scope.canEditFirstName = $scope.canEditLastName = $scope.canEditEmail = $scope.canEditPhone = false;
     };
 
-    $scope.profile = {};
+    $scope.profile = {
+        status: 1
+    };
 
     $scope.logout = function () {
         authService.logout();
@@ -17,6 +19,7 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
     $scope.canEditLastName = false;
     $scope.canEditEmail = false;
     $scope.canEditPhone = false;
+
 
     $scope.editFirstName = function () {
         closeEdit();
@@ -68,6 +71,12 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
             });
         }
     };
+    $scope.setStatus = function () {
+        var account = profileService.getProfile();
+        apiService.account.statusUser({user_id: account.id, status: +!$scope.profile.status}).then(function(){
+            $scope.profile.status= +!$scope.profile.status;
+        });
+    };
 
     var init = function () {
         var account = profileService.getProfile();
@@ -81,10 +90,10 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
             $scope.profile.companyPlace = 'Temp Company Place';
             $scope.profile.phone = account.telephone;
             $scope.profile.department = 'Temp dept';
-            $scope.profile.avatar= account.avatar;
-            $scope.profile.website_name= account.website_name;
-            $scope.profile.companyAvatar= account.website_logo ? account.website_logo : '../img/bigcompany.jpg';
-            
+            $scope.profile.avatar = account.avatar;
+            $scope.profile.website_name = account.website_name;
+            $scope.profile.companyAvatar = account.website_logo ? account.website_logo : '../img/bigcompany.jpg';
+
 
         }
     };

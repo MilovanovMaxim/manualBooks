@@ -2,10 +2,10 @@
 
 /* Controllers */
 // signin controller
-app.controller('SigninFormController', ['$scope', 'authService', '$state','profileService', function ($scope, authService, $state,profileService) {
+app.controller('SigninFormController', ['$scope', 'authService', '$state', 'profileService', function ($scope, authService, $state, profileService) {
 
     profileService.getProfile();
-    if (profileService.getUserId()){
+    if (profileService.getUserId()) {
         $state.go('show.recommendation');
         return;
     }
@@ -20,14 +20,16 @@ app.controller('SigninFormController', ['$scope', 'authService', '$state','profi
         authService.login(data)
             .then(function () {
                 $state.go('show.recommendation');
-            }, function () {
-                $scope.authError = 'Email or Password not right';
+            }, function (error) {
+                if (error.message)
+                    $scope.authError = error.message;
+                else
+                    $scope.authError = 'Email or Password not right';
             });
     };
 
-    var checkLogedIn=function()
-    {
-        if($state.current && $state.current.name=='access.signin') {
+    var checkLogedIn = function () {
+        if ($state.current && $state.current.name == 'access.signin') {
             profileService.clearProfile();
             //var account = profileService.getProfile();
             //if (account)
