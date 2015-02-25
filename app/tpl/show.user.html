@@ -28,7 +28,8 @@
                                     class="fa fa-file-photo-o m-r-n-xxs"></i></a>
                             <a class="btn btn-icon btn-rounded btn-info" tooltip="Change Password"><i
                                     class="fa fa-key m-r-n-xxs"></i></a>
-                            <a class="btn btn-icon btn-rounded btn-info" tooltip="Log out" ng-click="logout()"><i
+                            <a class="btn btn-icon btn-rounded " tooltip="Remove account"
+                               ng-class="profile.status==1 ? 'btn-info' : 'btn-info-red'" ng-click="setStatus()"><i
                                     class="fa fa-power-off m-r-n-xxs"></i></a>
                         </div>
                         <strong>{{profile.website_name}}</strong><br>

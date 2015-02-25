@@ -86,6 +86,9 @@
                 },
                 addUserNote:function(note){
                     return _http.post('addUserNote', note);
+                },
+                statusUser: function(data){
+                    return _http.post('statusUser', data);
                 }
             },
 
