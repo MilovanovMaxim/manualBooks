@@ -2,7 +2,7 @@
 
 /* Controllers */
 // profile controller
-app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log', function ($scope, profileService, authService, apiService, $log) {
+    app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log','$modal', function ($scope, profileService, authService, apiService, $log,$modal) {
     var closeEdit = function () {
         $scope.canEditFirstName = $scope.canEditLastName = $scope.canEditEmail = $scope.canEditPhone = false;
     };
@@ -77,6 +77,25 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
             $scope.profile.status= +!$scope.profile.status;
         });
     };
+
+    $scope.changeAvatar= function(){
+      var modalInstance = $modal.open({
+        templateUrl: 'tpl/modal.changepicture.html',
+        controller: 'ProfileFormController',
+        //size: size,
+        resolve: {
+          items: function () {
+            //return $scope.items;
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        //$scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    }
 
     var init = function () {
         var account = profileService.getProfile();
