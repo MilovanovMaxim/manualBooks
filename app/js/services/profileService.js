@@ -31,6 +31,12 @@
                 return profile.id;
             return 0;
         };
+        service.getWebsiteId = function () {
+            var profile = service.getProfile();
+            if (profile && profile.website_id)
+                return profile.website_id;
+            return 0;
+        };
         return service;
     }]);
 })(angular.module('app'));
