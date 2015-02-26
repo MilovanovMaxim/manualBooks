@@ -158,6 +158,11 @@
                 },
                 downloadPage: function(pageId){
                     return _http.get('downloadPage', {page_id: pageId})
+                },
+                removeBookmark: function (pageId) {
+                    return _http.post('removeBookmark', {
+                        id: pageId
+                    });
                 }
             },
 

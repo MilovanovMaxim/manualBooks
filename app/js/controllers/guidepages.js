@@ -73,6 +73,15 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
             }
         });
     };
+    $scope.removeBookmark = function (pageId) {
+        return apiService.books.removeBookmark(pageId).then(function(){
+            var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
+            if(fPage)
+            {
+                fPage.bookmarked = false;
+            }
+        });
+    };
 
     $scope.isAdmin = function () {
         return profileService.isAdmin() || profileService.isSuperAdmin();
