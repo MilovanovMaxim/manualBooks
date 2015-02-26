@@ -10,7 +10,6 @@ app.controller('SigninFormController', ['$scope', 'authService', '$state', 'prof
         return;
     }
 
-
     $scope.user = {};
     $scope.authError = null;
     $scope.login = function () {

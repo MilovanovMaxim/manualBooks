@@ -89,6 +89,9 @@
                 },
                 statusUser: function(data){
                     return _http.post('statusUser', data);
+                },
+                changePassword: function(data){
+                    return _http.post('changePassword', data);
                 }
             },
 

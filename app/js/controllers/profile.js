@@ -1,6 +1,9 @@
 'use strict';
 
 /* Controllers */
+
+
+
 // profile controller
 app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log', '$modal', 'usSpinnerService', function ($scope, profileService, authService, apiService, $log, $modal, usSpinnerService) {
     usSpinnerService.spin('mainSpiner');
@@ -97,7 +100,26 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
-    }
+    };
+
+    $scope.changePassword = function () {
+        var modalInstance = $modal.open({
+            templateUrl: 'tpl/modal.changepassword.html',
+            controller: 'ChangePasswordController',
+            //size: size,
+            resolve: {
+                items: function () {
+                    //return $scope.items;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            //$scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
 
     var init = function () {
         var account = profileService.getProfile();
