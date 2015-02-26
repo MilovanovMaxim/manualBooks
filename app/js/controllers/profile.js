@@ -5,7 +5,8 @@
 
 
 // profile controller
-app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log', '$modal', 'usSpinnerService', function ($scope, profileService, authService, apiService, $log, $modal, usSpinnerService) {
+app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log', '$modal', 'usSpinnerService', 'notificationService',
+    function ($scope, profileService, authService, apiService, $log, $modal, usSpinnerService, notificationService) {
     usSpinnerService.spin('mainSpiner');
 
     var closeEdit = function () {
@@ -71,8 +72,10 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
                 account.email = $scope.profile.email;
                 account.telephone = $scope.profile.phone;
                 profileService.saveProfile(account);
-            }, function (ex) {
-                $log.error(ex);
+            }, function (error) {
+                $log.error(error);
+                if (error.message)
+                    notificationService.error(error.message, 'bottom_right');
             });
         }
     };
