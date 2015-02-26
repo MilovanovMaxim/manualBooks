@@ -15,5 +15,6 @@ angular.module('app', [
     'oc.lazyLoad',
     'pascalprecht.translate',
     'zeroclipboard',
-    'angularSpinner'
+    'angularSpinner',
+    'jlareau.pnotify'
 ])

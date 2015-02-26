@@ -1,4 +1,4 @@
-app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profileService', 'apiService', function ($scope, $modalInstance, profileService, apiService) {
+app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', function ($scope, $modalInstance, profileService, apiService, notificationService) {
     $scope.close = function () {
         $modalInstance.close();
     };
@@ -12,7 +12,7 @@ app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profile
             $modalInstance.close();
         }, function (error) {
             if (error.message)
-                $scope.error = error.message;
+                notificationService.error(error.message, 'bottom_right');
         });
     };
 
@@ -20,6 +20,6 @@ app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profile
     $scope.oldPassword = null;
     $scope.newPassword = null;
     $scope.confirmPassword = null;
-    $scope.error= null;
+    $scope.error = null;
 
 }]);
