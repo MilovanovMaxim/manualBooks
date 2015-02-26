@@ -92,6 +92,9 @@
                 },
                 changePassword: function(data){
                     return _http.post('changePassword', data);
+                },
+                uploadPicture: function(data){
+                    return _http.post('uploadPicture', data);
                 }
             },
 
