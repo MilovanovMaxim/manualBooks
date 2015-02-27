@@ -1,30 +1,44 @@
-app.controller('ChangeAvatarController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', function ($scope, $modalInstance, profileService, apiService, notificationService) {
+/**
+ * Created by rsabiryanov on 26.02.2015.
+ */
+app.controller('ChangeAvatarController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', 'FileUploader', function ($scope, $modalInstance, profileService, apiService, notificationService, FileUploader) {
 
-    var _baseUrl = 'http://marksmith.biz/mbooksapi/';
+    var _url = 'http://marksmith.biz/mbooksapi/';
 
     $scope.close = function () {
         $modalInstance.close();
     };
 
     $scope.ok = function () {
-        apiService.account.uploadPicture({
-            file: $scope.file
-        }).then(function (data) {
-            if (data && data.items && data.items.length > 0) {
-                var profile = profileService.getProfile();
-                profile.avatar = _baseUrl + data.items[0].picture;
-                $modalInstance.close();
-            }
-        }, function (error) {
-            if (error.message)
-                notificationService.error(error.message, 'bottom_right');
+        _.each(uploader.queue, function (item) {
+            item.upload();
         });
     };
 
-    $scope.avatar = profileService.getAvatar();
-    $scope.file = {};
-    $scope.file.src = "";
+    var uploader = $scope.uploader = new FileUploader({
+        url: _url + 'uploadPicture'
+    });
 
-}]);/**
- * Created by rsabiryanov on 26.02.2015.
- */
+    uploader.filters.push({
+        name: 'customFilter',
+        fn: function (item /*{File|FileLikeObject}*/, options) {
+            return this.queue.length < 10;
+        }
+    });
+
+    uploader.onSuccessItem = function (fileItem, response, status, headers) {
+        //console.info('onSuccessItem', fileItem, response, status, headers);
+        var profile = profileService.getProfile();
+        profile.avatar = _url + data.items[0].picture;
+        profileService.saveProfile(profile);
+        notificationService.success('Avatar has been uploaded', 'bottom_right');
+        $modalInstance.close();
+    };
+
+    uploader.onErrorItem = function(fileItem, response, status, headers) {
+        //console.info('onErrorItem', fileItem, response, status, headers);
+        notificationService.error('Upload avatar error', 'bottom_right');
+    };
+
+    $scope.avatar = profileService.getAvatar();
+}]);

@@ -16,5 +16,6 @@ angular.module('app', [
     'pascalprecht.translate',
     'zeroclipboard',
     'angularSpinner',
-    'jlareau.pnotify'
+    'jlareau.pnotify',
+    'angularFileUpload'
 ])
