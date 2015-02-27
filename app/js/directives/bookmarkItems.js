@@ -4,9 +4,12 @@
             restrict: 'E',
             templateUrl: 'tpl/blocks/bookmarkItems.html',
             scope: {},
-            controller: ["$scope", "apiService", "$state", function ($scope, apiService, $state) {
+            controller: ["$scope", "apiService", "$state", 'usSpinnerService', function ($scope, apiService, $state, usSpinnerService) {
 
-                $scope.displayBookmarks = function () {
+                $scope.displayBookmarks = function (open) {
+                    if (!open)
+                        return;
+                    usSpinnerService.spin('mainSpiner');
                     return apiService.books.displayBookmarks().then(function (data) {
                         $scope.bookmarks = [];
                         if (data.items.length == 0) {
@@ -31,11 +34,12 @@
                                         page_full_title: item.page_full_title,
                                         page_short_title: item.page_short_title,
                                         page_subtitle: item.page_subtitle
-                                        
+
                                     }
                                 );
                             });
                         }
+                        usSpinnerService.stop('mainSpiner');
                     });
                 };
 

@@ -2,12 +2,10 @@
     <li class="hidden-xs">
         <a ui-fullscreen></a>
     </li>
-
-    <li class="bg-light dropdown" dropdown>
-        <a href class="bg-info text-white dropdown-toggle" dropdown-toggle>
-            <i class="fa fa-thumb-tack fa-fw" ng-click="displayBookmarks()"></i>
+    <li class="bg-light dropdown" dropdown on-toggle="displayBookmarks(open)">
+        <a href class="bg-info text-white dropdown-toggle" dropdown-toggle >
+            <i class="fa fa-thumb-tack fa-fw"></i>
         </a>
-
         <!-- dropdown -->
         <div class="dropdown-menu w-xl animated fadeInUp">
             <div class="panel bg-white">
@@ -15,7 +13,6 @@
                     <strong>Bookmarked Items</strong>
                 </div>
                 <div class="list-group">
-
                     <a href class="media list-group-item" ng-repeat="bookmark in bookmarks"
                        ng-click="goToPage(bookmark.manual_id, bookmark.manual_title, bookmark.manual_version_id,bookmark.page_id)">
                    <span class="pull-left thumb-sm">
