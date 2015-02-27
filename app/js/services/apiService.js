@@ -162,9 +162,9 @@
                 downloadPage: function(pageId){
                     return _http.get('downloadPage', {page_id: pageId})
                 },
-                removeBookmark: function (pageId) {
+                removeBookmark: function (bookmarkId) {
                     return _http.post('removeBookmark', {
-                        id: pageId
+                        id: bookmarkId
                     });
                 }
             },

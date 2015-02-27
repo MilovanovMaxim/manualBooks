@@ -27,7 +27,7 @@
                                             <a class="m-r-sm" ng-click="downloadPage(page.id)"><i class="icon-cloud-download"
                                                                  ></i></a>
                                             <a><i ng-class="page.bookmarked ? 'fa fa-thumb-tack fa-fw' : 'icon-pin'"
-                                                  ng-click="page.bookmarked ? removeBookmark(page.id) : addBookmark(page.id)"></i></a>
+                                                  ng-click="page.bookmarked ? removeBookmark(page.bookmark_id, page.id) : addBookmark(page.id)"></i></a>
                                         </div>
                                         <a class="m-r-sm pull-left">
                                             <i class="icon-doc text"></i>

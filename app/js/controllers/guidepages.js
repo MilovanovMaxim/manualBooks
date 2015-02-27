@@ -73,8 +73,8 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
             }
         });
     };
-    $scope.removeBookmark = function (pageId) {
-        return apiService.books.removeBookmark(pageId).then(function(){
+    $scope.removeBookmark = function (bookmarkId, pageId) {
+        return apiService.books.removeBookmark(bookmarkId).then(function(){
             var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
             if(fPage)
             {
@@ -99,7 +99,8 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
                     name: page.full_title,
                     id: page.id,
                     pdf: page.pdf,
-                    bookmarked: page.bookmarked == true
+                    bookmarked: page.bookmarked == true,
+                    bookmark_id: page.bookmark_id
                 });
             });
             if ($scope.book.pages.length > 0) {
