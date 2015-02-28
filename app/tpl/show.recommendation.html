@@ -61,7 +61,7 @@
                 <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><i class="fa fa-2x fa-book text-white"></i></a>
               </div>
             </div>                         
-            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><div class="box"><img src="{{version.image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><div class="box"><img ng-src="{{version.image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
           </div>
           <div class="padder-v">
             <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="text-ellipsis">{{version.title}} {{version.manual_version}}</a>
@@ -86,7 +86,7 @@
                 <a ui-sref="show.page({fold:page.id})"><i class="fa fa-2x fa-file text-white"></i></a>
               </div>
             </div>
-            <a ui-sref="show.page({fold:page.id})"><div class="box"><img src="{{page.media_image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
+            <a ui-sref="show.page({fold:page.id})"><div class="box"><img ng-src="{{page.media_image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
           </div>
           <div class="padder-v">
             <a ui-sref="show.page({fold:page.id})" class="text-ellipsis" >{{page.full_title}}</a>

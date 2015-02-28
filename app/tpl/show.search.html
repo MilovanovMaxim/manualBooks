@@ -19,7 +19,7 @@
         <ul class="list-group no-borders pull-in m-b-none">
           <li ng-repeat="manual in searchResult.manuals" class="list-group-item">
             <a ui-sref="show.guideversions({fold:manual.id})" class="pull-left thumb-md m-r">
-              <img src="{{manual.image}}" class="img-circle">
+              <img ng-src="{{manual.image}}" class="img-circle">
             </a>
             <div class="clear">
 
@@ -42,7 +42,7 @@
         <ul class="list-group list-group-alt list-group-lg no-borders pull-in m-b-none">
           <li ng-repeat="version in searchResult.versions" class="list-group-item">
             <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="pull-left thumb-md m-r">
-              <img src="{{version.image}}" class="img-circle">
+              <img ng-src="{{version.image}}" class="img-circle">
             </a>
             <div class="clear">
               <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="h4 text-primary m-b-sm block">{{version.title}}</a>
@@ -63,7 +63,7 @@
         <ul class="list-group list-group-lg no-borders pull-in m-b-none">
           <li ng-repeat="page in searchResult.pages"  class="list-group-item">
             <a ui-sref="show.page({fold:page.id})" class="pull-left thumb-md m-r">
-              <img src="{{page.image}}" class="img-circle">
+              <img ng-src="{{page.image}}" class="img-circle">
             </a>
             <div class="clear">
               <a ui-sref="show.page({fold:page.id})" class="h4 text-primary m-b-sm block">{{page.short_title}}</a>
