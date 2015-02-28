@@ -214,7 +214,7 @@ gulp.task('vendor', function(){
 });
 
 gulp.task('rev', function () {
-    return gulp.src(destDir + '/**/*.{js,css,png,jpg,jpeg,gif,ico,html,woff,ttf,eot,svg,swf}')
+    return gulp.src(destDir + '/**/*.{js,css,png,jpg,jpeg,gif,ico,html,woff,woff2,ttf,eot,svg,swf}')
         .pipe($.if(isProduction, $.revall({
             transformFilename: function (file, hash) {
                 var ext = path.extname(file.path);
