@@ -61,6 +61,9 @@
 
         return {
 
+            getBaseUrl: function(){
+              return _baseUrl;
+            },
             account: {
                 registration: function (data) {
                     return _http.post('registration', data);

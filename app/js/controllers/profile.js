@@ -81,10 +81,24 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
             }
         };
         $scope.setStatus = function () {
-            var account = profileService.getProfile();
-            apiService.account.statusUser({user_id: account.id, status: +!$scope.profile.status}).then(function () {
-                $scope.profile.status = +!$scope.profile.status;
+
+
+            var modalInstance = $modal.open({
+                templateUrl: 'tpl/modal.changestatus.html',
+                controller: 'ChangeStatusController'
             });
+
+            modalInstance.result.then(function (result) {
+                if(result) {
+                    var account = profileService.getProfile();
+                    apiService.account.statusUser({user_id: account.id, status: +!$scope.profile.status}).then(function () {
+                        $scope.profile.status = +!$scope.profile.status;
+                    });
+                }
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
         };
 
         $scope.changeAvatar = function () {
@@ -109,13 +123,7 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
         $scope.changePassword = function () {
             var modalInstance = $modal.open({
                 templateUrl: 'tpl/modal.changepassword.html',
-                controller: 'ChangePasswordController',
-                //size: size,
-                resolve: {
-                    items: function () {
-                        //return $scope.items;
-                    }
-                }
+                controller: 'ChangePasswordController'
             });
 
             modalInstance.result.then(function (selectedItem) {
