@@ -8,8 +8,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
 
     $scope.book = {};
     $scope.book.pages = [];
-    var manualId=$stateParams.fold;
-    var manualVersionId= $stateParams.version;
+    var manualId = $stateParams.fold;
 
 
     var setActive = function (id) {
@@ -18,22 +17,18 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         })
     };
 
-    var download= function(data)
-    {
-        if(data.items && data.items.length>0)
-        {
-            window.open(data.items[0].link,'_blank');
+    var download = function (data) {
+        if (data.items && data.items.length > 0) {
+            window.open(data.items[0].link, '_blank');
         }
     };
-    $scope.downloadBook= function()
-    {
-        apiService.books.downloadVersion(manualId).then(function(data){
+    $scope.downloadBook = function (versionId) {
+        apiService.books.downloadVersion(versionId).then(function (data) {
             download(data);
         });
     };
-    $scope.downloadPage= function(pageId)
-    {
-        apiService.books.downloadPage(pageId).then(function(data){
+    $scope.downloadPage = function (pageId) {
+        apiService.books.downloadPage(pageId).then(function (data) {
             download(data);
         });
     };
@@ -64,20 +59,22 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         });
     };
 
-    $scope.addBookmark = function (pageId) {
-        return apiService.books.addBookmark(pageId, manualId, manualVersionId).then(function(){
-            var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
-            if(fPage)
-            {
+    $scope.addBookmark = function (pageId, versionId) {
+        return apiService.books.addBookmark(pageId, manualId, versionId).then(function () {
+            var fPage = _.find($scope.book.pages, function (page) {
+                return page.id == pageId;
+            });
+            if (fPage) {
                 fPage.bookmarked = true;
             }
         });
     };
     $scope.removeBookmark = function (bookmarkId, pageId) {
-        return apiService.books.removeBookmark(bookmarkId).then(function(){
-            var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
-            if(fPage)
-            {
+        return apiService.books.removeBookmark(bookmarkId).then(function () {
+            var fPage = _.find($scope.book.pages, function (page) {
+                return page.id == pageId;
+            });
+            if (fPage) {
                 fPage.bookmarked = false;
             }
         });
@@ -90,10 +87,10 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     var init = function () {
 
         apiService.books.displayPages($stateParams.fold).then(function (data) {
-            $scope.book.title= data.manual_name;
-            $scope.book.version= data.version_name;
-            manualVersionId= data.version_id;
-            manualId= data.manual_id;
+            $scope.book.title = data.manual_name;
+            $scope.book.version = data.version_name;
+            $scope.book.version_id = data.version_id;
+            manualId = data.manual_id;
             _.each(data.items, function (page) {
                 $scope.book.pages.push({
                     name: page.full_title,
@@ -110,7 +107,6 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
             usSpinnerService.stop('mainSpiner');
 
         });
-
 
 
     };

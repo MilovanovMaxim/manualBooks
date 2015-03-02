@@ -1,5 +1,7 @@
 <div class="padder-md m-b-lg">
-    <h4 class="m-t-lg m-b">Notes</h4>
+    <h4 class="m-t-lg m-b">Notes <label class="label bg-info m-l-xs" ng-click="deleteAllUserNotes()"
+                                       ng-if="notes.length>0">Delete All</label></h4>
+
 
     <div>
         <div ng-repeat="note in notes">
@@ -10,7 +12,8 @@
             <div class="m-l-xxl m-b">
                 <div>
                     <a href><strong>{{note.note_by}}</strong></a>
-                    <label class="label bg-info m-l-xs" ng-if="canDelete($last, note.note_by)" ng-click="deleteUserNote(note.id)">Delete</label>
+                    <label class="label bg-info m-l-xs" ng-if="canDelete($last, note.note_by)"
+                           ng-click="deleteUserNote(note.id)">Delete</label>
               <span class="text-muted text-xs block m-t-xs">
                 {{note.createTime}}
               </span>

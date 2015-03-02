@@ -95,6 +95,10 @@
                 },
                 uploadPicture: function(data){
                     return _http.post('uploadPicture', data);
+                },
+                deleteAllUserNotes: function()
+                {
+                    return _http.post('deleteAllUserNotes');
                 }
             },
 
