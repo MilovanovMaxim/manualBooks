@@ -20,7 +20,7 @@ angular.module('app').controller('RecommendationController', ['$scope', 'apiServ
             $scope.recommendatedPages = data.items;
         });
 
-    $q.all(recommendatedBooks, recommendatedPages, recommendatedVersions).then(function(){
+    $q.all([recommendatedBooks, recommendatedPages, recommendatedVersions]).then(function(){
         usSpinnerService.stop('mainSpiner');
     });
 
