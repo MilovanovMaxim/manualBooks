@@ -38,6 +38,11 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         });
     };
 
+    var loadingMap = {};
+    $scope.loadingBookmark = function(page){
+        return loadingMap[page.id];
+    };
+
 
     $scope.displayPage = function (id, noChangeUrl) {
         setActive(id);
@@ -65,7 +70,9 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     };
 
     $scope.addBookmark = function (pageId) {
+        loadingMap[pageId] = true;
         return apiService.books.addBookmark(pageId, manualId, manualVersionId).then(function(){
+            loadingMap[pageId] = false;
             var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
             if(fPage)
             {
@@ -74,7 +81,9 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         });
     };
     $scope.removeBookmark = function (bookmarkId, pageId) {
+        loadingMap[pageId] = true;
         return apiService.books.removeBookmark(bookmarkId).then(function(){
+            loadingMap[pageId] = false;
             var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
             if(fPage)
             {

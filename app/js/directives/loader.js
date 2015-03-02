@@ -1,0 +1,47 @@
+angular.module('app')
+    .directive('mbLoader',function(){
+
+        var opts = {
+            lines: 13, // The number of lines to draw
+            length: 6, // The length of each line
+            width: 2, // The line thickness
+            radius: 5, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 10, // The rotation offset
+            direction: 1, // 1: clockwise, -1: counterclockwise
+            color: '#000', // #rgb or #rrggbb or array of colors
+            speed: 1, // Rounds per second
+            trail: 61, // Afterglow percentage
+            shadow: false, // Whether to render a shadow
+            hwaccel: false, // Whether to use hardware acceleration
+            className: 'spinner', // The CSS class to assign to the spinner
+            zIndex: 2e9, // The z-index (defaults to 2000000000)
+            top: '50%', // Top position relative to parent
+            left: '50%' // Left position relative to parent
+        };
+
+        return {
+            restrict: 'AC',
+            link: function(scope, element, attrs){
+
+                var spinner = new Spinner(opts);
+                var spinnerElement = $('<span class="spinner-container">');
+                spinnerElement.insertAfter($(element));
+
+
+                scope.$watch(attrs.mbLoader, function(value) {
+                    if (value){
+                        spinnerElement.width(element.width());
+
+                        element.hide();
+                        spinnerElement.show();
+                        spinner.spin(spinnerElement[0]);
+                    } else {
+                        element.show();
+                        spinnerElement.hide();
+                        spinner.stop();
+                    }
+                });
+            }
+        }
+    });
