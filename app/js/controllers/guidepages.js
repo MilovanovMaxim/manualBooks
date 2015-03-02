@@ -6,10 +6,10 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
 
     usSpinnerService.spin('mainSpiner');
 
+    $scope.baseUrl=apiService.getBaseUrl();
     $scope.book = {};
     $scope.book.pages = [];
-    var manualId=$stateParams.fold;
-    var manualVersionId= $stateParams.version;
+    var manualId = $stateParams.fold;
 
 
     var setActive = function (id) {
@@ -18,24 +18,22 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         })
     };
 
-    var download= function(data)
-    {
-        if(data.items && data.items.length>0)
-        {
-            window.open(data.items[0].link,'_blank');
-        }
-    };
-    $scope.downloadBook= function()
-    {
-        apiService.books.downloadVersion(manualId).then(function(data){
-            download(data);
-        });
-    };
-    $scope.downloadPage= function(pageId)
-    {
-        apiService.books.downloadPage(pageId).then(function(data){
-            download(data);
-        });
+    //var download = function (data) {
+    //    if (data.items && data.items.length > 0) {
+    //        window.open(data.items[0].link, '_blank');
+    //    }
+    //};
+    //$scope.downloadBook = function (versionId) {
+    //    return apiService.getBaseUrl()+'/downloadpdf?version_id'+versionId;
+    //    //apiService.books.downloadVersion(versionId).then(function (data) {
+    //    //    download(data);
+    //    //});
+    //};
+    $scope.downloadPage = function (pageId) {
+        return +'/downloadpdf?page_id'+pageId;
+        //apiService.books.downloadPage(pageId).then(function (data) {
+        //    download(data);
+        //});
     };
 
     var loadingMap = {};
@@ -69,24 +67,27 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         });
     };
 
-    $scope.addBookmark = function (pageId) {
+
+    $scope.addBookmark = function (pageId, versionId) {
         loadingMap[pageId] = true;
-        return apiService.books.addBookmark(pageId, manualId, manualVersionId).then(function(){
+        return apiService.books.addBookmark(pageId, manualId, versionId).then(function () {
             loadingMap[pageId] = false;
-            var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
-            if(fPage)
-            {
+            var fPage = _.find($scope.book.pages, function (page) {
+                return page.id == pageId;
+            });
+            if (fPage) {
                 fPage.bookmarked = true;
             }
         });
     };
     $scope.removeBookmark = function (bookmarkId, pageId) {
         loadingMap[pageId] = true;
-        return apiService.books.removeBookmark(bookmarkId).then(function(){
+        return apiService.books.removeBookmark(bookmarkId).then(function () {
             loadingMap[pageId] = false;
-            var fPage= _.find($scope.book.pages, function(page){ return page.id==pageId;})
-            if(fPage)
-            {
+            var fPage = _.find($scope.book.pages, function (page) {
+                return page.id == pageId;
+            });
+            if (fPage) {
                 fPage.bookmarked = false;
             }
         });
@@ -99,10 +100,10 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
     var init = function () {
 
         apiService.books.displayPages($stateParams.fold).then(function (data) {
-            $scope.book.title= data.manual_name;
-            $scope.book.version= data.version_name;
-            manualVersionId= data.version_id;
-            manualId= data.manual_id;
+            $scope.book.title = data.manual_name;
+            $scope.book.version = data.version_name;
+            $scope.book.version_id = data.version_id;
+            manualId = data.manual_id;
             _.each(data.items, function (page) {
                 $scope.book.pages.push({
                     name: page.full_title,
@@ -119,7 +120,6 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
             usSpinnerService.stop('mainSpiner');
 
         });
-
 
 
     };

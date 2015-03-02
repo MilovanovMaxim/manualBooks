@@ -47,7 +47,7 @@
                         }).then(function (data) {
                             $scope.notes = _.reject($scope.notes, function (note) {
                                 return note.id == 0;
-                            })
+                            });
 
                             if (data.items && data.items.length > 0) {
                                 $scope.notes.push({
@@ -63,25 +63,40 @@
                         });
                 };
 
+                $scope.deleteAllUserNotes= function(){
+                    apiService.account.deleteAllUserNotes().then(function(){
+                        $scope.notes = _.reject($scope.notes, function (note) {
+                            return note.note_by == $scope.profileName();
+                        });
+                        if($scope.notes.length==0)
+                        {
+                            addEmptyNote();
+                        }
+                    });
+                };
+
                 var minutesDiff = function (dateStr) {
                     var startTime = new Date();
                     startTime.setTime(Date.parse(dateStr));
                     var endTime = new Date();
                     var difference = endTime.getTime() - startTime.getTime();
                     return Math.round(difference / 60000);
-                }
+                };
+
+                var addEmptyNote= function(){
+                    $scope.notes.push({
+                        id: 0,
+                        note: "Nobody hasn't written here",
+                        note_by: '',
+                        createTime: '',
+                        avatar: '../img/a0.jpg'
+                    });
+                };
 
                 init = function () {
                     apiService.account.displayUserNotes().then(function (data) {
                         if (data.items.length == 0) {
-                            $scope.notes.push({
-                                id: 0,
-                                note: "Nobody hasn't written here",
-                                note_by: '',
-                                createTime: '',
-                                avatar: '../img/a0.jpg'
-                            });
-
+                            addEmptyNote();
                         }
                         else {
                             _.each(data.items, function (item) {

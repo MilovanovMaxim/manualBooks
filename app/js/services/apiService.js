@@ -61,6 +61,9 @@
 
         return {
 
+            getBaseUrl: function(){
+              return _baseUrl;
+            },
             account: {
                 registration: function (data) {
                     return _http.post('registration', data);
@@ -95,6 +98,10 @@
                 },
                 uploadPicture: function(data){
                     return _http.post('uploadPicture', data);
+                },
+                deleteAllUserNotes: function()
+                {
+                    return _http.post('deleteAllUserNotes');
                 }
             },
 
