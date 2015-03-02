@@ -18,15 +18,17 @@
                             <div class="col w-xxl bg-light dker bg-auto">
 
 
-                                <h4 class="m-n wrapper"><a class="m-r-sm"><i class="icon-cloud-download"
-                                                                             ng-click="downloadBook(book.version_id)"></i></a><strong>{{book.title}}</strong>
+                                <h4 class="m-n wrapper"><a class="m-r-sm"
+                                                           ng-href="{{baseUrl}}downloadVersion?version_id={{book.version_id}}" target="_blank"><i
+                                        class="icon-cloud-download"
+                                        ></i></a><strong>{{book.title}}</strong>
                                     {{book.version}}</h4>
                                 <ul class="list-group no-radius no-border no-bg list-group-lg">
 
                                     <li class="list-group-item " ng-class="{active: page.active}"
                                         ng-repeat="page in book.pages">
                                         <div class="pull-right m-l">
-                                            <a class="m-r-sm" ng-click="downloadPage(page.id)"><i
+                                            <a class="m-r-sm" ng-href="{{baseUrl}}downloadPage?page_id={{page.id}}" target="_blank"><i
                                                     class="icon-cloud-download"
                                                     ></i></a>
                                             <a><i ng-class="page.bookmarked ? 'fa fa-thumb-tack fa-fw' : 'icon-pin'"

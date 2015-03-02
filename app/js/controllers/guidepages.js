@@ -6,6 +6,7 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
 
     usSpinnerService.spin('mainSpiner');
 
+    $scope.baseUrl=apiService.getBaseUrl();
     $scope.book = {};
     $scope.book.pages = [];
     var manualId = $stateParams.fold;
@@ -17,20 +18,22 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         })
     };
 
-    var download = function (data) {
-        if (data.items && data.items.length > 0) {
-            window.open(data.items[0].link, '_blank');
-        }
-    };
-    $scope.downloadBook = function (versionId) {
-        apiService.books.downloadVersion(versionId).then(function (data) {
-            download(data);
-        });
-    };
+    //var download = function (data) {
+    //    if (data.items && data.items.length > 0) {
+    //        window.open(data.items[0].link, '_blank');
+    //    }
+    //};
+    //$scope.downloadBook = function (versionId) {
+    //    return apiService.getBaseUrl()+'/downloadpdf?version_id'+versionId;
+    //    //apiService.books.downloadVersion(versionId).then(function (data) {
+    //    //    download(data);
+    //    //});
+    //};
     $scope.downloadPage = function (pageId) {
-        apiService.books.downloadPage(pageId).then(function (data) {
-            download(data);
-        });
+        return +'/downloadpdf?page_id'+pageId;
+        //apiService.books.downloadPage(pageId).then(function (data) {
+        //    download(data);
+        //});
     };
 
 
