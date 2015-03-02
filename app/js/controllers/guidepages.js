@@ -46,13 +46,17 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
         setActive(id);
 
         if (!noChangeUrl) {
+            usSpinnerService.spin('currentPageSpiner');
             $state.go('show.guidepages',
                 {fold: $stateParams.fold, title: $stateParams.title, version: $stateParams.version, page: id},
                 {inherit: true, notify: false}
             );
         }
 
+
         apiService.books.displayPage(id).then(function (data) {
+            usSpinnerService.stop('currentPageSpiner');
+            usSpinnerService.stop('mainSpiner');
             if (data.items.length > 0) {
                 var page = data.items[0];
                 $scope.currentPage = {
@@ -116,9 +120,9 @@ app.controller('GuidePagesFormController', ['$scope', 'profileService', 'apiServ
             if ($scope.book.pages.length > 0) {
                 $scope.displayPage($stateParams.page || $scope.book.pages[0].id, true);
             }
-
-            usSpinnerService.stop('mainSpiner');
-
+            else {
+                usSpinnerService.stop('mainSpiner');
+            }
         });
 
 
