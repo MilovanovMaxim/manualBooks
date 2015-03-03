@@ -84,7 +84,7 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
 
 
             var modalInstance = $modal.open({
-                templateUrl: 'tpl/modal.changestatus.html',
+                templateUrl: 'tpl/modal.changeStatus.html',
                 controller: 'ChangeStatusController'
             });
 
