@@ -59,4 +59,6 @@ angular.module('app')
             });
         ;
 
-    }]);
+    }]).value('config', {
+        apiUrl:'http://marksmith.biz'
+    });

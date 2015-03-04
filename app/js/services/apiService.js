@@ -3,9 +3,9 @@
  */
 (function (module) {
 
-    module.factory('apiService', ['$http', '$q', '$log', 'profileService', function ($http, $q, $log, profileService) {
+    module.factory('apiService', ['$http', '$q', '$log', 'profileService', 'config', function ($http, $q, $log, profileService, config) {
 
-        var _baseUrl = 'http://marksmith.biz/mbooksapi/';
+        var _baseUrl = config.apiUrl + '/mbooksapi/';
 
         var getResourceUrl = function (method) {
             return _baseUrl + method;
