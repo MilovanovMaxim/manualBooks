@@ -39,6 +39,8 @@ app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter','$statePa
     };
 
     $scope.selectItem = function (item) {
+        usSpinnerService.spin('currentPageSpiner');
+
         angular.forEach($scope.items, function (item) {
             item.selected = false;
             item.editing = false;
@@ -56,6 +58,8 @@ app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter','$statePa
         //  The user has selected a Customer from our Drop Down List.  Let's load this Customer's records.
         //$http.get('js/app/glossary2/getBasketsForCustomer.json/' + $scope.selectedCustomer)
         glossaryService.getDetails(id).then(function (items) {
+                usSpinnerService.stop('currentPageSpiner');
+
                 $scope.listOfOrders = [];
                 _.each(items, function (item) {
                     $scope.listOfOrders.push({
@@ -64,6 +68,7 @@ app.controller('GlossaryCtrl', ['$scope', 'glossaryService', '$filter','$statePa
                 });
             },
             function (data) {
+                usSpinnerService.stop('currentPageSpiner');
                 $scope.errorMessage = "Couldn't load the list of FAQs, error # " + data;
             });
     }
