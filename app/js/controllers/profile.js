@@ -33,41 +33,15 @@ app.controller('ProfileFormController', ['$rootScope', '$scope', 'profileService
                 }
             });
 
-            modalInstance.result.then(function (selectedItem) {
-                //$scope.selected = selectedItem;
+            modalInstance.result.then(function (account) {
+                $scope.profile.fullName = account.firstname + ' ' + account.lastname;
+                $scope.profile.firstName = account.firstname;
+                $scope.profile.lastName = account.lastname;
+                $scope.profile.email = account.email;
+                $scope.profile.phone = account.telephone;
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
-        };
-
-        
-
-        $scope.updateProfile = function () {
-            var account = profileService.getProfile();
-            if (account) {
-                apiService.account.editUser({
-                    id: account.id,
-                    admin_id: account.id,
-                    type: account.type,
-                    firstname: $scope.profile.firstName,
-                    lastname: $scope.profile.lastName,
-                    email: $scope.profile.email,
-                    telephone: $scope.profile.phone,
-                    locked: 0,
-                    status: 1,
-                    department: 'developer'
-                }).then(function () {
-                    account.firstname = $scope.profile.firstName;
-                    account.lastname = $scope.profile.lastName;
-                    account.email = $scope.profile.email;
-                    account.telephone = $scope.profile.phone;
-                    profileService.saveProfile(account);
-                }, function (error) {
-                    $log.error(error);
-                    if (error.message)
-                        notificationService.error(error.message, 'bottom_right');
-                });
-            }
         };
 
         var changeStatus= function(){

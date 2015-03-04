@@ -3,51 +3,55 @@ app.controller('EditUserController', ['$scope', '$modalInstance', 'profileServic
         $modalInstance.close();
     };
 
-    $scope.profile={
-        firstName:null,
-        lastName:null,
-        email:null,
-        phone:null
-    };
-
-    
-
     $scope.ok = function () {
-        $scope.oldPasswordError = false;
-        $scope.confirmPasswordError = false;
-        
-        if (!$scope.oldPassword || !$scope.newPassword || !$scope.confirmPassword)
-            return;
-        if ($scope.oldPassword.length == 0 || $scope.newPassword.length == 0 || $scope.confirmPassword.length == 0)
-            return;
-        
-        if ($scope.newPassword !== $scope.confirmPassword) {
-            $scope.confirmPasswordError = true;
-            return;
-        };
-        apiService.account.changePassword({
-            password: $scope.oldPassword,
-            new_password: $scope.newPassword,
-            confirm_password: $scope.confirmPassword
-        }).then(function () {
-            notificationService.success('Password changed successfully', 'bottom_right');
-            $modalInstance.close();
-        }, function (error) {
-            if (error.message === 'old password doesnot match')
-                $scope.oldPasswordError = true;
-            else
-                notificationService.error(error.message, 'bottom_right');
-        });
+        $scope.fnError=null;
+        $scope.lnError=null;
+        $scope.emailError=null;
+        $scope.phoneError=null;
+        var account = profileService.getProfile();
+        if (account) {
+                apiService.account.editUser({
+                    id: account.id,
+                    admin_id: account.id,
+                    type: account.type,
+                    firstname: $scope.profile.firstname,
+                    lastname: $scope.profile.lastname,
+                    email: $scope.profile.email,
+                    telephone: $scope.profile.telephone,
+                    locked: 0,
+                    status: 1,
+                    department: 'developer'
+                }).then(function () {
+                    account.firstname = $scope.profile.firstname;
+                    account.lastname = $scope.profile.lastname;
+                    account.email = $scope.profile.email;
+                    account.telephone = $scope.profile.telephone;
+                    profileService.saveProfile(account);
+                    $modalInstance.close(account);
+                }, function (error) {
+                    if(error && error.items && error.items.length>0){
+                        if(error.items[0]['firstname'])
+                            $scope.fnError=error.items[0]['firstname'];
+                         if(error.items[0]['lastname'])
+                            $scope.lnError=error.items[0]['lastname'];
+                         if(error.items[0]['email'])
+                            $scope.emailError=error.items[0]['email'];
+                         if(error.items[0]['telephone'])
+                            $scope.phoneError=error.items[0]['telephone'];
+                    }else
+                    if (error.message)
+                        notificationService.error(error.message, 'bottom_right');
+                });
+            }
     };
+    $scope.fnError=null;
+    $scope.lnError=null;
+    $scope.emailError=null;
+    $scope.phoneError=null;
+    $scope.currentProfile=profileService.getProfile();
+    $scope.profile=profileService.getProfile();
 
-    $scope.avatar = profileService.getAvatar();
-    $scope.oldPassword = null;
-    $scope.oldPasswordError = false;
 
-    $scope.newPassword = null;
 
-    $scope.confirmPassword = null;
-    $scope.confirmPasswordError = false;
-    $scope.error = null;
 
 }]);
