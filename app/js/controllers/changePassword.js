@@ -4,6 +4,10 @@ app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profile
     };
 
     $scope.ok = function () {
+        if (!$scope.oldPassword || !$scope.newPassword || !$scope.confirmPassword)
+            return;
+        if ($scope.oldPassword.length == 0 || $scope.newPassword.length == 0 || $scope.confirmPassword.length == 0)
+            return;
         $scope.oldPasswordError = false;
         $scope.confirmPasswordError = false;
         if ($scope.newPassword !== $scope.confirmPassword) {

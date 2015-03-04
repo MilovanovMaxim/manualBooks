@@ -4,7 +4,7 @@
             restrict: 'E',
             templateUrl: 'tpl/blocks/aside.footer.html',
 
-            controller: ['$scope', 'profileService', 'authService', '$state', function ($scope, profileService, authService, $state) {
+            controller: ['$scope', 'profileService', 'authService', '$state', '$rootScope', function ($scope, profileService, authService, $state, $rootScope) {
                 $scope.getProfileName = function () {
                     var account = profileService.getProfile();
                     if (!account)
@@ -12,7 +12,7 @@
                     return account.firstname + ' ' + account.lastname;
                 };
 
-                $scope.asideFold = function(){
+                $scope.asideFold = function () {
                     $scope.app.settings.asideFolded = !$scope.app.settings.asideFolded
                 };
 
@@ -22,6 +22,16 @@
                 $scope.openProfile = function () {
                     $state.go('show.user');
                 };
+
+                $scope.getAvatar = function () {
+                    return profileService.getAvatar();
+                };
+
+                $rootScope.$on('avatarChanged', function (event, data) {
+                    $scope.avatar = data;
+                });
+
+                $scope.avatar = profileService.getAvatar();
             }]
         }
     })
