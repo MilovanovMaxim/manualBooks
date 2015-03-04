@@ -102,6 +102,9 @@
                 deleteAllUserNotes: function()
                 {
                     return _http.post('deleteAllUserNotes');
+                },
+                checkEmail: function(email){
+                    return _http.get('checkEmail', {email: email});
                 }
             },
 

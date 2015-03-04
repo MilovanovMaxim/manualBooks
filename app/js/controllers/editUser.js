@@ -3,13 +3,8 @@ app.controller('EditUserController', ['$scope', '$modalInstance', 'profileServic
         $modalInstance.close();
     };
 
-    $scope.ok = function () {
-        $scope.fnError=null;
-        $scope.lnError=null;
-        $scope.emailError=null;
-        $scope.phoneError=null;
-        var account = profileService.getProfile();
-        if (account) {
+    var updateUser= function(account){
+            if (account) {
                 apiService.account.editUser({
                     id: account.id,
                     admin_id: account.id,
@@ -42,7 +37,24 @@ app.controller('EditUserController', ['$scope', '$modalInstance', 'profileServic
                     if (error.message)
                         notificationService.error(error.message, 'bottom_right');
                 });
-            }
+            };
+    };
+
+    $scope.ok = function () {
+        $scope.fnError=null;
+        $scope.lnError=null;
+        $scope.emailError=null;
+        $scope.phoneError=null;
+        var account = profileService.getProfile();
+        if(account.email!=$scope.profile.email){
+            apiService.checkEmail($scope.profile.email).then(function(){
+                updateUser(account);
+            }, function(error){
+                if(error)
+                $scope.emailError=error.message;
+            });
+        }
+        
     };
     $scope.fnError=null;
     $scope.lnError=null;
