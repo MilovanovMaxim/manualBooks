@@ -1,7 +1,16 @@
-app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', function ($scope, $modalInstance, profileService, apiService, notificationService) {
+app.controller('EditUserController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', function ($scope, $modalInstance, profileService, apiService, notificationService) {
     $scope.close = function () {
         $modalInstance.close();
     };
+
+    $scope.profile={
+        firstName:null,
+        lastName:null,
+        email:null,
+        phone:null
+    };
+
+    
 
     $scope.ok = function () {
         $scope.oldPasswordError = false;
@@ -31,7 +40,6 @@ app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profile
         });
     };
 
-    $scope.name= profileService.getFullName();
     $scope.avatar = profileService.getAvatar();
     $scope.oldPassword = null;
     $scope.oldPasswordError = false;

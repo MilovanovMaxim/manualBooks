@@ -59,7 +59,13 @@
             if (profile && profile.avatar)
                 return profile.avatar;
             return '../img/a0.jpg';
-        }
+        };
+        service.getFullName= function(){
+            var profile = service.getProfile();
+            if(profile)
+                return profile.firstname + ' ' + profile.lastname;
+            return '';
+        };
         return service;
     }]);
 })(angular.module('app'));
