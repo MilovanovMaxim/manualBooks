@@ -1,7 +1,8 @@
 /**
  * Created by rsabiryanov on 26.02.2015.
  */
-app.controller('ChangeAvatarController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', 'FileUploader','$rootScope', function ($scope, $modalInstance, profileService, apiService, notificationService, FileUploader,$rootScope) {
+app.controller('ChangeAvatarController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', 'FileUploader','$rootScope','guidService', 
+    function ($scope, $modalInstance, profileService, apiService, notificationService, FileUploader,$rootScope, guidService) {
 
     var _url = 'http://marksmith.biz/uploadtest/upload.php?user_id=' + profileService.getUserId();
 
@@ -29,7 +30,7 @@ app.controller('ChangeAvatarController', ['$scope', '$modalInstance', 'profileSe
     uploader.onSuccessItem = function (fileItem, response, status, headers) {
 
         var profile = profileService.getProfile();
-        profile.avatar = response.items[0].picture;
+        profile.avatar = response.items[0].picture + '?'+ guidService.newGuid();
         profileService.saveProfile(profile);
         $rootScope.$emit('avatarChanged',profile.avatar);
         notificationService.success('Avatar has been uploaded', 'bottom_right');

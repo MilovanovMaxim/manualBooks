@@ -6,8 +6,8 @@
 
 
 // profile controller
-app.controller('ProfileFormController', ['$scope', 'profileService', 'authService', 'apiService', '$log', '$modal', 'usSpinnerService', 'notificationService',
-    function ($scope, profileService, authService, apiService, $log, $modal, usSpinnerService, notificationService) {
+app.controller('ProfileFormController', ['$rootScope', '$scope', 'profileService', 'authService', 'apiService', '$log', '$modal', 'usSpinnerService', 'notificationService',
+    function ($rootScope, $scope, profileService, authService, apiService, $log, $modal, usSpinnerService, notificationService) {
         usSpinnerService.spin('mainSpiner');
 
         var closeEdit = function () {
@@ -132,6 +132,10 @@ app.controller('ProfileFormController', ['$scope', 'profileService', 'authServic
                 $log.info('Modal dismissed at: ' + new Date());
             });
         };
+
+        $rootScope.$on('avatarChanged', function (event, data) {
+                    $scope.profile.avatar = data;
+                });
 
         var init = function () {
             var account = profileService.getProfile();
