@@ -1,29 +1,36 @@
 <div class="modal-body wrapper-lg">
     <div class="row">
         <div class="col-sm-6 b-r">
-            <h3 class="m-t-none m-b font-thin">Change Your Password?</h3>
+            <h3 class="m-t-none m-b font-thin">Update your Information</h3>
 
-            <p>Please make sure your password is minimum 6 characters long</p>
+            <p></p>
 
             <form role="form">
                 <div class="form-group">
-                    <label>Old Password</label>
+                    <label>First Name</label>
                     <label class="pull-right" style="color: #EA0C58;" ng-if="oldPasswordError"><i class="fa fa-spin fa-spinner hide show inline"
                                                                                                   id="spin" style="color: #1C2B36"></i> Incorrect
                         Password</label>
-                    <input type="password" class="form-control" placeholder="Password" ng-model="oldPassword">
+                    <input type="text" class="form-control" placeholder="First Name" ng-model="profile.firstname" required>
                 </div>
                 <div class="form-group">
-                    <label>New Password</label>
-                    <input type="password" class="form-control" placeholder="Password" ng-model="newPassword"
-                           pattern=".{6,}">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last Name" ng-model="profile.lastName"
+                           required>
                 </div>
                 <div class="form-group">
-                    <label>Confirm Password</label>
+                    <label>Email</label>
                     <label class="pull-right" style="color: #EA0C58;" ng-if="confirmPasswordError"><i class="fa fa-spin fa-spinner hide show inline"
                                                                                                       id="spin" style="color: #1C2B36"></i> Does not match</label>
-                    <input type="password" class="form-control" placeholder="Password" ng-model="confirmPassword"
-                           pattern=".{6,}">
+                    <input type="email" class="form-control" placeholder="Email" ng-model="profile.email"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <label class="pull-right" style="color: #EA0C58;" ng-if="confirmPasswordError"><i class="fa fa-spin fa-spinner hide show inline"
+                                                                                                      id="spin" style="color: #1C2B36"></i> Does not match</label>
+                    <input type="number" class="form-control" placeholder="Phone" ng-model="profile.phone"
+                           required>
                 </div>
                 <div class="checkbox m-t-lg">
                     <button type="submit" class="btn btn-sm btn-danger pull-right text-uc m-t-n-xs" ng-click="close()">
@@ -33,20 +40,16 @@
                 </div>
             </form>
 
-            <!--<div class="form-group">-->
-            <!--<label>Old Password</label>-->
-            <!--<input type="password" class="form-control ng-pristine ng-valid ng-touched"-->
-            <!--placeholder="Password" ng-model="oldPassword"-->
-            <!--style="border-color: #EA0C58;"></div>-->
-
             <div class="text-danger wrapper text-center" ng-if="error">
                 {{error}}
             </div>
         </div>
 
         <div class="col-sm-6">
-            <h4>John Smith</h4>
-            <img ng-src="{{avatar}}">
+            <h4>Current Information</h4>
+            <p>{{profile.firstName+' '+profile.lastName}}</p>
+            <p>{{profile.email}}</p>
+            <p>{{profile.phone}}</p>
         </div>
     </div>
 </div>

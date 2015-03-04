@@ -10,10 +10,6 @@ app.controller('ProfileFormController', ['$rootScope', '$scope', 'profileService
     function ($rootScope, $scope, profileService, authService, apiService, $log, $modal, usSpinnerService, notificationService) {
         usSpinnerService.spin('mainSpiner');
 
-        var closeEdit = function () {
-            $scope.canEditFirstName = $scope.canEditLastName = $scope.canEditEmail = $scope.canEditPhone = false;
-        };
-
         $scope.profile = {
             status: 1
         };
@@ -22,40 +18,33 @@ app.controller('ProfileFormController', ['$rootScope', '$scope', 'profileService
             authService.logout();
         };
 
-        $scope.canEditFirstName = false;
-        $scope.canEditLastName = false;
-        $scope.canEditEmail = false;
-        $scope.canEditPhone = false;
+       
 
 
-        $scope.editFirstName = function () {
-            closeEdit();
-            $scope.canEditFirstName = true;
+        $scope.editProfile = function () {
+            var modalInstance = $modal.open({
+                templateUrl: 'tpl/modal.edituser.html',
+                controller: 'EditUserController',
+                //size: size,
+                resolve: {
+                    items: function () {
+                        //return $scope.items;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                //$scope.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
         };
 
-        $scope.editLastName = function () {
-            closeEdit();
-            $scope.canEditLastName = true;
-        };
-        $scope.editEmail = function () {
-            closeEdit();
-            $scope.canEditEmail = true;
-        };
-        $scope.editPhone = function () {
-            closeEdit();
-            $scope.canEditPhone = true;
-        };
-
-        $scope.cancelUpdate = function () {
-            closeEdit();
-            init();
-        };
-
+        
 
         $scope.updateProfile = function () {
             var account = profileService.getProfile();
             if (account) {
-                closeEdit();
                 apiService.account.editUser({
                     id: account.id,
                     admin_id: account.id,
@@ -80,9 +69,20 @@ app.controller('ProfileFormController', ['$rootScope', '$scope', 'profileService
                 });
             }
         };
+
+        var changeStatus= function(){
+            var account = profileService.getProfile();
+                    apiService.account.statusUser({user_id: account.id, status: +!$scope.profile.status}).then(function () {
+                        $scope.profile.status = +!$scope.profile.status;
+                    });
+        }
+
         $scope.setStatus = function () {
-
-
+            if($scope.profile.status===0)
+            {
+                changeStatus();
+                return;
+            }
             var modalInstance = $modal.open({
                 templateUrl: 'tpl/modal.changeStatus.html',
                 controller: 'ChangeStatusController'
@@ -90,10 +90,7 @@ app.controller('ProfileFormController', ['$rootScope', '$scope', 'profileService
 
             modalInstance.result.then(function (result) {
                 if(result) {
-                    var account = profileService.getProfile();
-                    apiService.account.statusUser({user_id: account.id, status: +!$scope.profile.status}).then(function () {
-                        $scope.profile.status = +!$scope.profile.status;
-                    });
+                    changeStatus();
                 }
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());

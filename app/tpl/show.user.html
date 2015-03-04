@@ -39,95 +39,62 @@
             </div>
         </div>
         <div class="bg-white-only">
-            <h4 class="m-n wrapper">Information</h4>
+            <h4 class="m-n wrapper">Information
+             <div class="pull-right m-l">
+                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil" ng-click="editProfile()"></i></a>
+                    </div>
+                    </h4>
             <ul class="list-group no-radius no-border list-group-lg">
 
 
                 <li class="list-group-item">
-                    <div class="pull-right m-l">
-                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil" ng-click="editFirstName()"></i></a>
-                    </div>
                     <a class="jp-play-me m-r-sm pull-left">
                         <i class="icon-user text"></i>
                         <i class="icon-control-pause text-active"></i>
                     </a>
 
                     <div class="clear text-ellipsis">
-                        <span ng-if="!canEditFirstName">First Name: {{profile.firstName}}</span>
-                        <input ng-if="canEditFirstName" ng-model="profile.firstName">
-                        <a>
-                            <i ng-if="canEditFirstName" ng-click="updateProfile()" class="icon-check"/>
-                        </a>
-                        <a>
-                            <i ng-if="canEditFirstName" ng-click="cancelUpdate()" class="icon-close"/>
-                        </a>
-                        </input>
+                        <span >First Name: {{profile.firstName}}</span>
+                        
                     </div>
                 </li>
 
                 <li class="list-group-item">
-                    <div class="pull-right m-l">
-                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"
-                                                                    ng-click="editLastName()"></i></a>
-                    </div>
+
                     <a class="jp-play-me m-r-sm pull-left">
                         <i class="icon-user text"></i>
                         <i class="icon-control-pause text-active"></i>
                     </a>
 
                     <div class="clear text-ellipsis">
-                        <span ng-if="!canEditLastName">Last Name: {{profile.lastName}}</span>
-                        <input ng-if="canEditLastName" ng-model="profile.lastName">
-                        <a>
-                            <i ng-if="canEditLastName" ng-click="updateProfile()" class="icon-check"/>
-                        </a>
-                        <a>
-                            <i ng-if="canEditLastName" ng-click="cancelUpdate()" class="icon-close"/>
-                        </a>
-                        </input>
+                        <span >Last Name: {{profile.lastName}}</span>
+                 
                     </div>
                 </li>
 
                 <li class="list-group-item">
-                    <div class="pull-right m-l">
-                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil" ng-click="editEmail()"></i></a>
-                    </div>
+
                     <a class="jp-play-me m-r-sm pull-left">
                         <i class="icon-envelope text"></i>
                         <i class="icon-control-pause text-active"></i>
                     </a>
 
                     <div class="clear text-ellipsis">
-                        <span ng-if="!canEditEmail">Email: {{profile.email}}</span>
-                        <input ng-if="canEditEmail" ng-model="profile.email">
-                        <a>
-                            <i ng-if="canEditEmail" ng-click="updateProfile()" class="icon-check"/>
-                        </a>
-                        <a>
-                            <i ng-if="canEditEmail" ng-click="cancelUpdate()" class="icon-close"/>
-                        </a>
-                        </input>
+                        <span >Email: {{profile.email}}</span>
+                        
                     </div>
                 </li>
 
                 <li class="list-group-item">
-                    <div class="pull-right m-l">
-                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil" ng-click="editPhone()"></i></a>
-                    </div>
+
                     <a class="jp-play-me m-r-sm pull-left">
                         <i class="icon-call-end text"></i>
                         <i class="icon-control-pause text-active"></i>
                     </a>
 
                     <div class="clear text-ellipsis">
-                        <span ng-if="!canEditPhone">Phone: {{profile.phone}}</span>
-                        <input ng-if="canEditPhone" ng-model="profile.phone">
-                        <a>
-                            <i ng-if="canEditPhone" ng-click="updateProfile()" class="icon-check"/>
-                        </a>
-                        <a>
-                            <i ng-if="canEditPhone" ng-click="cancelUpdate()" class="icon-close"/>
-                        </a>
+                        <span >Phone: {{profile.phone}}</span>
+                       
                         </input>
                     </div>
                 </li>
