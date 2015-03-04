@@ -1,10 +1,10 @@
 /**
  * Created by rsabiryanov on 26.02.2015.
  */
-app.controller('ChangeAvatarController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', 'FileUploader','$rootScope','guidService', 
-    function ($scope, $modalInstance, profileService, apiService, notificationService, FileUploader,$rootScope, guidService) {
+app.controller('ChangeAvatarController', ['$scope', '$modalInstance', 'profileService', 'apiService', 'notificationService', 'FileUploader','$rootScope','guidService', 'config',
+    function ($scope, $modalInstance, profileService, apiService, notificationService, FileUploader,$rootScope, guidService, config) {
 
-    var _url = 'http://marksmith.biz/uploadtest/upload.php?user_id=' + profileService.getUserId();
+    var _url = config.apiUrl + '/uploadtest/upload.php?user_id=' + profileService.getUserId();
 
     $scope.close = function () {
         $modalInstance.close();
