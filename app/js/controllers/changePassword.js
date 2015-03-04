@@ -16,14 +16,17 @@ app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profile
             $scope.confirmPasswordError = true;
             return;
         };
+        $scope.inProgress= true;
         apiService.account.changePassword({
             password: $scope.oldPassword,
             new_password: $scope.newPassword,
             confirm_password: $scope.confirmPassword
         }).then(function () {
+             $scope.inProgress = null;
             notificationService.success('Password changed successfully', 'bottom_right');
             $modalInstance.close();
         }, function (error) {
+             $scope.inProgress = null;
             if (error.message === 'old password doesnot match')
                 $scope.oldPasswordError = true;
             else
@@ -37,6 +40,7 @@ app.controller('ChangePasswordController', ['$scope', '$modalInstance', 'profile
     $scope.oldPasswordError = false;
 
     $scope.newPassword = null;
+    $scope.inProgress = null;
 
     $scope.confirmPassword = null;
     $scope.confirmPasswordError = false;

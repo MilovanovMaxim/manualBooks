@@ -4,6 +4,7 @@ app.controller('EditUserController', ['$scope', '$modalInstance', 'profileServic
     };
 
     var updateUser= function(account){
+        $scope.inProgress=true;
             if (account) {
                 apiService.account.editUser({
                     id: account.id,
@@ -17,6 +18,7 @@ app.controller('EditUserController', ['$scope', '$modalInstance', 'profileServic
                     status: 1,
                     department: 'developer'
                 }).then(function () {
+                    $scope.inProgress=null;
                     account.firstname = $scope.profile.firstname;
                     account.lastname = $scope.profile.lastname;
                     account.email = $scope.profile.email;
@@ -24,6 +26,7 @@ app.controller('EditUserController', ['$scope', '$modalInstance', 'profileServic
                     profileService.saveProfile(account);
                     $modalInstance.close(account);
                 }, function (error) {
+                    $scope.inProgress=null;
                     if(error && error.items && error.items.length>0){
                         if(error.items[0]['firstname'])
                             $scope.fnError=error.items[0]['firstname'];
@@ -45,21 +48,30 @@ app.controller('EditUserController', ['$scope', '$modalInstance', 'profileServic
         $scope.lnError=null;
         $scope.emailError=null;
         $scope.phoneError=null;
+        $scope.emailCheck=null;
+        $scope.inProgress=null;
         var account = profileService.getProfile();
         if(account.email!=$scope.profile.email){
-            apiService.checkEmail($scope.profile.email).then(function(){
+            $scope.emailCheck=true;
+            apiService.account.checkEmail($scope.profile.email).then(function(){
+                 $scope.emailCheck=null;
                 updateUser(account);
             }, function(error){
+                 $scope.emailCheck=null;
                 if(error)
                 $scope.emailError=error.message;
             });
-        }
+        }else{
+            updateUser(account);
+        };
         
     };
     $scope.fnError=null;
     $scope.lnError=null;
     $scope.emailError=null;
     $scope.phoneError=null;
+    $scope.emailCheck=null;
+    $scope.inProgress=null;
     $scope.currentProfile=profileService.getProfile();
     $scope.profile=profileService.getProfile();
 
