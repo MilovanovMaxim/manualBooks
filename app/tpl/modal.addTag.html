@@ -1,0 +1,17 @@
+
+<div class="modal-body wrapper-lg">
+    <div class="row">
+        <h3 class="m-t-none m-b font-thin">Add a Tag?</h3>
+        <form role="form">
+            <div class="form-group">
+                <select id="systems" ui-jq="chosen" multiple class="w-lg" ng-model="selectedTags">
+                    <option ng-repeat="system in systems" value="{{system.name}}">{{system.name}}</option>
+                </select>
+            </div>
+            <div class="checkbox m-t-lg">
+                <button type="submit" class="btn btn-sm btn-danger pull-right text-uc m-t-n-xs" ng-click="close()"><strong>Close</strong></button>
+                <button type="submit" class="btn btn-sm btn-success pull-right text-uc m-t-n-xs" ng-click="ok()"><strong>Save</strong></button>
+            </div>
+        </form>
+    </div>
+</div>

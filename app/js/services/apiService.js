@@ -5,7 +5,7 @@
 
     module.factory('apiService', ['$http', '$q', '$log', 'profileService', 'config', function ($http, $q, $log, profileService, config) {
 
-        var _baseUrl = config.apiUrl + '/mbooksapi/';
+        var _baseUrl = config.apiUrl + '/mbxapi1/';
 
         var getResourceUrl = function (method) {
             return _baseUrl + method;
@@ -196,7 +196,18 @@
 
             search: function (searchString) {
                 return _http.get('search', {user_id: profileService.getUserId(), search: searchString});
+            },
+            faq: {
+                addFaq: function(adminId,question,content,notes){
+                    return _http.post('addFaq', {
+                        admin_id: adminId,
+                        question: question,
+                        content: content,
+                        notes: notes
+                    });
+                },
             }
+
         };
     }]);
 
