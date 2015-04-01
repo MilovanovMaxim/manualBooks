@@ -1,0 +1,81 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light " ng-init="
+  app.settings.asideFolded = false; 
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false
+  " ng-controller="GlossaryCtrl">
+
+  <!-- column -->
+  <div class="col w-md lter b-r">
+    <div class="vbox">
+       
+
+      <div class="row-row">
+        <div class="cell scrollable hover">
+          <div class="cell-inner">
+            <div class="wrapper-xxs">
+              <div class="col w-md bg-light dker bg-auto" >    
+    <div class="list-group no-radius no-border no-bg m-t-n-xxs m-b-none auto">
+      <a class="list-group-item">
+        <strong>FAQs</strong>
+      </a>
+      
+      <!--<a class="list-group-item active">
+        acoustic ng-click="selectItem(item)" ng-bind-html="person.first">
+      </a>-->
+
+      <a ng-repeat="item in items | orderBy:'FAQ'" class="list-group-item" ng-class="{'active': item.selected }" ng-click="selectItem(item)">
+        {{item.FAQ}}
+      </a>
+
+
+    </div>
+  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+
+  <!-- column -->
+  <div class="col">
+    <div class="vbox">
+      <div class="row-row">
+        <div class="cell scrollable">
+          <div class="cell-inner">
+            <div class="wrapper-md">
+              <div class="col wrapper-lg lter b-r">
+                  <div us-spinner="{radius:30, width:8, length: 16}" spinner-key="currentPageSpiner" ></div>
+
+                  <h3 class="font-thin m-t-n-xs m-b">{{item.FAQ}}</h3>
+    
+
+  <div ng-repeat="Order in listOfOrders">  
+	<blockquote>
+	<p style="font-family: Times, Georgia, serif;font-style: italic;" ng-bind-html="Order.notes">
+	</p>
+	</blockquote>
+  </div>
+ </div>
+
+
+       
+
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /column -->
+
+  
+</div>
+<!-- /hbox layout -->

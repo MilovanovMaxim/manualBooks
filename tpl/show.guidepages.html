@@ -1,0 +1,106 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light" ng-init="
+  app.settings.asideFolded = false; 
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false
+  " ng-controller="GuidePagesFormController">
+
+    <!-- column -->
+    <div class="col w-xxl bg-light dker lter b-r">
+        <div class="vbox">
+
+            <div class="row-row">
+                <div class="cell scrollable hover">
+                    <div class="cell-inner">
+                        <div class="wrapper-xxs">
+                            <div class="col w-xxl bg-light dker bg-auto">
+
+
+                                <h4 class="m-n wrapper"><a class="m-r-sm"
+                                                           ng-href="{{baseUrl}}downloadVersion?version_id={{book.version_id}}" target="_blank"><i
+                                        class="icon-cloud-download"
+                                        ></i></a><strong>{{book.title}}</strong>
+                                    {{book.version}}</h4>
+                                <ul class="list-group no-radius no-border no-bg list-group-lg">
+
+                                    <li class="list-group-item " ng-class="{active: page.active}"
+                                        ng-repeat="page in book.pages">
+                                        <div class="pull-right m-l">
+                                            <a class="m-r-sm" ng-href="{{baseUrl}}downloadPage?page_id={{page.id}}" target="_blank"><i
+                                                    class="icon-cloud-download"
+                                                    ></i></a>
+                                            <a mb-loader="loadingBookmark(page)"><i ng-class="page.bookmarked ? 'fa fa-thumb-tack fa-fw' : 'icon-pin'"
+                                                  ng-click="page.bookmarked ? removeBookmark(page.bookmark_id, page.id) : addBookmark(page.id,book.version_id)"></i></a>
+
+                                        </div>
+                                        <a class="m-r-sm pull-left">
+                                            <i class="icon-doc text"></i>
+                                            <i class="icon-control-pause text-active"></i>
+                                        </a>
+
+                                        <div class="clear text-ellipsis">
+                                            <span><a ng-click="displayPage(page.id)">{{page.name}}</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+
+    <!-- column -->
+    <div class="col">
+        <div class="vbox">
+            <div class="row-row">
+                <div class="cell scrollable">
+                    <div class="cell-inner">
+                        <div class="wrapper-sm">
+                            <div us-spinner="{radius:30, width:8, length: 16}" spinner-key="currentPageSpiner" ></div>
+
+                            <div class="col wrapper-lg bg-light lter b-r" ng-if="currentPage">
+
+
+                                <div class="hbox">
+                                    <div class="col w-xs">
+                                        <img ng-src="{{currentPage.media_image}}" class="img-full m-b">
+                                    </div>
+                                    <div class="col">
+                                        <div class="m-l-md">
+                                            <h3 class="m-t-none text-black">{{currentPage.full_title}}</h3>
+
+                                            <div class="text-muted">
+                                                Doc Revision Version: <span class="badge m-r-sm">{{currentPage.document_update_version}}</span>
+                                                Views:
+                                                <span class="badge">{{currentPage.views_count}}</span>
+                                            </div>
+
+
+                                            <div><br>
+                                                <a ng-if="isAdmin()" class="m-r-sm" tooltip="Delete Page"><i
+                                                        class="icon-trash"></i></a>
+                                                <a ng-if="isAdmin()" class="m-r-sm" tooltip="Hide Page"><i
+                                                        class="icon-eye"></i></a>
+                                                <a ng-if="isAdmin()" tooltip="Edit Page"><i class="icon-pencil"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-muted m-b-md" ng-bind-html="currentPage.content"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+
+
+</div>
+<!-- /hbox layout -->

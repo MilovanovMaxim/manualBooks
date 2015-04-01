@@ -1,0 +1,31 @@
+<ul class="nav navbar-nav navbar-right">
+    <li class="hidden-xs">
+        <a ui-fullscreen></a>
+    </li>
+    <li class="bg-light dropdown" dropdown on-toggle="displayBookmarks(open)">
+        <a href class="bg-info text-white dropdown-toggle" dropdown-toggle >
+            <i class="fa fa-thumb-tack fa-fw"></i>
+        </a>
+        <!-- dropdown -->
+        <div class="dropdown-menu w-xl animated fadeInUp">
+            <div class="panel bg-white">
+                <div class="panel-heading b-light bg-light">
+                    <strong>Bookmarked Items</strong>
+                </div>
+                <div class="list-group">
+                    <a href class="media list-group-item" ng-repeat="bookmark in bookmarks"
+                       ng-click="goToPage(bookmark.manual_id, bookmark.manual_title, bookmark.manual_version_id,bookmark.page_id)">
+                   <span class="pull-left thumb-sm">
+                     <img ng-src="{{bookmark.media_image}}" alt="{{bookmark.manual_title}}" class="img-circle">
+                   </span>
+                   <span class="media-body block m-b-none">
+                     {{bookmark.page_full_title}}<br>
+                     <small class="text-muted">{{bookmark.page_subtitle}}</small>
+                   </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- / dropdown -->
+    </li>
+</ul>

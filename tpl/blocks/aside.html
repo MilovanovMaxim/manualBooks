@@ -1,0 +1,44 @@
+<div class="aside-wrap">
+    <aside-footer></aside-footer>
+    <div class="navi-wrap">
+        <!-- nav -->
+        <nav ui-nav class="navi clearfix">
+            <!-- list -->
+            <ul class="nav dk">
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-u-c text-xs">
+                    <span>Discovery</span>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="show.recommendation">
+                        <i class="icon-star icon"></i>
+                        <span>Recommendation</span>
+                    </a>
+                </li>
+
+                <li ui-sref-active="active">
+                    <a ui-sref="show.glossary({fold: item.FAQ})">
+                        <i class="icon-list icon"></i>
+                        <span>FAQs</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav">
+                <li class="hidden-folded padder m-t m-b-sm text-muted text-u-c text-xs">
+                    <span>Books</span>
+                </li>
+
+                <li ng-repeat="book in menu.books track by $index" ui-sref-active="active">
+                    <a ui-sref="show.guideversions({fold:book.id})">
+                        <i class="icon-book-open icon"></i>
+                        <span>{{book.title}}</span>
+                    </a>
+                </li>
+
+            </ul>
+            <!-- / list -->
+        </nav>
+        <!-- nav -->
+    </div>
+</div>

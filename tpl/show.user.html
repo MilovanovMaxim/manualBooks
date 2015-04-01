@@ -1,0 +1,162 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="ProfileFormController"
+     ng-init="app.settings.container = false;">
+    <!-- main -->
+    <div class="col">
+        <div class="wrapper-md">
+            <h3 class="m-t-none text-black">Welcome back <strong>{{profile.fullName}}</strong></h3>
+
+            <p class="text-muted m-b-md">Please select a section to edit or add a new page to the guide</p>
+
+            <div class="hbox hbox-auto-xs">
+                <div class="col w-sm">
+                    <img ng-src="{{profile.companyAvatar}}" class="img-full m-b">
+                </div>
+                <div class="col">
+                    <div class="m-l-md">
+                        <div class="clearfix m-b-md">
+                            <a class="thumb-sm pull-left m-r">
+                                <img ng-src="{{profile.avatar}}" class="img-circle">
+                            </a>
+
+                            <div class="clear">
+                                <a class="text-info">{{profile.email}}</a>
+                                <small class="block text-muted">{{profile.joinedDate}}</small>
+                            </div>
+                        </div>
+                        <div class="m-b-md">
+                            <a class="btn btn-icon btn-rounded btn-info" tooltip="Change Picture" ng-click="changeAvatar()"><i
+                                    class="fa fa-file-photo-o m-r-n-xxs"></i></a>
+                            <a class="btn btn-icon btn-rounded btn-info" tooltip="Change Password" ng-click="changePassword()"><i
+                                    class="fa fa-key m-r-n-xxs"></i></a>
+                            <a class="btn btn-icon btn-rounded " tooltip="Remove account"
+                               ng-class="profile.status==1 ? 'btn-info' : 'btn-info-red'" ng-click="setStatus()"><i
+                                    class="fa fa-power-off m-r-n-xxs"></i></a>
+                        </div>
+                        <strong>{{profile.website_name}}</strong><br>
+                        <!--{{profile.companyPlace}}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white-only">
+            <h4 class="m-n wrapper">Information
+             <div class="pull-right m-l">
+                        <a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil" ng-click="editProfile()"></i></a>
+                    </div>
+                    </h4>
+            <ul class="list-group no-radius no-border list-group-lg">
+
+
+                <li class="list-group-item">
+                    <a class="jp-play-me m-r-sm pull-left">
+                        <i class="icon-user text"></i>
+                        <i class="icon-control-pause text-active"></i>
+                    </a>
+
+                    <div class="clear text-ellipsis">
+                        <span >First Name: {{profile.firstName}}</span>
+                        
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+
+                    <a class="jp-play-me m-r-sm pull-left">
+                        <i class="icon-user text"></i>
+                        <i class="icon-control-pause text-active"></i>
+                    </a>
+
+                    <div class="clear text-ellipsis">
+                        <span >Last Name: {{profile.lastName}}</span>
+                 
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+
+                    <a class="jp-play-me m-r-sm pull-left">
+                        <i class="icon-envelope text"></i>
+                        <i class="icon-control-pause text-active"></i>
+                    </a>
+
+                    <div class="clear text-ellipsis">
+                        <span >Email: {{profile.email}}</span>
+                        
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+
+                    <a class="jp-play-me m-r-sm pull-left">
+                        <i class="icon-call-end text"></i>
+                        <i class="icon-control-pause text-active"></i>
+                    </a>
+
+                    <div class="clear text-ellipsis">
+                        <span >Phone: {{profile.phone}}</span>
+                       
+                        </input>
+                    </div>
+                </li>
+
+
+                <!--<li class="list-group-item">-->
+                <!--<div class="pull-right m-l">-->
+                <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
+                <!--</div>-->
+                <!--<a class="jp-play-me m-r-sm pull-left">-->
+                <!--<i class="icon-flag text"></i>-->
+                <!--<i class="icon-control-pause text-active"></i>-->
+                <!--</a>-->
+
+                <!--<div class="clear text-ellipsis">-->
+                <!--<span>Company: {{profile.companyName}}</span>-->
+                <!--</div>-->
+                <!--</li>-->
+
+                <!--<li class="list-group-item">-->
+                <!--<div class="pull-right m-l">-->
+                <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
+                <!--</div>-->
+                <!--<a class="jp-play-me m-r-sm pull-left">-->
+                <!--<i class="icon-briefcase text"></i>-->
+                <!--<i class="icon-control-pause text-active"></i>-->
+                <!--</a>-->
+
+                <!--<div class="clear text-ellipsis">-->
+                <!--<span>Department: {{profile.department}}</span>-->
+                <!--</div>-->
+                <!--</li>-->
+
+                <!--<li class="list-group-item">-->
+                <!--<div class="pull-right m-l">-->
+                <!--<a class="m-r-sm" tooltip="Edit Details"><i class="icon-pencil"></i></a>-->
+                <!--</div>-->
+                <!--<a class="jp-play-me m-r-sm pull-left">-->
+                <!--<i class="icon-map text"></i>-->
+                <!--<i class="icon-control-pause text-active"></i>-->
+                <!--</a>-->
+
+                <!--<div class="clear text-ellipsis">-->
+                <!--<span>Address: {{profile.companyPlace}}</span>-->
+                <!--</div>-->
+                <!--</li>-->
+
+
+            </ul>
+        </div>
+        <notes></notes>
+    </div>
+    <!-- ======================================== -->
+    <!-- RECENT ACITVITY -->
+    <!-- ======================================== -->
+    <!-- / main -->
+    <!-- right col -->
+    <div class="col w-md bg-light dker b-l bg-auto no-border-xs">
+        <div class="wrapper-md">
+            <div mb-recent-activity></div>
+        </div>
+
+    </div>
+    <!-- / right col -->
+</div>

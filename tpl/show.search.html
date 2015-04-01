@@ -1,0 +1,100 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+  app.settings.asideFolded = false;
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false
+  " ng-controller="SearchFormConroller">
+  <div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3"><i class="icon-magnifier i-sm m-r-sm"></i> Search</h1>
+  </div>
+  <div class="wrapper-md">
+
+    <p class="m-b-md"><strong>{{searchResult.length}}</strong> Results found for: <strong>{{searchString}}</strong></p>
+    <tabset class="tab-container">
+      <tab>
+        <tab-heading>
+          Manual books <span class="badge badge-sm m-l-xs">{{searchResult.manuals.length}}</span>
+        </tab-heading>
+        <ul class="list-group no-borders pull-in m-b-none">
+          <li ng-repeat="manual in searchResult.manuals" class="list-group-item">
+            <a ui-sref="show.guideversions({fold:manual.id})" class="pull-left thumb-md m-r">
+              <img ng-src="{{manual.image}}" class="img-circle">
+            </a>
+            <div class="clear">
+
+              <a ui-sref="show.guideversions({fold:manual.id})" class="h4 text-primary m-b-sm m-t-sm block">{{manual.title}}</a>
+              <p>{{manual.subtitle}}</p>
+              <span class="label bg-primary pos-rlt m-r inline wrapper-xs">
+                <i class="arrow right arrow-primary"></i> Tags:</span>
+              <a ng-repeat="tag in manual.tags" ui-sref="show.search({searchString:tag.name})"
+                 class="m-r-sm">{{tag.name}}</a>
+            </div>
+
+          </li>
+
+        </ul>
+      </tab>
+      <tab>
+        <tab-heading>
+          Versions <span class="badge bg-danger badge-sm m-l-xs">{{searchResult.versions.length}}</span>
+        </tab-heading>
+        <ul class="list-group list-group-alt list-group-lg no-borders pull-in m-b-none">
+          <li ng-repeat="version in searchResult.versions" class="list-group-item">
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="pull-left thumb-md m-r">
+              <img ng-src="{{version.image}}" class="img-circle">
+            </a>
+            <div class="clear">
+              <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="h4 text-primary m-b-sm block">{{version.title}}</a>
+              <div>{{version.subtitle}}</div>
+            </div>
+            <span class="label bg-primary pos-rlt m-r inline wrapper-xs">
+              <i class="arrow right arrow-primary"></i> Tags:</span>
+            <a ng-repeat="tag in version.tags" ui-sref="show.search({searchString:tag.name})"
+               class="m-r-sm">{{tag.name}}</a>
+
+          </li>
+        </ul>
+      </tab>
+      <tab>
+        <tab-heading>
+          Pages <span class="badge bg-primary badge-sm m-l-xs">{{searchResult.pages.length}}</span>
+        </tab-heading>
+        <ul class="list-group list-group-lg no-borders pull-in m-b-none">
+          <li ng-repeat="page in searchResult.pages"  class="list-group-item">
+            <a ui-sref="show.page({fold:page.id})" class="pull-left thumb-md m-r">
+              <img ng-src="{{page.image}}" class="img-circle">
+            </a>
+            <div class="clear">
+              <a ui-sref="show.page({fold:page.id})" class="h4 text-primary m-b-sm block">{{page.short_title}}</a>
+              <p>
+                {{page.full_title}}
+              </p>
+              <span class="label bg-primary pos-rlt m-r inline wrapper-xs">
+                <i class="arrow right arrow-primary"></i> Tags:</span>
+              <a ng-repeat="tag in page.tags" ui-sref="show.search({searchString:tag.name})"
+                 class="m-r-sm">{{tag.name}}</a>
+            </div>
+          </li>
+        </ul>
+      </tab>
+      <tab>
+        <tab-heading>
+          FAQS <span class="badge bg-primary badge-sm m-l-xs">{{searchResult.faqs.length}}</span>
+        </tab-heading>
+        <ul class="list-group list-group-lg no-borders pull-in m-b-none">
+          <li ng-repeat="faq in searchResult.faqs"  class="list-group-item">
+            <div class="clear">
+              <a ui-sref="show.glossary({id:faq.id})" class="h4 text-primary m-b-sm block">{{faq.question}}</a>
+
+              <span class="label bg-primary pos-rlt m-r inline wrapper-xs">
+                <i class="arrow right arrow-primary"></i> Tags:</span>
+              <a ng-repeat="tag in faq.tags" ui-sref="show.search({searchString:tag.name})"
+                 class="m-r-sm">{{tag.name}}</a>
+            </div>
+          </li>
+        </ul>
+      </tab>
+    </tabset>
+  </div>
+</div>

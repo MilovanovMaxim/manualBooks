@@ -1,0 +1,56 @@
+<!-- hbox layout -->
+<div class="hbox hbox-auto-xs bg-light" ng-init="
+  app.settings.asideFolded = false; 
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false
+  " ng-controller="PageController">
+
+
+    <!-- column -->
+    <div class="col">
+        <div class="vbox">
+            <div class="row-row">
+                <div class="cell scrollable">
+                    <div class="cell-inner">
+                        <div class="wrapper-sm">
+                            <div class="col wrapper-lg bg-light lter b-r">
+
+                                <div class="hbox">
+                                    <div class="col w-xs">
+                                        <img ng-src="{{page.media_image}}" class="img-full m-b">
+                                    </div>
+                                    <div class="col">
+                                        <div class="m-l-md">
+                                            <h3 class="m-t-none text-black">{{page.full_title}}</h3>
+
+                                            <div class="text-muted">
+                                                Doc Revision Version: <span class="badge m-r-sm">{{page.document_update_version}}</span>
+                                                Views: <span class="badge">{{page.count}}</span>
+                                            </div>
+
+
+                                            <!--<div><br>-->
+                                                <!--<a class="m-r-sm" tooltip="Delete Page"><i class="icon-trash"></i></a>-->
+                                                <!--<a class="m-r-sm" tooltip="Hide Page"><i class="icon-eye"></i></a>-->
+                                                <!--<a tooltip="Edit Page"><i class="icon-pencil"></i></a>-->
+
+                                            <!--</div>-->
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-muted m-b-md" ng-bind-html="page.content"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /column -->
+
+
+</div>
+<!-- /hbox layout -->

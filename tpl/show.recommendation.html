@@ -1,0 +1,113 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+  app.settings.asideFolded = false;
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false
+  " ng-controller="RecommendationController">
+<!-- main -->
+  <div class="col wrapper-lg">
+    <h3 class="font-thin m-t-n-xs m-b">Recommendation</h3>
+    <div class="row row-sm">
+      
+<!-- ======================================== -->
+<!-- MANUAL BOOKS RECOMMENDATION ROW -->
+<!-- ======================================== -->
+
+      <div ng-repeat="book in recommendatedBooks" class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
+        <div class="item">
+          <div class="pos-rlt">
+            <div class="top">
+              <span class="badge bg-info m-l-sm m-t-sm">{{book.no_of_versions}}</span>
+            </div>
+            <div class="top w-full">
+              <!--<span class="pull-right m-t-n-xs m-r-sm text-white">-->
+                <!--<i class="fa fa-bookmark i-lg"></i>-->
+              <!--</span>-->
+            </div>     
+            <div class="bottom">
+              <span class="badge bg-warning m-l-sm m-b-sm">{{book.modified.slice(0,10)}}</span>
+            </div>
+            <div class="item-overlay bg-black-opacity r r-2x r r-2x">
+              <div class="center text-center m-t-n w-full">
+                <a ui-sref="show.guideversions({fold:book.id})"><i class="fa fa-2x fa-book text-white"></i></a>
+              </div>
+            </div>
+            <a ui-sref="show.guideversions({fold:book.id})"><div class="box"><img ng-src="{{book.image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
+          </div>
+          <div class="padder-v">
+            <a ui-sref="show.guideversions({fold:book.id})" class="text-ellipsis">{{book.title}}</a>
+            <a ui-sref="show.guideversions({fold:book.id})" class="text-ellipsis text-xs text-muted">View</a>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix visible-xs"></div>
+
+<!-- ======================================== -->
+<!-- MANUAL BOOKS VERSIONS RECOMMENDATION ROW -->
+<!-- ======================================== -->
+
+      <div ng-repeat="version in recommendatedVersions" class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
+        <div class="item">
+          <div class="pos-rlt">
+            <div class="top w-full">
+              <span class="pull-right m-t-sm m-r-sm badge bg-info">{{version.no_of_pages}}</span>
+            </div>
+             <div class="bottom">
+              <span class="badge bg-warning m-l-sm m-b-sm">{{version.modified.slice(0, 10)}}</span>
+            </div>
+            <div class="item-overlay bg-black-opacity r r-2x">
+              <div class="center text-center m-t-n w-full">
+                <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><i class="fa fa-2x fa-book text-white"></i></a>
+              </div>
+            </div>                         
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"><div class="box"><img ng-src="{{version.image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
+          </div>
+          <div class="padder-v">
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="text-ellipsis">{{version.title}} {{version.manual_version}}</a>
+            <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})" class="text-ellipsis text-xs text-muted">View</a>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix visible-xs"></div>
+
+<!-- ======================================== -->
+<!-- PAGES ROW -->
+<!-- ======================================== -->
+
+      <div ng-repeat="page in recommendatedPages" class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
+        <div class="item">
+          <div class="pos-rlt">
+            <div class="bottom">
+              <span class="badge bg-warning m-l-sm m-b-sm">{{page.modified.slice(0,10)}}</span>
+            </div>
+            <div class="item-overlay bg-black-opacity r r-2x">
+              <div class="center text-center m-t-n w-full">
+                <a ui-sref="show.page({fold:page.id})"><i class="fa fa-2x fa-file text-white"></i></a>
+              </div>
+            </div>
+            <a ui-sref="show.page({fold:page.id})"><div class="box"><img ng-src="{{page.media_image}}" alt="" class="img-full r r-2x" style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;"></div></a>
+          </div>
+          <div class="padder-v">
+            <a ui-sref="show.page({fold:page.id})" class="text-ellipsis" >{{page.full_title}}</a>
+            <a ui-sref="show.page({fold:page.id})" class="text-ellipsis text-xs text-muted" >View</a>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix visible-xs"></div>
+    </div>
+  </div>
+
+<!-- ======================================== -->
+<!-- RECENT ACITVITY -->
+<!-- ======================================== -->
+  <!-- / main -->
+  <!-- right col -->
+  <div class="col w-md bg-light dker b-l bg-auto no-border-xs">    
+    <div class="wrapper-md">
+      <div mb-recent-activity></div>
+    </div>
+
+  </div>
+  <!-- / right col -->
+</div>

@@ -1,0 +1,61 @@
+<div class="modal-body wrapper-lg">
+    <div class="row">
+        <div class="col-sm-6 b-r">
+            <h3 class="m-t-none m-b font-thin">Update your Information</h3>
+
+            <p></p>
+
+            <form role="form">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <i ng-if="inProgress" class="fa fa-spin fa-spinner hide show inline"
+                                                                                                  id="spin" style="color: #1C2B36"></i> 
+                    <label class="pull-right" style="color: #EA0C58;" ng-if="fnError">
+                        {{fnError}}</label>
+                    <input type="text" class="form-control" placeholder="First Name" ng-model="profile.firstname" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <label class="pull-right" style="color: #EA0C58;" ng-if="lnError">
+                        {{lnError}}</label>
+                    <input type="text" class="form-control" placeholder="Last Name" ng-model="profile.lastname"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <i ng-if="emailCheck" class="fa fa-spin fa-spinner hide show inline"
+                                                                                                  id="spin" style="color: #1C2B36"></i>
+                      <label class="pull-right" style="color: #EA0C58;" ng-if="emailError"> 
+                        {{emailError}}</label>
+                    
+                    <input type="email" class="form-control" placeholder="Email" ng-model="profile.email"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+
+                    <label class="pull-right" style="color: #EA0C58;" ng-if="phoneError">{{phoneError}}</label>
+                    <input type="text" class="form-control" placeholder="Phone" ng-model="profile.telephone"
+                           required>
+                </div>
+                <div class="checkbox m-t-lg">
+                    <button type="submit" class="btn btn-sm btn-danger pull-right text-uc m-t-n-xs" ng-click="close()">
+                        <strong>Close</strong></button>
+                    <button type="submit" class="btn btn-sm btn-success pull-right text-uc m-t-n-xs" ng-click="ok()">
+                        <strong>Save</strong></button>
+                </div>
+            </form>
+
+            <div class="text-danger wrapper text-center" ng-if="error">
+                {{error}}
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <h4>Current Information</h4>
+            <p>{{currentProfile.firstname+' '+currentProfile.lastname}}</p>
+            <p>{{currentProfile.email}}</p>
+            <p>{{currentProfile.telephone}}</p>
+        </div>
+    </div>
+</div>

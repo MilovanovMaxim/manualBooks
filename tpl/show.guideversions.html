@@ -1,0 +1,67 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+  app.settings.asideFolded = false;
+  app.settings.asideFixed = true;
+  app.settings.asideDock = false;
+  app.settings.container = false;
+  app.hideAside = false
+  " ng-controller="GuideversionsControlle">
+
+    <!-- main -->
+    <div class="col wrapper-lg">
+
+
+        <div class="bg-light lter   hidden-print ng-scope" style="background-color:#F0F3F4;">
+            <button class="btn btn-rounded btn-sm btn-icon btn-success pull-right" tooltip="Add New Version"
+                    ng-if="isAdmin()"><i
+                    class="fa fa-plus"></i></button>
+            <button class="btn btn-rounded btn-sm btn-icon btn-info pull-right" style="margin-right:5px;"
+                    tooltip="Edit Guide" ng-if="isAdmin()" ng-click="">
+                <i class="fa fa-pencil"></i></button>
+            <h3 class="font-thin m-t-n-xs m-b">Select <strong>{{manual.manual_title}}</strong> Version</h3>
+
+        </div>
+
+        <div class="row row-sm">
+            <div ng-repeat="version in bookVersions| slice:currentPage*pagSize:(currentPage+1)*pagSize as result"
+                 class="col-xs-6 col-sm-4 col-md-3 col-lg-2-4">
+                <div class="item">
+                    <div class="pos-rlt">
+                        <div class="top w-full">
+                            <span class="pull-right m-t-sm m-r-sm badge bg-info">{{version.no_of_pages}}</span>
+                            <!--<span class="pull-right m-t-n-xs m-r-sm text-white">-->
+                            <!--<i class="fa fa-bookmark i-lg"></i>-->
+                            <!--</span>-->
+                        </div>
+                        <div class="bottom">
+                            <span class="badge bg-warning m-l-sm m-b-sm">{{version.modified.slice(0,10)}}</span>
+                        </div>
+
+                        <div class="item-overlay bg-black-opacity">
+                            <div class="center text-center m-t-n w-full">
+                                <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"
+                                   class="text-ellipsis"><i class="fa fa-2x fa-book text-white"></i></a>
+                            </div>
+                        </div>
+                        <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})">
+                            <div class="box"><img ng-src="{{version.image}}" alt="" class="img-full"
+                                                  style="position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1;">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="wrapper bg-white m-b">
+                        <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"
+                           class="text-ellipsis">{{version.title}} {{version.manual_version}}</a>
+                        <a ui-sref="show.guidepages({fold:version.id, title:version.title, version: version.manual_version})"
+                           class="text-ellipsis">View</a>
+
+                        <!--<a ui-sref="show.guidemanage({fold:version.id})" class="text-ellipsis text-xs text-muted">Manage</a>-->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div mb-paginator total-count="bookVersions.length" page-size="pagSize" on-page="pageChanged(page)"
+             current-page="currentPage"></div>
+    </div>
+    <!-- / main -->
+</div>
