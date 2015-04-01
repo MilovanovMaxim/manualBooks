@@ -13,7 +13,7 @@
                 firstname: serverUser.firstname,
                 id: serverUser.id,
                 lastname: serverUser.lastname,
-                status: 'admin',//serverUser.status,
+                status: serverUser.status,
                 type: serverUser.type,
                 telephone: serverUser.telephone,
                 website_id: serverUser.website_id,

@@ -51,9 +51,9 @@
                 if (!data)
                     data = {};
                 var userId = profileService.getUserId();
-                if(userId > 0)
+                if (userId > 0)
                     data.user_id = userId;
-                if(!data.website_id)
+                if (!data.website_id)
                     data.website_id = profileService.getWebsiteId();
                 return data;
             }
@@ -61,8 +61,8 @@
 
         return {
 
-            getBaseUrl: function(){
-              return _baseUrl;
+            getBaseUrl: function () {
+                return _baseUrl;
             },
             account: {
                 registration: function (data) {
@@ -76,34 +76,33 @@
                 },
 
                 getRecentActivity: function () {
-                    return _http.get('displayRecent',{user_id: profileService.getUserId()});
+                    return _http.get('displayRecent', {user_id: profileService.getUserId()});
                 },
                 editUser: function (data) {
                     return _http.post('editUser', data);
                 },
-                displayUserNotes: function(){
+                displayUserNotes: function () {
                     return _http.get('displayUserNotes');
                 },
-                deleteUserNote: function(id){
+                deleteUserNote: function (id) {
                     return _http.post('deleteUserNote', {id: id});
                 },
-                addUserNote:function(note){
+                addUserNote: function (note) {
                     return _http.post('addUserNote', note);
                 },
-                statusUser: function(data){
+                statusUser: function (data) {
                     return _http.post('statusUser', data);
                 },
-                changePassword: function(data){
+                changePassword: function (data) {
                     return _http.post('changePassword', data);
                 },
-                uploadPicture: function(data){
+                uploadPicture: function (data) {
                     return _http.post('uploadPicture', data);
                 },
-                deleteAllUserNotes: function()
-                {
+                deleteAllUserNotes: function () {
                     return _http.post('deleteAllUserNotes');
                 },
-                checkEmail: function(email){
+                checkEmail: function (email) {
                     return _http.get('checkEmail', {email: email});
                 }
             },
@@ -166,10 +165,10 @@
                 displayBookmarks: function () {
                     return _http.get('displayBookmarks', {user_id: profileService.getUserId()})
                 },
-                downloadVersion: function(versionId){
+                downloadVersion: function (versionId) {
                     return _http.get('downloadVersion', {version_id: versionId})
                 },
-                downloadPage: function(pageId){
+                downloadPage: function (pageId) {
                     return _http.get('downloadPage', {page_id: pageId})
                 },
                 removeBookmark: function (bookmarkId) {
@@ -181,7 +180,10 @@
 
             glossary: {
                 displayFaqs: function () {
-                    return _http.get('displayFaqs', {user_id: profileService.getUserId(), website_id: profileService.getWebsiteId()});
+                    return _http.get('displayFaqs', {
+                        user_id: profileService.getUserId(),
+                        website_id: profileService.getWebsiteId()
+                    });
                 },
                 displayFaq: function (id) {
                     return _http.get('displayFaq', {user_id: profileService.getUserId(), id: id})
@@ -189,8 +191,11 @@
             },
 
             tags: {
-                get: function(){
-                    return _http.get('getTags',{user_id: profileService.getUserId(), website_id: profileService.getWebsiteId()} );
+                get: function () {
+                    return _http.get('getTags', {
+                        user_id: profileService.getUserId(),
+                        website_id: profileService.getWebsiteId()
+                    });
                 }
             },
 
@@ -198,12 +203,13 @@
                 return _http.get('search', {user_id: profileService.getUserId(), search: searchString});
             },
             faq: {
-                addFaq: function(adminId,question,content,notes){
+                addFaq: function (adminId, question, content, notes, status) {
                     return _http.post('addFaq', {
                         admin_id: adminId,
                         question: question,
                         content: content,
-                        notes: notes
+                        notes: notes,
+                        status: status ? 1 : 0
                     });
                 },
             }

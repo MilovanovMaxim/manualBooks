@@ -9,7 +9,8 @@
             question: '',
             answer: '',
             notes: '',
-            tags: []
+            tags: [],
+            status: true
         };
 
         $scope.addTag = function () {
@@ -43,7 +44,7 @@
             var description = document.getElementById('wysiwyg');
             $scope.model.answer = angular.element(description).html();
             var userId=profileService.getUserId();
-            return apiService.faq.addFaq(userId,$scope.model.question,$scope.model.answer,$scope.model.notes).then(function(result){
+            return apiService.faq.addFaq(userId,$scope.model.question,$scope.model.answer,$scope.model.notes, $scope.model.status).then(function(result){
                 //if(result.Items)
                 //{
                 //    var id= result.Items[0].Id;

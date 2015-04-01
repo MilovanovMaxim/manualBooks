@@ -1,29 +1,31 @@
 <!-- navbar header -->
-<div class="navbar-header {{app.settings.navbarHeaderColor}}">
-    <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
-        <i class="glyphicon glyphicon-cog"></i>
-    </button>
-    <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
-        <i class="glyphicon glyphicon-align-justify"></i>
-    </button>
-    <!-- brand -->
-    <a href="#/" class="navbar-brand text-lt">
-        <i class="fa fa-graduation-cap"></i>
-        <img src="../../img/logo.png" alt="." class="hide">
-        <span class="hidden-folded m-l-xs">Manual Books</span>
-    </a>
-    <!-- / brand -->
-</div>
-<!-- / navbar header -->
+<div class="app-header navbar">
+    <div class="navbar-header {{app.settings.navbarHeaderColor}}">
+        <button class="pull-right visible-xs dk" ui-toggle-class="show" data-target=".navbar-collapse">
+            <i class="glyphicon glyphicon-cog"></i>
+        </button>
+        <button class="pull-right visible-xs" ui-toggle-class="off-screen" data-target=".app-aside" ui-scroll="app">
+            <i class="glyphicon glyphicon-align-justify"></i>
+        </button>
+        <!-- brand -->
+        <a href="#/" class="navbar-brand text-lt">
+            <i class="fa fa-graduation-cap"></i>
+            <img src="../../img/logo.png" alt="." class="hide">
+            <span class="hidden-folded m-l-xs">Manual Books</span>
+        </a>
+        <!-- / brand -->
+    </div>
+    <!-- / navbar header -->
 
-<!-- navbar collapse -->
-<div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
-    <!-- search form -->
-    <div mb-search-input></div>
-    <!-- / search form -->
-    <!-- nabar right -->
-    <administration-tools></administration-tools>
-    <!--<bookmark-items  ></bookmark-items>-->
-    <!-- / navbar right -->
+    <!-- navbar collapse -->
+    <div class="collapse pos-rlt navbar-collapse box-shadow {{app.settings.navbarCollapseColor}}">
+        <!-- search form -->
+        <div mb-search-input></div>
+        <!-- / search form -->
+        <!-- nabar right -->
+        <administration-tools ng-if="isAdmin()"></administration-tools>
+        <bookmark-items  ></bookmark-items>
+        <!-- / navbar right -->
+    </div>
 </div>
 <!-- / navbar collapse -->
